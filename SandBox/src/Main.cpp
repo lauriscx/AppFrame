@@ -4,7 +4,10 @@
 
 class Application : public Engine::Application {
 public:
-	Application() {}
+	Application() {
+		Engine::GraphicModule * graphic = new Engine::GraphicModule();
+		AddModule(graphic);
+	}
 
 	void Run();
 

@@ -93,6 +93,15 @@
     <ClInclude Include="src\Core\FileSystem\FileSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Core\LocalNotifications.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\Module.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Engine\GraphicModule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\DEnginePch.cpp">
@@ -135,6 +144,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\FileSystem\FileSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\GraphicModule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

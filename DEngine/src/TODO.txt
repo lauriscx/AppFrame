@@ -5,7 +5,7 @@ Memory manager +
 Event System + //Need to check multitreading feature.
 Input system +
 Entyti(components) system (ECS) +
-File reading(saves/loading) - 
+File reading(saves/loading) -
 Mound zip/rar files -
 Virtual file system -
 Task threading system -
@@ -14,7 +14,7 @@ System graphic interface -
 Sripting language(native/and external) -
 Sound system -
 Json and XML support -
-
+Error handling system -
 ------------------Advanced-------------------
 
 Graphic System -
