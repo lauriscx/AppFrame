@@ -22,8 +22,10 @@ void Engine::Application::Run() {
 }
 
 void Engine::Application::OnUpdate() {
+	for (Module* module : m_Modules) {
+		module->Update(0.0f);
+	}
 	m_Window->OnUpdate();
-
 }
 
 bool Engine::Application::OnEvent(BasicEvent & event) {
@@ -47,6 +49,10 @@ bool Engine::Application::OnInput(int x, int y, int action, int key) {
 
 bool Engine::Application::Close() {
 	return close;
+}
+
+void Engine::Application::AddModule(Module * module) {
+	m_Modules.push_back(module);
 }
 
 AppConfig * Engine::Application::GetConfig() {

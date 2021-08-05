@@ -45,6 +45,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)-$(Platform)\$(ProjectName)\</IntDir>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\</OutDir>
@@ -81,7 +82,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOWS;BUILD_ENGINE_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>DEnginePch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)_$(PlatformTarget).pch</PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(SolutionDir)DEngine/src/Utils3rd/Entt/;$(SolutionDir)DEngine/src/;$(SolutionDir)DEngine/src/Core/;$(SolutionDir)DEngine/src/Utils3rd/glfw/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -99,6 +100,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Engine\GraphicModule.h" />
     <ClInclude Include="src\Application\Events\EventTypes.h" />
     <ClInclude Include="src\Core\InputSystem\InputHandler.h" />
     <ClInclude Include="src\Application\AppConfig.h" />
@@ -111,9 +113,11 @@
     <ClInclude Include="src\Core\EventSystem\EventHandler.h" />
     <ClInclude Include="src\Core\EventSystem\EventManager.h" />
     <ClInclude Include="src\Core\FileSystem\FileSystem.h" />
+    <ClInclude Include="src\Core\LocalNotifications.h" />
     <ClInclude Include="src\Core\Memory.h" />
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Core\Core.h" />
+    <ClInclude Include="src\Core\Module.h" />
     <ClInclude Include="src\Core\Window.h" />
     <ClInclude Include="src\DEngine.h" />
     <ClInclude Include="src\Core\DEnginePch.h" />
@@ -127,6 +131,7 @@
     <ClInclude Include="src\Core\Task.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Engine\GraphicModule.cpp" />
     <ClCompile Include="src\Application\Events\AppEvents.h" />
     <ClCompile Include="src\Core\InputSystem\InputHandler.cpp" />
     <ClCompile Include="src\Application\AppConfig.cpp" />

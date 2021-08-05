@@ -2,10 +2,13 @@
 #include "Core/Core.h"
 #include "Core/Window.h"
 #include "Core/Device.h"
+#include "Core/Module.h"
 #include "Core/EventSystem/EventHandler.h"
 #include "Core/InputSystem/InputHandler.h"
 #include "AppContext.h"
 #include "AppConfig.h"
+
+#include <vector>
 
 
 namespace Engine {
@@ -18,6 +21,8 @@ namespace Engine {
 		virtual bool OnEvent(BasicEvent& event) override;
 		virtual bool OnInput(int x, int y, int action, int key) override;
 		virtual bool Close();
+
+		virtual void AddModule(Module* module);//change to use memory ref.
 
 		static Application* GetInstance() { return s_Instance; }
 
@@ -35,6 +40,8 @@ namespace Engine {
 		AppContext * m_Context;
 		Window * m_Window;
 		Device * m_Device;
+
+		std::vector<Module*> m_Modules;
 
 		bool close;
 	};
