@@ -24,6 +24,9 @@
 
 
 // #include "core/algorithm.hpp"
+#pragma warning( disable: 4251 )
+#pragma warning( disable: 4275 )
+#pragma warning( disable: 4307 )
 #ifndef ENTT_CORE_ALGORITHM_HPP
 #define ENTT_CORE_ALGORITHM_HPP
 

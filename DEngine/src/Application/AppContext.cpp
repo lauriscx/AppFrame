@@ -19,3 +19,9 @@ void AppContext::SetFPSLimit(int fps) {
 void AppContext::SetMemoryUsage(float memory) {
 	m_MemoryUsage = memory;
 }
+
+void AppContext::SetLanguage(const char * language) {
+}
+
+void AppContext::AddLanguage(const char * language) {
+}

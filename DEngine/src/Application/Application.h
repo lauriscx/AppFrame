@@ -10,6 +10,7 @@
 
 #include <vector>
 
+#pragma warning( disable: 4275 )//Need set EventHandler and InputHandler as ENGINE_API
 
 namespace Engine {
 	class ENGINE_API Application : public EventHandler, public InputHandler {

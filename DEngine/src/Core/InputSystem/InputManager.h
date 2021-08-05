@@ -9,9 +9,9 @@ namespace Engine {
 
 	class InputManager {
 	public:
-		void OnButtonClick(int button);
-		void OnButtonRelease(int button);
-		void OnMouseMove(int x, int y);
+		void OnButtonClick(int button) {}
+		void OnButtonRelease(int button) {}
+		void OnMouseMove(int x, int y) {}
 
 		void SendInput(int x, int y, int action, int key);
 

@@ -87,7 +87,7 @@ bool Engine::WinWindow::Create() {
 	});
 
 	glfwSetScrollCallback((GLFWwindow*)m_Window, [](GLFWwindow* window, double x, double y) {
-		InputManager::GetInstance()->SendInput(x, y, -1, 0);
+		InputManager::GetInstance()->SendInput((int)x, (int)y, -1, 0);
 		/*Events* events = (Events*)glfwGetWindowUserPointer(window);
 
 		MauseScrollEvent* event = new MauseScrollEvent(x, y);
@@ -95,7 +95,7 @@ bool Engine::WinWindow::Create() {
 	});
 
 	glfwSetCursorPosCallback((GLFWwindow*)m_Window, [](GLFWwindow* window, double x, double y) {
-		InputManager::GetInstance()->SendInput(x, y, 0, 0);
+		InputManager::GetInstance()->SendInput((int)x, (int)y, 0, 0);
 		/*Events* events = (Events*)glfwGetWindowUserPointer(window);
 
 		MauseCursorEvent* event = new MauseCursorEvent(x, y);
