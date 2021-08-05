@@ -1,0 +1,34 @@
+//First support windows.
+
+-----------------Less Advance----------------
+Memory manager +
+Event System + //Need to check multitreading feature.
+Input system +
+Entyti(components) system (ECS) +
+File reading(saves/loading) - 
+Mound zip/rar files -
+Virtual file system -
+Task threading system -
+Windows abstraction class -
+System graphic interface -
+Sripting language(native/and external) -
+Sound system -
+Json and XML support -
+
+------------------Advanced-------------------
+
+Graphic System -
+	Graphic sub system shaders -
+	Graphic sub system Buffers -
+	Graphic sub system FrameBufers -
+	Graphic sub system Textures -
+	Graphic sub system Materials -
+	Graphic sub system Materials -
+	Graphic sub system Animations -
+	Graphic sub system batch/instance rendering -
+	SPIRV shader compiler -
+	
+Simple editor -
+Action System -
+Server communication -
+Physics(last one) -
