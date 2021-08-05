@@ -5,13 +5,19 @@
 class Application : public Engine::Application {
 public:
 	Application() {
-		Engine::GraphicModule * graphic = new Engine::GraphicModule();
+		graphic = new Engine::GraphicModule();
 		AddModule(graphic);
 	}
 
 	void Run();
 
-	~Application() {}
+	~Application() {
+		if (graphic) {
+			delete graphic;
+		}
+	}
+private:
+	Engine::GraphicModule * graphic;
 };
 
 void Application::Run() {
