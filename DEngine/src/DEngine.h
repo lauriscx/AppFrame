@@ -6,6 +6,8 @@
 #include "Core/Task.h"
 #include "Core/FileSystem/FileSystem.h"
 
+#include <filesystem>
+
 #include "Application/Application.h"
 
 #include "Engine/GraphicModule.h"
