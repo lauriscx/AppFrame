@@ -6,7 +6,7 @@ namespace Engine {
 
 	typedef size_t		size;
 
-	//typedef char		byte;
+	typedef char		byte;
 
 	namespace Language {
 		enum Values {

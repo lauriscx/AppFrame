@@ -5,6 +5,8 @@
 #include <iostream>
 #include "Platform/Windows/WinWindow.h"
 
+#include "Core/FileSystem/FileSystem.h"
+
 Engine::Application* Engine::Application::s_Instance = nullptr;
 
 Engine::Application::Application() : EventHandler("Application") {
