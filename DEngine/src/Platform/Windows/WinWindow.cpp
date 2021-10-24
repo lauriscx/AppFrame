@@ -7,7 +7,7 @@
 
 Engine::WinWindow::WinWindow() : windowClosed(false) { }
 
-bool Engine::WinWindow::Create() {
+bool Engine::WinWindow::Create(AppContext* context) {
 
 	/* Initialize the library */
 	if (!glfwInit())
@@ -19,6 +19,9 @@ bool Engine::WinWindow::Create() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // We don't want the old OpenGL 
 
+	this->width = context->GetWindowWidth();
+	this->height = context->GetWindowHeight();
+	this->title = context->GetApplicationName();
 	/* Create a windowed mode window and its OpenGL context */
 	m_Window = glfwCreateWindow(this->width, this->height, this->title, NULL, NULL);
 

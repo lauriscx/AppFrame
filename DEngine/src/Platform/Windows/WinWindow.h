@@ -1,12 +1,12 @@
 #pragma once
-#include "Window.h"
+#include "Application/AppWindow.h"
 
 namespace Engine {
-	class WinWindow : public Window {
+	class WinWindow : public AppWindow {
 	public:
 		WinWindow();
 
-		bool Create() override;
+		bool Create(AppContext* context) override;
 
 		void SetTitle(const char* title) override;
 		void SetWidth(int width) override;

@@ -1,17 +1,34 @@
 #include "AppConfig.h"
+#include "Core/XML/XML.h"
 
-void AppConfig::SetWindowWidth(float width) {
-	m_Width = width;
+AppConfig::AppConfig() {
+	ParseConfigXML("C:/Users/Kosmosas/Desktop/xml.xml");
 }
 
-void AppConfig::SetWindowHeight(float height) {
-	m_Height = m_Height;
-}
+AppConfig::~AppConfig() {}
 
-void AppConfig::SetApplicationName(const char * name) {
-	m_Name = name;
-}
+void AppConfig::ParseConfigXML(const char * path) {
+	XML::XMLDocument Configuration;
+	Configuration.LoadFile(path);
+	XML::XMLElement* RootElement = Configuration.RootElement();
+	if (RootElement) {
+		XML::XMLElement* WindowConfig = RootElement->FirstChildElement("Window");
+		if (WindowConfig) {
+			SetApplicationName(WindowConfig->FirstChildElement("Name")->GetText());
 
-void AppConfig::SetFPSLimit(int fps) {
-	m_FPS = fps;
+			SetWindowWidth		(atoi(WindowConfig->FirstChildElement("Width"	)->GetText()));
+			SetWindowHeight		(atoi(WindowConfig->FirstChildElement("Height"	)->GetText()));
+			SetFPSLimit			(atoi(WindowConfig->FirstChildElement("FPS"		)->GetText()));
+		}
+		SetStartupLang(RootElement->FirstChildElement("StartupLanguage")->GetText());
+
+		XML::XMLElement* SuportedLanguages = RootElement->FirstChildElement("SuportedLanguages");
+		if (SuportedLanguages) {
+			XML::XMLElement* SuportedLanguage = SuportedLanguages->FirstChildElement("Language");
+			while (SuportedLanguage) {
+				AddSupportLang(SuportedLanguage->GetText());
+				SuportedLanguage = SuportedLanguage->NextSiblingElement("Language");
+			}
+		}
+	}
 }

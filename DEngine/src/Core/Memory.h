@@ -60,9 +60,9 @@ namespace Engine {
 
 #if defined(_DEBUG)//Only for VS
 
-static size_t m_MemoryAllocated = 0;
-static size_t m_MemoryRelease = 0;
-static size_t m_MemoryCurrentMemory = 0;
+static __int64 m_MemoryAllocated = 0;
+static __int64 m_MemoryRelease = 0;
+static __int64 m_MemoryCurrentMemory = 0;
 
 void * operator new(size_t size) {
 	//std::cout << "Allocated memory " << size << std::endl;
@@ -77,9 +77,22 @@ void * operator new(size_t size) {
 void operator delete(void * p, std::size_t size) {
 	//std::cout << "Releasing memory " << size << std::endl;
 
+	/* 
+	 * Big red warnning!!! If you start suddently get memory leak error probably
+	 * you alocate memory in one module and release in another.
+	 */
+#ifdef NO_MEMORY_BUG
+	if (m_MemoryCurrentMemory >= (m_MemoryCurrentMemory - size)) {
+		m_MemoryCurrentMemory -= size;
+		m_MemoryRelease += size;
+	} else {
+		m_MemoryCurrentMemory = 0;
+		m_MemoryRelease = m_MemoryAllocated;
+	}
+#else
 	m_MemoryCurrentMemory -= size;
 	m_MemoryRelease += size;
-
+#endif
 	free(p);
 }
 

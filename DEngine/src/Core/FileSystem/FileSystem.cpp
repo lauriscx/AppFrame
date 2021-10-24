@@ -3,6 +3,7 @@
 #include <filesystem>
 #include <fstream>
 #include <sstream>
+#include "Core/Memory.h"
 
 bool Engine::FileSystem::IsFileExists		(const std::filesystem::path& path) {
 	return std::filesystem::exists(path);
@@ -103,4 +104,21 @@ bool Engine::FileSystem::ReadBinaryFile		(const std::filesystem::path& path, byt
 
 bool Engine::FileSystem::RemoveFile			(const std::filesystem::path& path) {
 	return std::remove(path.string().c_str());
+}
+
+std::filesystem::path Engine::FileSystem::strip_root(const std::filesystem::path& path) {
+	const std::filesystem::path& parent_path = path.parent_path();
+	if (parent_path.empty() || parent_path == "/")
+		return std::filesystem::path();
+	else
+		return strip_root(parent_path) += "/" + path.filename().string();
+}
+
+std::filesystem::path Engine::FileSystem::get_root	(const std::filesystem::path& path) {
+	const std::filesystem::path& parent_path = path.parent_path();
+	if (parent_path.empty() || parent_path == "/") {
+		return path;
+	} else {
+		return get_root(parent_path);
+	}
 }

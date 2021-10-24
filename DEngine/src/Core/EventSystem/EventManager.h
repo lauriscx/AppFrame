@@ -1,4 +1,5 @@
 #pragma once
+#include "Core/core.h"
 #include <map>
 #include <vector>
 #include <mutex>
@@ -7,7 +8,7 @@ namespace Engine {
 	class EventHandler;
 	class BasicEvent;
 
-	class EventManager {
+	class ENGINE_API EventManager {
 	protected://Using this functions only EventHandler class.
 		void Surscribe(int eventType, EventHandler* eventHandler);
 		void UnSurscribe(int eventType, EventHandler* eventHandler);
@@ -22,11 +23,11 @@ namespace Engine {
 		static EventManager* GetInstance();
 
 	private:
-		~EventManager() { m_EventHandlerEvents.clear(); }
 		EventManager() {}
 		EventManager(const EventManager& eventManager) {}
 		EventManager(const EventManager&& eventManager) {}
-		EventManager& operator=(const EventManager& eventmanager) {}
+		~EventManager() { m_EventHandlerEvents.clear(); }
+		//EventManager& operator=(const EventManager& eventmanager) {}
 
 		std::multimap<int, EventHandler*> m_EventHandlerEvents;
 		std::vector<BasicEvent*> m_Events;

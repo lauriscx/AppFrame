@@ -1,11 +1,12 @@
 #pragma once
-#include "Core.h"
+#include "Core/Core.h"
+#include "Application/AppContext.h"
 
 namespace Engine {
-	class ENGINE_API Window {
+	class ENGINE_API AppWindow {
 	public:
-
-		virtual bool Create() = 0;
+		AppWindow() {}
+		virtual bool Create(AppContext* context) = 0;
 
 		virtual void SetTitle(const char* title) = 0;
 		virtual void SetWidth(int width) = 0;
@@ -20,6 +21,6 @@ namespace Engine {
 		virtual void OnUpdate() = 0;
 		virtual bool Closed() = 0;
 
-		virtual ~Window() {}
+		virtual ~AppWindow() {}
 	};
 }

@@ -21,6 +21,9 @@ namespace Engine {
 			 
 		static bool RemoveFile			(const std::filesystem::path& path);
 
+		static std::filesystem::path strip_root	(const std::filesystem::path& path);
+		static std::filesystem::path get_root	(const std::filesystem::path& path);
+
 	private:
 		FileSystem	() {}
 		FileSystem	(const FileSystem& fileSystem) {}

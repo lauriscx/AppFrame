@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -100,6 +100,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\AppData.h" />
+    <ClInclude Include="src\Core\XML\tinyxml2.h" />
+    <ClInclude Include="src\Core\XML\XML.h" />
     <ClInclude Include="src\Engine\GraphicModule.h" />
     <ClInclude Include="src\Application\Events\EventTypes.h" />
     <ClInclude Include="src\Core\InputSystem\InputHandler.h" />
@@ -118,7 +121,7 @@
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Core\Core.h" />
     <ClInclude Include="src\Core\Module.h" />
-    <ClInclude Include="src\Core\Window.h" />
+    <ClInclude Include="src\Application\AppWindow.h" />
     <ClInclude Include="src\DEngine.h" />
     <ClInclude Include="src\Core\DEnginePch.h" />
     <ClInclude Include="src\Application\Events\LanguageChange.h" />
@@ -129,8 +132,11 @@
     <ClInclude Include="src\Engine\ECS\Scene.h" />
     <ClInclude Include="src\Platform\Windows\WinWindow.h" />
     <ClInclude Include="src\Core\Task.h" />
+    <ClInclude Include="src\Core\VirtualFileSystem\VFS.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\AppData.cpp" />
+    <ClCompile Include="src\Core\XML\tinyxml2.cpp" />
     <ClCompile Include="src\Engine\GraphicModule.cpp" />
     <ClCompile Include="src\Application\Events\AppEvents.h" />
     <ClCompile Include="src\Core\InputSystem\InputHandler.cpp" />
@@ -155,6 +161,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WinWindow.cpp" />
+    <ClCompile Include="src\Core\VirtualFileSystem\VFS.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,4 +1,5 @@
 #pragma once
+#include "Core/Core.h"
 #include "Event.h"
 #include <string>
 
@@ -8,7 +9,7 @@
  * Also used to subscribe and unsubscribe events.
  */
 namespace Engine {
-	class EventHandler {
+	class ENGINE_API EventHandler {
 	public:
 		EventHandler();
 		EventHandler(const char* name);

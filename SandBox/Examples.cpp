@@ -1,4 +1,4 @@
-#include <DEngine.h>
+/*#include <DEngine.h>
 #include <iostream>
 
 void Examples() {
@@ -33,12 +33,12 @@ void Examples() {
 		return sum;
 	}, 2);
 
-	/*if (task->IsAccessible()) {
-	std::cout << "task1 results: " << task->GetResults() << std::endl;
-	}
-	if (task2->IsAccessible()) {
-		std::cout << "task2 results: " << task2->GetResults() << std::endl;
-	}*/
+	//if (task->IsAccessible()) {
+	//std::cout << "task1 results: " << task->GetResults() << std::endl;
+	//}
+	//if (task2->IsAccessible()) {
+	//	std::cout << "task2 results: " << task2->GetResults() << std::endl;
+	//}
 
 
 	std::filesystem::path path = "/Test/TestDataFile.binary";
@@ -66,4 +66,4 @@ void Examples() {
 			std::cout << NewData.d[2] << std::endl;
 		}
 	}
-}
+}*/

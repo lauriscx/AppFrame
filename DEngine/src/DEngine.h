@@ -5,6 +5,7 @@
 #include "Core/Module.h"
 #include "Core/Task.h"
 #include "Core/FileSystem/FileSystem.h"
+#include "Core/VirtualFileSystem/VFS.h"
 
 #include <filesystem>
 

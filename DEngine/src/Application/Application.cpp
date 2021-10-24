@@ -4,22 +4,46 @@
 #include "Asserts.h"
 #include <iostream>
 #include "Platform/Windows/WinWindow.h"
-
+#include <filesystem>
 #include "Core/FileSystem/FileSystem.h"
+#include "Core/VirtualFileSystem/VFS.h"
 
 Engine::Application* Engine::Application::s_Instance = nullptr;
 
 Engine::Application::Application() : EventHandler("Application") {
 	ASSERT((s_Instance == nullptr));
 	s_Instance = this;
-	m_Window = new WinWindow();
+	m_Config	= new AppConfig();
+	m_Context	= new AppContext(m_Config);
+	m_Window	= new WinWindow();
 	close = false;
 	SubscribeToEvent(0);
 	SubscribeToEvent(1);
 }
 
 void Engine::Application::Run() {
-	m_Window->Create();
+	{
+		std::filesystem::path path = "/res/kaskas/bitai/failas.bin";
+
+		if (Engine::VFS::GetInstance().Mount("/res", "/RES")) {
+			std::cout << "Mounted" << std::endl;
+		}
+		if (Engine::VFS::GetInstance().Mount("/res", "/resources")) {
+			std::cout << "Mounted" << std::endl;
+		}
+
+		//std::cout << "Realus adresas: " << path.string().c_str() << std::endl;
+		//path.remove_filename();
+		//std::cout << "Be failo adresas: " << path.string().c_str() << std::endl;
+		//std::cout << "just path: " << std::filesystem::path().string().c_str() << std::endl;
+		//std::filesystem::strip_root(path);
+		//std::filesystem::path::iterator it = path.begin();
+		//it++;
+		//std::cout << "parent path: " << path.parent_path().string().c_str() << std::endl;
+		std::cout << "phycal file path: " << Engine::VFS::GetInstance().GetPath(path) << std::endl;
+
+	}
+	m_Window->Create(m_Context);
 
 }
 
@@ -65,7 +89,7 @@ AppContext * Engine::Application::GetContext() {
 	return m_Context;
 }
 
-Engine::Window * Engine::Application::GetWindow()
+Engine::AppWindow * Engine::Application::GetWindow()
 {
 	return m_Window;
 }
