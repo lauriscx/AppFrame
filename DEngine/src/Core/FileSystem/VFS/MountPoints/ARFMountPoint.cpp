@@ -72,6 +72,7 @@ bool ARFMountPoint::CreateMount(const std::filesystem::path file) {
 }
 
 bool ARFMountPoint::HasFile(const std::filesystem::path file) {
+	ASSERT(m_ARF_File_data != nullptr);
 	for (auto _file : m_VirtualFiles) {
 		if (!_file->Deleted && file.compare(_file->Path) == 0) {
 			return true;
@@ -80,10 +81,11 @@ bool ARFMountPoint::HasFile(const std::filesystem::path file) {
 	return false;
 }
 bool ARFMountPoint::HasDirectory(const std::filesystem::path directory) {
-
+	ASSERT(m_ARF_File_data != nullptr);
 	return false;
 }
 size_t ARFMountPoint::FileSize(const std::filesystem::path file) {
+	ASSERT(m_ARF_File_data != nullptr);
 	for (auto _file : m_VirtualFiles) {
 		if (!_file->Deleted && file.compare(_file->Path) == 0) {
 			return _file->Size;
@@ -93,6 +95,7 @@ size_t ARFMountPoint::FileSize(const std::filesystem::path file) {
 }
 
 bool ARFMountPoint::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
+	ASSERT(m_ARF_File_data != nullptr);
 	if (!HasFile(path)) {
 		std::ofstream out(m_MountPoint, std::ifstream::ate | std::ifstream::binary);
 		if (out.is_open()) {
@@ -108,6 +111,7 @@ bool ARFMountPoint::WriteFile(const std::filesystem::path & path, char * data, s
 	return false;
 }
 char* ARFMountPoint::ReadFile(const std::filesystem::path & path, size_t size) {
+	ASSERT(m_ARF_File_data != nullptr);
 	for (auto file : m_VirtualFiles) {
 		if (!file->Deleted && path.compare(file->Path) == 0) {/* Do not use HasFile in this case */
 			std::ifstream in(m_MountPoint, std::ifstream::ate | std::ifstream::binary);
@@ -126,13 +130,16 @@ char* ARFMountPoint::ReadFile(const std::filesystem::path & path, size_t size) {
 }
 
 bool ARFMountPoint::CreateDirectory(const std::filesystem::path directory) {
+	ASSERT(m_ARF_File_data != nullptr);
 	return false;
 }
 bool ARFMountPoint::CreateFile(const std::filesystem::path file) {
+	ASSERT(m_ARF_File_data != nullptr);
 	return false;
 }
 
 bool ARFMountPoint::RemoveFile(const std::filesystem::path file) {
+	ASSERT(m_ARF_File_data != nullptr);
 	for (auto _file : m_VirtualFiles) {
 		if (file.compare(_file->Path) == 0 && !_file->Deleted) {
 			std::ofstream out(m_MountPoint, std::ifstream::ate | std::ifstream::binary);
@@ -148,10 +155,12 @@ bool ARFMountPoint::RemoveFile(const std::filesystem::path file) {
 	return false;
 }
 int ARFMountPoint::RemoveDirectory(const std::filesystem::path directory) {
+	ASSERT(m_ARF_File_data != nullptr);
 	return 0;
 }
 
 ARFMountPoint::~ARFMountPoint() {
+	ASSERT(m_ARF_File_data != nullptr);
 	delete m_ARF_File_data;
 }
 
