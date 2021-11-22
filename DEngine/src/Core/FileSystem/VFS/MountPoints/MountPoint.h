@@ -9,6 +9,8 @@ public:
 	virtual bool SetMountPoint(std::filesystem::path mountPoint);
 	virtual bool SetMountPriority(int priority);
 
+	virtual bool CreateMount(const std::filesystem::path file);
+
 	virtual void OnMount();
 	virtual void OnUnMount();
 

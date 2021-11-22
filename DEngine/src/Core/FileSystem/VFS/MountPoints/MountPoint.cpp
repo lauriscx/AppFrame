@@ -11,6 +11,11 @@ bool MountPoint::SetMountPriority(int priority) {
 	return false;
 }
 
+bool MountPoint::CreateMount(const std::filesystem::path file)
+{
+	return false;
+}
+
 void MountPoint::OnMount() { }
 
 void MountPoint::OnUnMount() { }
