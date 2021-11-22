@@ -84,6 +84,7 @@ bool ARFMountPoint::HasDirectory(const std::filesystem::path directory) {
 	ASSERT(m_ARF_File_data != nullptr);
 	return false;
 }
+
 size_t ARFMountPoint::FileSize(const std::filesystem::path file) {
 	ASSERT(m_ARF_File_data != nullptr);
 	for (auto _file : m_VirtualFiles) {
@@ -110,7 +111,7 @@ bool ARFMountPoint::WriteFile(const std::filesystem::path & path, char * data, s
 	}
 	return false;
 }
-char* ARFMountPoint::ReadFile(const std::filesystem::path & path, size_t size) {
+char* ARFMountPoint::ReadFile(const std::filesystem::path & path) {
 	ASSERT(m_ARF_File_data != nullptr);
 	for (auto file : m_VirtualFiles) {
 		if (!file->Deleted && path.compare(file->Path) == 0) {/* Do not use HasFile in this case */
@@ -133,7 +134,7 @@ bool ARFMountPoint::CreateDirectory(const std::filesystem::path directory) {
 	ASSERT(m_ARF_File_data != nullptr);
 	return false;
 }
-bool ARFMountPoint::CreateFile(const std::filesystem::path file) {
+bool ARFMountPoint::CreateFile(const std::filesystem::path file, size_t size) {
 	ASSERT(m_ARF_File_data != nullptr);
 	return false;
 }

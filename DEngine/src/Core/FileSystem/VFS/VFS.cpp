@@ -5,6 +5,7 @@ bool Engine::VFS::Mount(MountPoint* mount) {
 	if (!MountExist(mount->GetPath())) {
 		m_MountingPoints[mount->GetPath()] = mount;
 		m_MountingPoints[mount->GetPath()]->OnMount();
+		m_MountingPoints[mount->GetPath()]->SetMountPriority(m_MountingPoints.size());//For now priority will be by mounting priority.
 		return true;
 	}
 	return false;
@@ -70,9 +71,9 @@ bool Engine::VFS::WriteFile(const std::filesystem::path & path, char * data, siz
 	return false;
 }
 
-char* Engine::VFS::ReadFile(const std::filesystem::path & path, size_t size) {
+char* Engine::VFS::ReadFile(const std::filesystem::path & path) {
 	for (auto mount : m_MountingPoints) {
-		return mount.second->ReadFile(path, size);
+		return mount.second->ReadFile(path);
 	}
 	return nullptr;
 }
@@ -84,9 +85,9 @@ bool Engine::VFS::CreateDirectory(const std::filesystem::path directory) {
 	return false;
 }
 
-bool Engine::VFS::CreateFile(const std::filesystem::path file) {
+bool Engine::VFS::CreateFile(const std::filesystem::path file, size_t size) {
 	for (auto mount : m_MountingPoints) {
-		return mount.second->CreateFile(file);
+		return mount.second->CreateFile(file, size);
 	}
 	return false;
 }

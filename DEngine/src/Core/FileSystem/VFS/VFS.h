@@ -18,10 +18,10 @@ namespace Engine {
 		size_t FileSize(const std::filesystem::path file);
 
 		bool WriteFile(const std::filesystem::path& path, char* data, size_t size);
-		char* ReadFile(const std::filesystem::path& path, size_t size);
+		char* ReadFile(const std::filesystem::path& path);
 
 		bool CreateDirectory(const std::filesystem::path directory);
-		bool CreateFile(const std::filesystem::path file);
+		bool CreateFile(const std::filesystem::path file, size_t size);
 		bool RemoveFile(const std::filesystem::path file);
 		int RemoveDirectory(const std::filesystem::path directory);
 
