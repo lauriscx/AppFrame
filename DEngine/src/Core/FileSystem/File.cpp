@@ -5,19 +5,19 @@ File::File() {}
 void File::SetData		(char * data							) {
 	m_Data = data;
 }
-void File::SetSize		(uint32_t size							) {
+void File::SetSize		(const uint32_t size					) {
 	m_FileSize = size;
 }
-void File::SetPath		(std::filesystem::path path				) {
+void File::SetPath		(const std::filesystem::path path		) {
 	m_Path		= path;
 	m_Folder	= path.parent_path();
 	m_File		= path.filename();
 	m_Extension = path.extension();
 }
-void File::SetFolder	(std::filesystem::path folder			) {
+void File::SetFolder	(const std::filesystem::path folder		) {
 	m_Folder = folder;
 }
-void File::SetFile		(std::filesystem::path file				) {
+void File::SetFile		(const std::filesystem::path file		) {
 	m_File = file;
 }
 void File::SetExtension	(const std::filesystem::path extension	) {

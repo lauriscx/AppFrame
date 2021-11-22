@@ -7,7 +7,7 @@ public:
 	File();
 
 	void SetData		(char* data								);
-	void SetSize		(uint32_t size							);
+	void SetSize		(const uint32_t size					);
 	void SetPath		(const std::filesystem::path path		);
 	void SetFolder		(const std::filesystem::path folder		);
 	void SetFile		(const std::filesystem::path file		);
