@@ -35,37 +35,24 @@ void Engine::Application::Run() {
 
 	ARFMountPoint * VirtualFiles = new ARFMountPoint();
 	//VirtualFiles->CreateMount("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF");
-	VirtualFiles->SetMountPoint("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF", "/Test");
+	VirtualFiles->SetMountPoint("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF");
 	VFS::GetInstance().Mount(VirtualFiles);
 
 	PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
-	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Export", "/Test");
+	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Export/");
 	VFS::GetInstance().Mount(PhysicalSystem);
 
+	PhysicalMountPoint * _PhysicalSystem = new PhysicalMountPoint();
+	_PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Import/Data/");
+	VFS::GetInstance().Mount(_PhysicalSystem);
 
 
-	//File* file = PhysicalSystem->ReadFile("\zip.zip");//Get file from exports folder.
-//	VirtualFiles->WriteFile(file);//write file to virtual file system.
-	File* VRfile = VirtualFiles->ReadFile("/Test\\zip.zip");
+
+	File* file = PhysicalSystem->ReadFile("zip.zip");//Get file from exports folder.
+	VirtualFiles->WriteFile(file);//write file to virtual file system.
+	File* VRfile = VirtualFiles->ReadFile("zip.zip");
 	ASSERT(VRfile != nullptr);
-	PhysicalSystem->WriteFile(VRfile);//write file to virtual file system.
-	//_PhysicalSystem->WriteFile(VRfile);
-
-
-	/*
-	
-	PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
-	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Export");
-
-	File* file = PhysicalSystem->ReadFile("zip.zip");
-
-	VirtualFiles->WriteFile("VirtualFileSystem/zip.zip", file->GetData(), file->GetSize());
-
-
-
-	
-	*/
-
+	_PhysicalSystem->WriteFile(VRfile);//write file to virtual file system.
 
 	m_Context = new AppContext(m_Config);
 	m_Close = false;

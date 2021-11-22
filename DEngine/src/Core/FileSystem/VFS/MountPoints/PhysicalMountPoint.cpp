@@ -18,21 +18,21 @@ bool PhysicalMountPoint::CreateMount(const std::filesystem::path file) {
 }
 
 bool PhysicalMountPoint::HasFile(const std::filesystem::path file) {
-	return std::filesystem::exists(m_MountPoint / file);
+	return std::filesystem::exists(GetRealPath(file));
 }
 bool PhysicalMountPoint::HasDirectory(const std::filesystem::path directory) {
-	return std::filesystem::is_directory(m_MountPoint / directory);
+	return std::filesystem::is_directory(GetRealPath(directory));
 }
 
 size_t PhysicalMountPoint::FileSize(const std::filesystem::path file) {
 	if (HasFile(file)) {
-		return std::filesystem::file_size(m_MountPoint / file);
+		return std::filesystem::file_size(GetRealPath(file));
 	}
 	return -1;
 }
 
 bool PhysicalMountPoint::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
-	std::ofstream in(m_MountPoint / path, std::ofstream::ate | std::ofstream::binary | std::fstream::out);
+	std::ofstream in(GetRealPath(path), std::ofstream::ate | std::ofstream::binary | std::fstream::out);
 	if (in.is_open()) {
 		in.write(data, size);
 		in.close();
@@ -45,7 +45,7 @@ bool PhysicalMountPoint::WriteFile(File * file) {
 	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
 }
 File* PhysicalMountPoint::ReadFile(const std::filesystem::path & path) {
-	std::ifstream out(m_MountPoint / path, std::ifstream::ate | std::ifstream::binary);
+	std::ifstream out(GetRealPath(path), std::ifstream::ate | std::ifstream::binary);
 	if (out.is_open()) {
 		out.seekg(0, std::ios_base::end);
 		int size = out.tellg();//Get file size in bits.
@@ -57,7 +57,7 @@ File* PhysicalMountPoint::ReadFile(const std::filesystem::path & path) {
 
 		File* CreatedFile = new File();
 		CreatedFile->SetData(data);
-		CreatedFile->SetPath(m_MountPoint / path);
+		CreatedFile->SetPath(path);
 		CreatedFile->SetSize(size);
 
 		return CreatedFile;
@@ -68,7 +68,7 @@ File* PhysicalMountPoint::ReadFile(const std::filesystem::path & path) {
 
 bool PhysicalMountPoint::CreateDirectory(const std::filesystem::path directory) {
 	if (!HasDirectory(directory) || !HasFile(directory)) { // Check if src folder exists
-		std::filesystem::create_directory(m_MountPoint / directory); // create src folder
+		std::filesystem::create_directory(GetRealPath(directory)); // create src folder
 		return true;
 	}
 	return false;
@@ -76,7 +76,7 @@ bool PhysicalMountPoint::CreateDirectory(const std::filesystem::path directory) 
 bool PhysicalMountPoint::CreateFile(const std::filesystem::path file, size_t size) {
 	if (!HasFile(file)) {//Check is file not exist
 		std::ofstream create;//Create file stream.
-		create.open(m_MountPoint / file, std::ios::trunc);//open/create file.
+		create.open(GetRealPath(file), std::ios::trunc);//open/create file.
 		if (create.good()) {//Is open/create succsessfully.
 			create.close();//Close file.
 			return true;
@@ -91,10 +91,10 @@ bool PhysicalMountPoint::CreateFile(const std::filesystem::path file, size_t siz
 }
 
 bool PhysicalMountPoint::RemoveFile(const std::filesystem::path file) {
-	return std::filesystem::remove(m_MountPoint / file);
+	return std::filesystem::remove(GetRealPath(file));
 }
 int PhysicalMountPoint::RemoveDirectory(const std::filesystem::path directory) {
-	return std::filesystem::remove_all(m_MountPoint / directory);
+	return std::filesystem::remove_all(GetRealPath(directory));
 }
 
 PhysicalMountPoint::~PhysicalMountPoint() {}
