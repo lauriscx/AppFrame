@@ -1,105 +1,118 @@
-//#include "DEnginePch.h"
 #include "Application.h"
-#include "Application/Events/AppEvents.h"
 #include "Asserts.h"
+#include "Application/Events/AppEvents.h"
 #include <iostream>
-#include "Platform/Windows/WinWindow.h"
 #include <filesystem>
-#include "Core/FileSystem/FileSystem.h"
-#include "Core/VirtualFileSystem/VFS.h"
 
-Engine::Application* Engine::Application::s_Instance = nullptr;
+#include <iostream>
+#include <fstream>
+#include <iterator>
+#include <vector>
+#include <map>
+#include <filesystem>
+#include "Core/XML/XML.h"
+
+#include "Core/FileSystem/VFS/VFS.h"
+#include "Core/FileSystem/VFS/MountPoints/PhysicalMountPoint.h"
+#include "Core/FileSystem/VFS/MountPoints/ARFMountPoint.h"
 
 Engine::Application::Application() : EventHandler("Application") {
-	ASSERT((s_Instance == nullptr));
-	s_Instance = this;
-	m_Config	= new AppConfig();
-	m_Context	= new AppContext(m_Config);
-	m_Window	= new WinWindow();
-	close = false;
-	SubscribeToEvent(0);
-	SubscribeToEvent(1);
-}
+	/* Important init data only in run function */
 
-void Engine::Application::Run() {
-	{
-		std::filesystem::path path = "/res/kaskas/bitai/failas.bin";
-
-		if (Engine::VFS::GetInstance().Mount("/res", "/RES")) {
-			std::cout << "Mounted" << std::endl;
-		}
-		if (Engine::VFS::GetInstance().Mount("/res", "/resources")) {
-			std::cout << "Mounted" << std::endl;
-		}
-
-		//std::cout << "Realus adresas: " << path.string().c_str() << std::endl;
-		//path.remove_filename();
-		//std::cout << "Be failo adresas: " << path.string().c_str() << std::endl;
-		//std::cout << "just path: " << std::filesystem::path().string().c_str() << std::endl;
-		//std::filesystem::strip_root(path);
-		//std::filesystem::path::iterator it = path.begin();
-		//it++;
-		//std::cout << "parent path: " << path.parent_path().string().c_str() << std::endl;
-		std::cout << "phycal file path: " << Engine::VFS::GetInstance().GetPath(path) << std::endl;
-
-	}
-	m_Window->Create(m_Context);
-
-}
-
-void Engine::Application::OnUpdate() {
-	for (Module* module : m_Modules) {
-		module->Update(0.0f);
-	}
-	m_Window->OnUpdate();
-}
-
-bool Engine::Application::OnEvent(BasicEvent & event) {
-	if (event.GetType() == Events::WindowCloses) {
-		close = true;
-		//std::cout << "Should application exit" << std::endl;
-		return true;
-	}
-	if (event.GetType() == WindowResize::Type()) {
-		WindowResize * windoResize = static_cast<WindowResize*>(&event);
-		//std::cout << "Window size changed : x(" << windoResize->GetX() << "), y(" << windoResize->GetY() << ")" << std::endl;
-		return true;
-	}
-	return false;
-}
-
-bool Engine::Application::OnInput(int x, int y, int action, int key) {
-	//std::cout << "Action: " << action << " key: " << key << " x: " << x << " y: " << y << std::endl;
-	return true;
-}
-
-bool Engine::Application::Close() {
-	return close;
+	/* Here subscribe crucial events for application */
+	SubscribeToEvent(WindowCloses::Type());
+	SubscribeToEvent(WindowResize::Type());
 }
 
 void Engine::Application::AddModule(Module * module) {
 	m_Modules.push_back(module);
 }
 
-AppConfig * Engine::Application::GetConfig() {
+void Engine::Application::Run() {
+
+	ARFMountPoint * VirtualFiles = new ARFMountPoint();
+	VirtualFiles->SetMountPoint("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF");
+	VFS::GetInstance().Mount(VirtualFiles);
+
+	PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
+	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Export");
+	VFS::GetInstance().Mount(PhysicalSystem);
+
+	PhysicalMountPoint * _PhysicalSystem = new PhysicalMountPoint();
+	_PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Import");
+	VFS::GetInstance().Mount(_PhysicalSystem);
+
+
+	char* data = VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/Export")->ReadFile("zip.zip", 0);
+	int size = VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/Export")->FileSize("zip.zip");
+
+	VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF")->WriteFile("C:/Users/Kosmosas/Desktop/Import/zip.zip", data, size);
+
+	char* _data = VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF")->ReadFile("C:/Users/Kosmosas/Desktop/Import/zip.zip", 0);
+	int _size = VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF")->FileSize("C:/Users/Kosmosas/Desktop/Import/zip.zip");
+
+	VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/Import")->WriteFile("zip.zip", _data, _size);
+
+
+	m_Context = new AppContext(m_Config);
+	m_Close = false;
+
+	for (Module* module : m_Modules) {
+		module->OnInit(m_Context);
+	}
+	for (Module* module : m_Modules) {
+		module->OnStart();
+	}
+}
+
+void Engine::Application::OnUpdate	() {
+	m_Timer.Start();
+	for (Module* module : m_Modules) {
+		module->OnUpdate(m_Timer.Elapsed());
+	}
+	m_Timer.Stop();
+}
+bool Engine::Application::OnEvent	(BasicEvent & event) {
+	for (Module* module : m_Modules) {
+		module->OnAppEvent(&event);
+	}
+	if (WindowCloses* data = WindowCloses::Match(&event)) {
+		m_Close = true;
+		//std::cout << "Should application exit" << std::endl;
+		return true;
+	}
+	if (WindowResize* data = WindowResize::Match(&event)) {
+		std::cout << "Window size changed : x(" << data->GetX() << "), y(" << data->GetY() << ")" << std::endl;
+		return true;
+	}
+	return false;
+}
+bool Engine::Application::OnInput	(int x, int y, int action, int key) {
+	for (Module* module : m_Modules) {
+		module->OnAppInput(x, y, action, key);
+	}
+	//std::cout << "Action: " << action << " key: " << key << " x: " << x << " y: " << y << std::endl;
+	return true;
+}
+
+AppConfig		* Engine::Application::GetConfig	() {
 	return m_Config;
 }
-
-AppContext * Engine::Application::GetContext() {
+AppContext		* Engine::Application::GetContext	() {
 	return m_Context;
 }
-
-Engine::AppWindow * Engine::Application::GetWindow()
-{
-	return m_Window;
-}
-
-Engine::Device * Engine::Application::GetDevice()
-{
+Engine::Device	* Engine::Application::GetDevice	() {
 	return m_Device;
 }
 
-Engine::Application::~Application() {
-
-	delete m_Window;
+bool Engine::Application::Close	() {
+	return m_Close;
 }
+void Engine::Application::Stop	() {
+	for (Module* module : m_Modules) {
+		module->OnStop();
+	}
+	delete m_Context;
+}
+
+Engine::Application::~Application() {}

@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/Core.h"
 #include <vector>
+#include <string>
 
 class ENGINE_API AppData {
 public:
@@ -11,20 +12,20 @@ public:
 
 	float GetWindowWidth();
 	float GetWindowHeight();
-	const char* GetApplicationName();
+	std::string GetApplicationName();
 	int GetFPSLimit();
 
 	void SetStartupLang(const char* lang);
 	void AddSupportLang(const char* lang);
 
-	const char* GetStartupLang();
+	std::string GetStartupLang();
 	std::vector<std::string>& GetSupportedLanguages();
 protected:
 	float m_Width;
 	float m_Height;
 
-	const char * m_Name;
-	const char * m_StatupLanguage;
+	std::string m_Name;
+	std::string m_StatupLanguage;
 
 	int m_FPS;
 

@@ -1,17 +1,18 @@
-#include "DEnginePch.h"
-#include "WinWindow.h"
-#include "glfw3.h"
+//#include "DEnginePch.h"
+#include "Application/Modules/ModuleWindow.h"
+#include "Application/Events/AppEvents.h"
 #include "Core/InputSystem/InputManager.h"
 #include "Core/EventSystem/EventManager.h"
-#include "Application/Events/AppEvents.h"
+#include "glfw3.h"
 
-Engine::WinWindow::WinWindow() : windowClosed(false) { }
+#include <iostream>
 
-bool Engine::WinWindow::Create(AppContext* context) {
+Engine::ModuleWindow::ModuleWindow() { }
+void Engine::ModuleWindow::OnStart() {
 
 	/* Initialize the library */
 	if (!glfwInit())
-		return false;
+		return;
 
 	glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -19,21 +20,20 @@ bool Engine::WinWindow::Create(AppContext* context) {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // We don't want the old OpenGL 
 
-	this->width = context->GetWindowWidth();
-	this->height = context->GetWindowHeight();
-	this->title = context->GetApplicationName();
 	/* Create a windowed mode window and its OpenGL context */
-	m_Window = glfwCreateWindow(this->width, this->height, this->title, NULL, NULL);
+	m_Window = glfwCreateWindow(m_Context->GetWindowWidth(), m_Context->GetWindowHeight(), m_Context->GetApplicationName().c_str(), NULL, NULL);
 
 	if (!m_Window) {
 		glfwTerminate();
-		return false;
+		return;
 	}
 
 	/* Make the window's context current */
 	glfwMakeContextCurrent((GLFWwindow*)m_Window);
 
-	glfwSetWindowUserPointer((GLFWwindow*)m_Window, &windowClosed);
+	glfwSwapInterval(m_Context->GetFPSLimit());
+
+	//glfwSetWindowUserPointer((GLFWwindow*)m_Window, &windowClosed);
 
 	// Set GLFW callbacks
 	glfwSetWindowSizeCallback((GLFWwindow*)m_Window, [](GLFWwindow* window, int width, int height) {
@@ -104,54 +104,29 @@ bool Engine::WinWindow::Create(AppContext* context) {
 		MauseCursorEvent* event = new MauseCursorEvent(x, y);
 		events->AddEvent(event);*/
 	});
-
-
-	return true;
+	return;
 }
 
-void Engine::WinWindow::SetTitle(const char * title) {
-	this->title = title;
-}
 
-void Engine::WinWindow::SetWidth(int width) {
-	this->width = width;
-}
 
-void Engine::WinWindow::SetHeight(int height) {
-	this->height = height;
-}
-
-void Engine::WinWindow::SetVSync(bool vsync) {
-	glfwSwapInterval(1);
-	this->vsync = vsync;
-}
-
-const char * Engine::WinWindow::GetTitle() {
-	return title;
-}
-
-int Engine::WinWindow::GetWidth() const {
-	return width;
-}
-
-int Engine::WinWindow::GetHeight() const {
-	return height;
-}
-
-bool Engine::WinWindow::GetVSync() const {
-	return vsync;
-}
-
-void Engine::WinWindow::OnUpdate() {
+void Engine::ModuleWindow::OnUpdate(float deltaTime) {
 	glfwSwapBuffers((GLFWwindow*)m_Window);
 	glfwPollEvents();
+	std::cout << "deltaTime: " << deltaTime << std::endl;
 }
 
-bool Engine::WinWindow::Closed() {
-	return windowClosed;
-}
-
-Engine::WinWindow::~WinWindow() {
+void Engine::ModuleWindow::OnStop() {
 	glfwTerminate();
 	glfwDestroyWindow((GLFWwindow*)m_Window);
+	if (m_Window) {
+		//delete m_Window;
+	}
+}
+
+int Engine::ModuleWindow::ID()
+{
+	return 0;
+}
+
+Engine::ModuleWindow::~ModuleWindow() {
 }

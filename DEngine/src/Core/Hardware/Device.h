@@ -1,6 +1,6 @@
 #pragma once
 
-#include "DataTypes.h"
+#include "Core/Memory/DataTypes.h"
 #include "Core/Core.h"
 
 namespace Engine {
@@ -13,14 +13,20 @@ namespace Engine {
 		virtual const char* GetGPUModel() const = 0;
 		virtual const char* GetRegion() const = 0;
 
-		virtual Currency::Values GetCurrency() const = 0;
-		virtual Language::Values GetDeviceLanguage() const = 0;
+		virtual const char* GetCurrency() const = 0;
+		virtual const char* GetDeviceLanguage() const = 0;
 
 		virtual int GetRAMMemory() const = 0;
 		virtual int GetHardMemory() const = 0;
 		virtual int GetScreenWidth() const = 0;
 		virtual int GetScreenHeight() const = 0;
 		virtual int GetInputType() const = 0;
+
+		/* Device functionality */
+		virtual void Vibrate(int sec) const = 0;
+		virtual void ShowPopup(const char* title, const char* desc, const char* button1, const char* button2) const = 0;
+		virtual void AddNotification(const char* title, const char* desc, const char* image, const char* parameters) const = 0;
+		virtual void OnEventCallback(const char* functionAddress) const = 0;
 
 		virtual ~Device() {}
 	};

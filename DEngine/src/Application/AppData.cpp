@@ -24,7 +24,7 @@ float AppData::GetWindowHeight() {
 	return m_Height;
 }
 
-const char * AppData::GetApplicationName() {
+std::string AppData::GetApplicationName() {
 	return m_Name;
 }
 
@@ -40,7 +40,7 @@ void AppData::AddSupportLang(const char * lang) {
 	m_SupportedLanguages.push_back(lang);
 }
 
-const char * AppData::GetStartupLang() {
+std::string AppData::GetStartupLang() {
 	return m_StatupLanguage;
 }
 

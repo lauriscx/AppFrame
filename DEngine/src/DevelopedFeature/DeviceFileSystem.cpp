@@ -1,9 +1,9 @@
-#include "FileSystem.h"
-#include "DataTypes.h"
+#include "DeviceFileSystem.h"
+#include "Core/Memory/DataTypes.h"
+#include "Core/Memory/Memory.h"
 #include <filesystem>
 #include <fstream>
 #include <sstream>
-#include "Core/Memory.h"
 
 bool Engine::FileSystem::IsFileExists		(const std::filesystem::path& path) {
 	return std::filesystem::exists(path);

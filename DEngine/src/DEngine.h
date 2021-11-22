@@ -1,11 +1,15 @@
 #pragma once
 
 #include "Core/Asserts.h"
-#include "Core/Memory.h"
-#include "Core/Module.h"
-#include "Core/Task.h"
+#include "Core/Memory/Memory.h"
+#include "Application/Modules/Module.h"
+#include "Application/Modules/ModuleWindow.h"
+#include "Core/XML/XML.h"
+
+
+/*#include "Core/Task.h"
 #include "Core/FileSystem/FileSystem.h"
-#include "Core/VirtualFileSystem/VFS.h"
+#include "Core/VirtualFileSystem/VFS.h"*/
 
 #include <filesystem>
 

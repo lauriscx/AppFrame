@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/Core.h"
-#include "Core/DataTypes.h"
+#include "Core/Memory/DataTypes.h"
 #include <filesystem>
 
 namespace Engine {

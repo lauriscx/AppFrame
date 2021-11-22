@@ -9,6 +9,12 @@ namespace Engine {
 	public:
 		WindowMinimized() {}
 		static int Type() { return Events::WindowMinimized; }
+		static WindowMinimized* Match(BasicEvent* event) {
+			if (event->GetType() == Type()) {
+				return static_cast<WindowMinimized*>(event);
+			}
+			return nullptr;
+		}
 		virtual int GetType() override { return Type(); }
 	};
 }
