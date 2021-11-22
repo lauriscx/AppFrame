@@ -28,7 +28,7 @@ std::filesystem::path	File::GetPath() {
 	return m_Folder / m_File;
 }
 char *					File::GetData() {
-	return nullptr;
+	return m_Data;
 }
 uint32_t				File::GetSize() {
 	return m_FileSize;

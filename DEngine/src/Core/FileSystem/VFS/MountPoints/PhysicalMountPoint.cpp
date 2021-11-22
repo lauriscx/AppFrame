@@ -1,5 +1,6 @@
 #include "PhysicalMountPoint.h"
 #include "Core/FileSystem/File.h"
+#include "Asserts.h"
 
 PhysicalMountPoint::PhysicalMountPoint() {}
 
@@ -51,6 +52,8 @@ File* PhysicalMountPoint::ReadFile(const std::filesystem::path & path) {
 		out.seekg(0);
 		char* data = new char[size];
 		out.read((char*)data, size);
+
+		ASSERT(data != nullptr);
 
 		File* CreatedFile = new File();
 		CreatedFile->SetData(data);

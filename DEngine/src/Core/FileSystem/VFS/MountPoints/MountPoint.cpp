@@ -3,12 +3,14 @@
 
 MountPoint::MountPoint() {}
 
-bool MountPoint::SetMountPoint(std::filesystem::path mountPoint) {
+bool MountPoint::SetMountPoint(std::filesystem::path mountPoint, std::filesystem::path folder) {
 	m_MountPoint = mountPoint;
-	return false;
+	m_Folder = folder;
+	return true;
 }
 bool MountPoint::SetMountPriority(int priority) {
-	return false;
+	m_Priority = priority;
+	return true;
 }
 
 int MountPoint::Priority() {
@@ -62,3 +64,26 @@ int MountPoint::RemoveDirectory(const std::filesystem::path directory) {
 }
 
 MountPoint::~MountPoint() { }
+
+std::filesystem::path MountPoint::GetRealPath(std::filesystem::path file) {
+	std::filesystem::path test = m_MountPoint / strip_root(file);
+	return test;
+}
+
+std::filesystem::path MountPoint::strip_root(const std::filesystem::path & path) {
+	const std::filesystem::path& parent_path = path.parent_path();
+	if (parent_path.empty() || parent_path == "/") {
+		return std::filesystem::path();
+	} else {
+		return strip_root(parent_path) += "/" + path.filename().string();
+	}
+}
+
+std::filesystem::path MountPoint::get_root(const std::filesystem::path & path) {
+	const std::filesystem::path& parent_path = path.parent_path();
+	if (parent_path.empty() || parent_path == "/") {
+		return path;
+	} else {
+		return get_root(parent_path);
+	}
+}

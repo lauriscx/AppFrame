@@ -8,7 +8,7 @@ class MountPoint {
 public:
 	MountPoint();
 
-	virtual bool SetMountPoint(std::filesystem::path mountPoint);
+	virtual bool SetMountPoint(std::filesystem::path mountPoint, std::filesystem::path folder);
 	virtual bool SetMountPriority(int priority);
 
 	virtual bool CreateMount(const std::filesystem::path file);
@@ -34,10 +34,17 @@ public:
 	virtual std::filesystem::path GetPath();
 	virtual int Priority();
 
+
 	virtual ~MountPoint();
 
 protected:
+	std::filesystem::path GetRealPath(std::filesystem::path file);
+
+	std::filesystem::path strip_root(const std::filesystem::path& path);
+	std::filesystem::path get_root(const std::filesystem::path& path);
+
 	std::filesystem::path m_MountPoint;
+	std::filesystem::path m_Folder;
 	std::vector<std::filesystem::path> m_Files;
 	int m_Priority;
 };

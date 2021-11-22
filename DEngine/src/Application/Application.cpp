@@ -35,38 +35,36 @@ void Engine::Application::Run() {
 
 	ARFMountPoint * VirtualFiles = new ARFMountPoint();
 	//VirtualFiles->CreateMount("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF");
-	VirtualFiles->SetMountPoint("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF");
+	VirtualFiles->SetMountPoint("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF", "/Test");
 	VFS::GetInstance().Mount(VirtualFiles);
 
+	PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
+	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Export", "/Test");
+	VFS::GetInstance().Mount(PhysicalSystem);
+
+
+
+	//File* file = PhysicalSystem->ReadFile("\zip.zip");//Get file from exports folder.
+//	VirtualFiles->WriteFile(file);//write file to virtual file system.
+	File* VRfile = VirtualFiles->ReadFile("/Test\\zip.zip");
+	ASSERT(VRfile != nullptr);
+	PhysicalSystem->WriteFile(VRfile);//write file to virtual file system.
+	//_PhysicalSystem->WriteFile(VRfile);
+
+
+	/*
+	
 	PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
 	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Export");
 
 	File* file = PhysicalSystem->ReadFile("zip.zip");
 
 	VirtualFiles->WriteFile("VirtualFileSystem/zip.zip", file->GetData(), file->GetSize());
-	//VirtualFiles->RemoveFile("VirtualFileSystem/zip.zip");
 
 
 
-
-	/*PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
-	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Export");
-	VFS::GetInstance().Mount(PhysicalSystem);
-
-	PhysicalMountPoint * _PhysicalSystem = new PhysicalMountPoint();
-	_PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Import");
-	VFS::GetInstance().Mount(_PhysicalSystem);
-
-
-	char* data = VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/Export")->ReadFile("zip.zip", 0);
-	int size = VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/Export")->FileSize("zip.zip");
-
-	VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF")->WriteFile("C:/Users/Kosmosas/Desktop/Import/zip.zip", data, size);
-
-	char* _data = VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF")->ReadFile("C:/Users/Kosmosas/Desktop/Import/zip.zip", 0);
-	int _size = VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF")->FileSize("C:/Users/Kosmosas/Desktop/Import/zip.zip");
-
-	VFS::GetInstance().GetMount("C:/Users/Kosmosas/Desktop/Import")->WriteFile("zip.zip", _data, _size);*/
+	
+	*/
 
 
 	m_Context = new AppContext(m_Config);

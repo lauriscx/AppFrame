@@ -97,6 +97,7 @@ size_t ARFMountPoint::FileSize(const std::filesystem::path file) {
 }
 
 bool ARFMountPoint::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
+	ASSERT(data != nullptr);
 	ASSERT(m_ARF_File_data != nullptr);
 	if (!HasFile(path)) {
 		std::ofstream out(m_MountPoint, std::ifstream::ate | std::ifstream::binary);
@@ -124,6 +125,8 @@ File* ARFMountPoint::ReadFile(const std::filesystem::path & path) {
 			if (in.is_open()) {
 				char* data = ReadVirtualFile(&in, file);
 				in.close();
+
+				ASSERT(data != nullptr);
 
 				File* CreatedFile = new File();
 				CreatedFile->SetData(data);
