@@ -2,6 +2,7 @@
 #include "MountPoint.h"
 #include "Core.h"
 
+class File;
 class ARFMountPoint : public MountPoint {
 public:
 	ARFMountPoint();
@@ -17,7 +18,8 @@ public:
 	virtual size_t FileSize(const std::filesystem::path file) override;
 
 	virtual bool WriteFile(const std::filesystem::path& path, char* data, size_t size) override;
-	virtual char* ReadFile(const std::filesystem::path& path) override;
+	virtual bool WriteFile(File* file) override;
+	virtual File* ReadFile(const std::filesystem::path& path) override;
 
 	virtual bool CreateDirectory(const std::filesystem::path directory) override;
 	virtual bool CreateFile(const std::filesystem::path file, size_t size) override;

@@ -2,6 +2,8 @@
 #include <filesystem>
 #include <vector>
 
+class File;
+
 class MountPoint {
 public:
 	MountPoint();
@@ -20,7 +22,8 @@ public:
 	virtual size_t FileSize(const std::filesystem::path file);
 
 	virtual bool WriteFile(const std::filesystem::path& path, char* data, size_t size);
-	virtual char* ReadFile(const std::filesystem::path& path);
+	virtual bool WriteFile(File* file);
+	virtual File* ReadFile(const std::filesystem::path& path);
 	
 	virtual bool CreateDirectory(const std::filesystem::path directory);
 	virtual bool CreateFile(const std::filesystem::path file, size_t size);

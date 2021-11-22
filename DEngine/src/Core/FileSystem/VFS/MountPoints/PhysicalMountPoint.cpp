@@ -40,7 +40,10 @@ bool PhysicalMountPoint::WriteFile(const std::filesystem::path & path, char * da
 	in.close();
 	return false;
 }
-char * PhysicalMountPoint::ReadFile(const std::filesystem::path & path) {
+bool PhysicalMountPoint::WriteFile(File * file) {
+	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
+}
+File* PhysicalMountPoint::ReadFile(const std::filesystem::path & path) {
 	std::ifstream out(m_MountPoint / path, std::ifstream::ate | std::ifstream::binary);
 	if (out.is_open()) {
 		out.seekg(0, std::ios_base::end);
@@ -48,7 +51,13 @@ char * PhysicalMountPoint::ReadFile(const std::filesystem::path & path) {
 		out.seekg(0);
 		char* data = new char[size];
 		out.read((char*)data, size);
-		return data;
+
+		File* CreatedFile = new File();
+		CreatedFile->SetData(data);
+		CreatedFile->SetPath(m_MountPoint / path);
+		CreatedFile->SetSize(size);
+
+		return CreatedFile;
 	}
 	out.close();
 	return nullptr;

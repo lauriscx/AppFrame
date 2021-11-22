@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iostream>
 #include "Asserts.h"
+#include "Core/FileSystem/File.h"
 
 char ARFMountPoint::ARF_Version = 1;
 
@@ -111,7 +112,10 @@ bool ARFMountPoint::WriteFile(const std::filesystem::path & path, char * data, s
 	}
 	return false;
 }
-char* ARFMountPoint::ReadFile(const std::filesystem::path & path) {
+bool ARFMountPoint::WriteFile(File * file) {
+	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
+}
+File* ARFMountPoint::ReadFile(const std::filesystem::path & path) {
 	ASSERT(m_ARF_File_data != nullptr);
 	for (auto file : m_VirtualFiles) {
 		if (!file->Deleted && path.compare(file->Path) == 0) {/* Do not use HasFile in this case */
@@ -120,7 +124,13 @@ char* ARFMountPoint::ReadFile(const std::filesystem::path & path) {
 			if (in.is_open()) {
 				char* data = ReadVirtualFile(&in, file);
 				in.close();
-				return data;
+
+				File* CreatedFile = new File();
+				CreatedFile->SetData(data);
+				CreatedFile->SetPath(file->Path);
+				CreatedFile->SetSize(file->Size);
+
+				return CreatedFile;
 			}
 
 			in.close();

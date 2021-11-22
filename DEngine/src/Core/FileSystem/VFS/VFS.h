@@ -4,6 +4,7 @@
 #include <map>
 #include "MountPoints/MountPoint.h"
 
+class File;
 namespace Engine {
 	class ENGINE_API VFS {
 	public:
@@ -18,7 +19,8 @@ namespace Engine {
 		size_t FileSize(const std::filesystem::path file);
 
 		bool WriteFile(const std::filesystem::path& path, char* data, size_t size);
-		char* ReadFile(const std::filesystem::path& path);
+		bool WriteFile(File* file);
+		File* ReadFile(const std::filesystem::path& path);
 
 		bool CreateDirectory(const std::filesystem::path directory);
 		bool CreateFile(const std::filesystem::path file, size_t size);

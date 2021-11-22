@@ -1,5 +1,6 @@
 #include "VFS.h"
 #include "Core/FileSystem/VFS/VFS.h"
+#include "FileSystem/File.h"
 
 bool Engine::VFS::Mount(MountPoint* mount) {
 	if (!MountExist(mount->GetPath())) {
@@ -71,7 +72,11 @@ bool Engine::VFS::WriteFile(const std::filesystem::path & path, char * data, siz
 	return false;
 }
 
-char* Engine::VFS::ReadFile(const std::filesystem::path & path) {
+bool Engine::VFS::WriteFile(File * file) {
+	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
+}
+
+File* Engine::VFS::ReadFile(const std::filesystem::path & path) {
 	for (auto mount : m_MountingPoints) {
 		return mount.second->ReadFile(path);
 	}

@@ -15,6 +15,9 @@
 #include "Core/FileSystem/VFS/VFS.h"
 #include "Core/FileSystem/VFS/MountPoints/PhysicalMountPoint.h"
 #include "Core/FileSystem/VFS/MountPoints/ARFMountPoint.h"
+#include "Core/FileSystem/File.h"
+
+
 
 Engine::Application::Application() : EventHandler("Application") {
 	/* Important init data only in run function */
@@ -38,11 +41,10 @@ void Engine::Application::Run() {
 	PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
 	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Export");
 
-	char* data = PhysicalSystem->ReadFile("zip.zip", 0);
-	int size = PhysicalSystem->FileSize("zip.zip");
+	File* file = PhysicalSystem->ReadFile("zip.zip");
 
-	//VirtualFiles->WriteFile("VirtualFileSystem/zip.zip", data, size);
-	VirtualFiles->RemoveFile("VirtualFileSystem/zip.zip");
+	VirtualFiles->WriteFile("VirtualFileSystem/zip.zip", file->GetData(), file->GetSize());
+	//VirtualFiles->RemoveFile("VirtualFileSystem/zip.zip");
 
 
 

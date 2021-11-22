@@ -1,4 +1,5 @@
-#include "MountPoint.h""
+#include "MountPoint.h"
+#include "FileSystem/File.h"
 
 MountPoint::MountPoint() {}
 
@@ -39,8 +40,11 @@ size_t MountPoint::FileSize(const std::filesystem::path file) {
 bool MountPoint::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
 	return false;
 }
-char* MountPoint::ReadFile(const std::filesystem::path & path) {
-	return false;
+bool MountPoint::WriteFile(File * file) {
+	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
+}
+File* MountPoint::ReadFile(const std::filesystem::path & path) {
+	return nullptr;
 }
 
 bool MountPoint::CreateDirectory(const std::filesystem::path file) {

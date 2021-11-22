@@ -1,4 +1,5 @@
 #include "CloudMountPoint.h"
+#include "FileSystem/File.h"
 
 CloudMountPoint::CloudMountPoint() {}
 
@@ -23,7 +24,10 @@ size_t CloudMountPoint::FileSize(const std::filesystem::path file) {
 bool CloudMountPoint::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
 	return false;
 }
-char * CloudMountPoint::ReadFile(const std::filesystem::path & path) {
+bool CloudMountPoint::WriteFile(File * file) {
+	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
+}
+File* CloudMountPoint::ReadFile(const std::filesystem::path & path) {
 	return nullptr;
 }
 

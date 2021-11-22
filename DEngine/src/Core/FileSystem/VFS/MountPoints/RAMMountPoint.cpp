@@ -1,4 +1,5 @@
 #include "RAMMountPoint.h"
+#include "FileSystem/File.h"
 
 RAMMountPoint::RAMMountPoint() {}
 
@@ -23,7 +24,10 @@ size_t RAMMountPoint::FileSize(const std::filesystem::path file) {
 bool RAMMountPoint::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
 	return false;
 }
-char * RAMMountPoint::ReadFile(const std::filesystem::path & path) {
+bool RAMMountPoint::WriteFile(File * file) {
+	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
+}
+File* RAMMountPoint::ReadFile(const std::filesystem::path & path) {
 	return nullptr;
 }
 
