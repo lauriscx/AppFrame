@@ -40,7 +40,7 @@ int main() {
 		AppConfig config;
 		aap->SetConfig(&config);
 		Engine::ModuleWindow window;
-		//aap->AddModule(&window);
+		aap->AddModule(&window);
 		aap->Run();
 		//Examples();
 

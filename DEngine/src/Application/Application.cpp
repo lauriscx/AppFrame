@@ -17,8 +17,6 @@
 #include "Core/FileSystem/VFS/MountPoints/ARFMountPoint.h"
 #include "Core/FileSystem/File.h"
 
-
-
 Engine::Application::Application() : EventHandler("Application") {
 	/* Important init data only in run function */
 
@@ -33,7 +31,7 @@ void Engine::Application::AddModule(Module * module) {
 
 void Engine::Application::Run() {
 
-	ARFMountPoint * VirtualFiles = new ARFMountPoint();
+	/*ARFMountPoint * VirtualFiles = new ARFMountPoint();
 	//VirtualFiles->CreateMount("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF");
 	VirtualFiles->SetMountPoint("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF");
 	VFS::GetInstance().Mount(VirtualFiles);
@@ -43,19 +41,27 @@ void Engine::Application::Run() {
 	VFS::GetInstance().Mount(PhysicalSystem);
 
 	PhysicalMountPoint * _PhysicalSystem = new PhysicalMountPoint();
-	_PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Import/Data/");
+	_PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Import/");
 	VFS::GetInstance().Mount(_PhysicalSystem);
 
 
 
-	File* file = PhysicalSystem->ReadFile("zip.zip");//Get file from exports folder.
+	File* file = PhysicalSystem->ReadFile("Data/zip.zip");//Get file from exports folder.
 	VirtualFiles->WriteFile(file);//write file to virtual file system.
-	File* VRfile = VirtualFiles->ReadFile("zip.zip");
+	File* VRfile = VirtualFiles->ReadFile("Data/zip.zip");
 	ASSERT(VRfile != nullptr);
-	_PhysicalSystem->WriteFile(VRfile);//write file to virtual file system.
+	_PhysicalSystem->WriteFile(VRfile);//write file to virtual file system.*/
+
+
+	taks.Start();
+	std::cout << "Fiziniu gijiu skaicius " << std::thread::hardware_concurrency() << std::endl;
+	
 
 	m_Context = new AppContext(m_Config);
+	m_Device = new Device();
 	m_Close = false;
+
+	//m_Device->ShowPopup("Popup", "Testing", "", "");
 
 	for (Module* module : m_Modules) {
 		module->OnInit(m_Context);
@@ -66,6 +72,9 @@ void Engine::Application::Run() {
 }
 
 void Engine::Application::OnUpdate	() {
+	if (taks.CanRetirieve()) {
+		std::cout << taks.GetCickles() << std::endl;
+	}
 	m_Timer.Start();
 	for (Module* module : m_Modules) {
 		module->OnUpdate(m_Timer.Elapsed());
@@ -113,6 +122,19 @@ void Engine::Application::Stop	() {
 		module->OnStop();
 	}
 	delete m_Context;
+}
+
+void Engine::Application::AddStatus(Status status) {
+	m_Status = (Status)(m_Status | status);
+}
+void Engine::Application::RemoveStatus(Status status) {
+	m_Status = (Status)(m_Status & ~status);
+}
+bool Engine::Application::IsStatus(Status status) {
+	return m_Status & status;
+}
+Engine::Application::Status Engine::Application::GetStatus() {
+	return m_Status;
 }
 
 Engine::Application::~Application() {}

@@ -112,7 +112,7 @@ void Engine::ModuleWindow::OnStart() {
 void Engine::ModuleWindow::OnUpdate(float deltaTime) {
 	glfwSwapBuffers((GLFWwindow*)m_Window);
 	glfwPollEvents();
-	std::cout << "deltaTime: " << deltaTime << std::endl;
+	//std::cout << "deltaTime: " << deltaTime << std::endl;
 }
 
 void Engine::ModuleWindow::OnStop() {

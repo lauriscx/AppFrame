@@ -135,6 +135,8 @@
     <ClInclude Include="src\Application\Events\WindowResize.h" />
     <ClInclude Include="src\Engine\ECS\Entity.h" />
     <ClInclude Include="src\Engine\ECS\Scene.h" />
+    <ClInclude Include="src\Core\MultiThreading\Thread.h" />
+    <ClInclude Include="src\Core\MultiThreading\TaskManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\FileSystem\VFS\MountPoints\CloudMountPoint.cpp" />
@@ -144,6 +146,7 @@
     <ClCompile Include="src\Core\FileSystem\File.cpp" />
     <ClCompile Include="src\Application\AppData.cpp" />
     <ClCompile Include="src\Core\FileSystem\VFS\MountPoints\MountPoint.cpp" />
+    <ClCompile Include="src\Core\Hardware\Device.cpp" />
     <ClCompile Include="src\Core\XML\tinyxml2.cpp" />
     <ClCompile Include="src\Core\FileSystem\VFS\VFS.cpp" />
     <ClCompile Include="src\Engine\GraphicModule.cpp" />
@@ -164,6 +167,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Application\Windows\ModuleWindow.cpp" />
+    <ClCompile Include="src\Core\MultiThreading\Thread.cpp" />
+    <ClCompile Include="src\Core\MultiThreading\TaskManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
