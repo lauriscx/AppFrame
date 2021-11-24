@@ -132,6 +132,9 @@
     <ClInclude Include="src\Core\ResourceManager\Resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Application\Resources\RecourceXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\ECS\Entity.cpp">
@@ -210,6 +213,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\ResourceManager\Resource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\Resources\RecourceXML.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

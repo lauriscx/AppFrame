@@ -17,6 +17,10 @@
 #include "Core/FileSystem/VFS/MountPoints/ARFMountPoint.h"
 #include "Core/FileSystem/File.h"
 
+#include "Core/ResourceManager/ResourceManager.h"
+#include "Core/ResourceManager/Resource.h"
+#include "Resources/RecourceXML.h"
+
 Engine::Application::Application() : EventHandler("Application") {
 	/* Important init data only in run function */
 
@@ -52,10 +56,16 @@ void Engine::Application::Run() {
 	ASSERT(VRfile != nullptr);
 	_PhysicalSystem->WriteFile(VRfile);//write file to virtual file system.*/
 
+	PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
+	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Export/");
+	VFS::GetInstance()->Mount(PhysicalSystem);
 
-	taks.Start();
+
+	//taks.Start();
 	std::cout << "Fiziniu gijiu skaicius " << std::thread::hardware_concurrency() << std::endl;
 	
+	RecourceXML* resource = ResourceManager::GetInstace()->GetResource<RecourceXML>("ka.xml");
+
 
 	m_Context = new AppContext(m_Config);
 	m_Device = new Device();
