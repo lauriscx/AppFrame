@@ -33,8 +33,6 @@ void Application::Run() {
 int main() {
 	std::cout << "Start with memory " << m_MemoryAllocated << std::endl;
 	{
-
-
 		//Engine::Memory::Scope<Application> app = Engine::Memory::CreateScope<Application>();
 		Application * aap = static_cast<Application*>(Engine::Application::GetInstance());
 		AppConfig config;

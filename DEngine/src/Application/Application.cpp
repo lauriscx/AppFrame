@@ -61,8 +61,6 @@ void Engine::Application::Run() {
 	m_Device = new Device();
 	m_Close = false;
 
-	//m_Device->ShowPopup("Popup", "Testing", "", "");
-
 	for (Module* module : m_Modules) {
 		module->OnInit(m_Context);
 	}

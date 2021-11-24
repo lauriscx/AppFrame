@@ -100,6 +100,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\ResourceManager\Resource.h" />
+    <ClInclude Include="src\Core\ResourceManager\ResourceManager.h" />
     <ClInclude Include="src\Core\FileSystem\VFS\MountPoints\CloudMountPoint.h" />
     <ClInclude Include="src\Core\FileSystem\VFS\MountPoints\RAMMountPoint.h" />
     <ClInclude Include="src\Core\FileSystem\VFS\MountPoints\ARFMountPoint.h" />
@@ -139,6 +141,8 @@
     <ClInclude Include="src\Core\MultiThreading\TaskManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\ResourceManager\Resource.cpp" />
+    <ClCompile Include="src\Core\ResourceManager\ResourceManager.cpp" />
     <ClCompile Include="src\Core\FileSystem\VFS\MountPoints\CloudMountPoint.cpp" />
     <ClCompile Include="src\Core\FileSystem\VFS\MountPoints\RAMMountPoint.cpp" />
     <ClCompile Include="src\Core\FileSystem\VFS\MountPoints\ARFMountPoint.cpp" />

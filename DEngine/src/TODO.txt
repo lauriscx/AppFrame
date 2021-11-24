@@ -7,8 +7,9 @@ Virtual file system +
 Event System + //Need to check multitreading feature.
 Input system +
 Windows abstraction class +
+File reading(saves/loading) +
+Resource manager - https://codereview.stackexchange.com/questions/253737/resource-management-in-c-game-engine
 Error handling system -
-File reading(saves/loading) -
 Json and XML support -
 Task threading system -
 Sound system -

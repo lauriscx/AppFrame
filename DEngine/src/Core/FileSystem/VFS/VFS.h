@@ -28,7 +28,7 @@ namespace Engine {
 		int RemoveDirectory(const std::filesystem::path directory);
 
 
-		static VFS& GetInstance() { static VFS s_Instance; return s_Instance; }
+		static VFS* GetInstance() { static VFS s_Instance; return &s_Instance; }
 	private:
 		std::map<std::filesystem::path, MountPoint*> m_MountingPoints;
 	};
