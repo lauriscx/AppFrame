@@ -65,7 +65,9 @@ void Engine::Application::Run() {
 	std::cout << "Fiziniu gijiu skaicius " << std::thread::hardware_concurrency() << std::endl;
 	
 	RecourceXML* resource = ResourceManager::GetInstace()->GetResource<RecourceXML>("ka.xml");
-
+	if (resource->IsAvailable()) {
+		std::cout << "data size: " << resource->GetMemoryUsage() << std::endl;
+	}
 
 	m_Context = new AppContext(m_Config);
 	m_Device = new Device();

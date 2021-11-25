@@ -50,8 +50,9 @@ File* PhysicalMountPoint::ReadFile(const std::filesystem::path & path) {
 		out.seekg(0, std::ios_base::end);
 		int size = out.tellg();//Get file size in bits.
 		out.seekg(0);
-		char* data = new char[size];
+		char* data = new char[size + 1];
 		out.read((char*)data, size);
+		data[size] = '\0';
 
 		ASSERT(data != nullptr);
 

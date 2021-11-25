@@ -3,10 +3,10 @@
 #include "tinyxml2.h"
 
 namespace XML {
-	using namespace tinyxml2;
+	//using namespace tinyxml2;
 
-	inline XMLDocument* Parse(const std::string& text) {
-		XMLDocument* doc = new XMLDocument();
+	inline tinyxml2::XMLDocument* Parse(const std::string& text) {
+		tinyxml2::XMLDocument* doc = new tinyxml2::XMLDocument();
 		doc->Parse((const char*)text.c_str(), text.size());
 		return doc;
 	}

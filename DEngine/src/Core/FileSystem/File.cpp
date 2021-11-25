@@ -24,6 +24,10 @@ void File::SetExtension	(const std::filesystem::path extension	) {
 	m_Extension = extension;
 }
 
+bool File::IsDataAvailable() {
+	return m_Data != nullptr;
+}
+
 std::filesystem::path	File::GetPath() {
 	return m_Folder / m_File;
 }
@@ -35,5 +39,5 @@ uint32_t				File::GetSize() {
 }
 
 File::~File() {
-	delete m_Data;
+	delete[] m_Data;
 }

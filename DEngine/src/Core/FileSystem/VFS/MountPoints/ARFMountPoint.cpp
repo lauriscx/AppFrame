@@ -222,7 +222,8 @@ void ARFMountPoint::WriteVirtualFile(std::ofstream * out, char * data, VirtualFi
 }
 char * ARFMountPoint::ReadVirtualFile(std::ifstream * in, VirtualFileHeader * header) {
 	in->seekg(header->StartsAt);//Set read position in ARF file.
-	char* data = new char[header->Size];//Create buffer for readed data.
+	char* data = new char[header->Size + 1];//Create buffer for readed data.
 	in->read(data, header->Size);//Reada virtual file data.
+	data[header->Size] = '\0';
 	return data;
 }

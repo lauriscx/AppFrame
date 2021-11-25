@@ -8,11 +8,11 @@ AppConfig::AppConfig() {
 AppConfig::~AppConfig() {}
 
 void AppConfig::ParseConfigXML(const char * path) {
-	XML::XMLDocument Configuration;
-	if (Configuration.LoadFile(path) == XML::XML_SUCCESS) {
-		XML::XMLElement* RootElement = Configuration.RootElement();
+	tinyxml2::XMLDocument Configuration;
+	if (Configuration.LoadFile(path) == tinyxml2::XML_SUCCESS) {
+		tinyxml2::XMLElement* RootElement = Configuration.RootElement();
 		if (RootElement) {
-			XML::XMLElement* WindowConfig = RootElement->FirstChildElement("Window");
+			tinyxml2::XMLElement* WindowConfig = RootElement->FirstChildElement("Window");
 			if (WindowConfig) {
 				SetApplicationName(WindowConfig->FirstChildElement("Name")->GetText());
 
@@ -22,9 +22,9 @@ void AppConfig::ParseConfigXML(const char * path) {
 			}
 			SetStartupLang(RootElement->FirstChildElement("StartupLanguage")->GetText());
 
-			XML::XMLElement* SuportedLanguages = RootElement->FirstChildElement("SuportedLanguages");
+			tinyxml2::XMLElement* SuportedLanguages = RootElement->FirstChildElement("SuportedLanguages");
 			if (SuportedLanguages) {
-				XML::XMLElement* SuportedLanguage = SuportedLanguages->FirstChildElement("Language");
+				tinyxml2::XMLElement* SuportedLanguage = SuportedLanguages->FirstChildElement("Language");
 				while (SuportedLanguage) {
 					AddSupportLang(SuportedLanguage->GetText());
 					SuportedLanguage = SuportedLanguage->NextSiblingElement("Language");

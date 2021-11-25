@@ -13,6 +13,8 @@ public:
 	void SetFile		(const std::filesystem::path file		);
 	void SetExtension	(const std::filesystem::path extension	);
 
+	bool IsDataAvailable();
+
 	std::filesystem::path	GetPath();
 	char*					GetData();
 	uint32_t				GetSize();

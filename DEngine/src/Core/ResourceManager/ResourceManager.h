@@ -11,6 +11,7 @@ public:
 	template <typename T>
 	T* GetResource(std::filesystem::path path);
 	void ReleaseResource(std::filesystem::path path);
+	const bool IsAvailable(std::filesystem::path path);
 
 	static ResourceManager* GetInstace() { static ResourceManager s_Instance; return &s_Instance; }
 
