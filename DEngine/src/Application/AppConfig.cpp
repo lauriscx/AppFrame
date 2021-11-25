@@ -32,10 +32,10 @@ void AppConfig::ParseConfigXML(const char * path) {
 			}
 		}
 	} else {
-		SetWindowWidth		(600);
-		SetWindowHeight		(800);
+		SetWindowWidth		(800);
+		SetWindowHeight		(600);
 		SetApplicationName	("Application");
-		SetFPSLimit			(60);
+		SetFPSLimit			(1);
 		SetStartupLang		("EN");
 		m_SupportedLanguages.push_back("EN");
 	}

@@ -16,11 +16,12 @@ bool RecourceXML::IsAvailable() {
 
 bool RecourceXML::Load(std::filesystem::path file) {
 	File* _file = Engine::VFS::GetInstance()->ReadFile(file);
-	if (_file->IsDataAvailable()) {
+	if (_file && _file->IsDataAvailable()) {
 		m_Resource = XML::Parse(_file->GetData());
+		delete _file;//It will erease all allocated memory inside(mean data which is char*).
+		return true;
 	}
-	delete _file;//It will erease all allocated memory inside(mean data which is char*).
-	return true;
+	return false;
 }
 
 size_t RecourceXML::GetMemoryUsage() {

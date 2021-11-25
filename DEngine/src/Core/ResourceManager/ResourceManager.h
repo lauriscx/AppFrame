@@ -28,11 +28,14 @@ T * ResourceManager::GetResource(std::filesystem::path path) {
 	size_t handle = std::filesystem::hash_value(path);
 	if (m_Resource[handle] == nullptr) {
 		T* resource = new T();
-		m_Resource[handle] = resource;
 		//Load file
 		if (!resource->Load(path)) {
+			std::cout << "Failed to load resource " << path << " handle " << handle << std::endl;
+			delete resource;//release memory
 			return nullptr;
 		}
+		std::cout << "Succesfully loaded resource " << path << " handle " << handle << std::endl;
+		m_Resource[handle] = resource;
 		return resource;
 	}
 	return (T*)m_Resource[handle];

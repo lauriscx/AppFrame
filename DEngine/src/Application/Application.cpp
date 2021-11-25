@@ -57,16 +57,36 @@ void Engine::Application::Run() {
 	_PhysicalSystem->WriteFile(VRfile);//write file to virtual file system.*/
 
 	PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
-	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Export/");
+	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Application/");
 	VFS::GetInstance()->Mount(PhysicalSystem);
 
 
 	//taks.Start();
 	std::cout << "Fiziniu gijiu skaicius " << std::thread::hardware_concurrency() << std::endl;
 	
-	RecourceXML* resource = ResourceManager::GetInstace()->GetResource<RecourceXML>("ka.xml");
-	if (resource->IsAvailable()) {
+	RecourceXML* resource = ResourceManager::GetInstace()->GetResource<RecourceXML>("data.xml");
+	if (resource && resource->IsAvailable()) {
 		std::cout << "data size: " << resource->GetMemoryUsage() << std::endl;
+		//resource->Get()->GetDocument();
+		tinyxml2::XMLElement* RootElement = resource->Get()->RootElement();
+		if (RootElement) {
+			tinyxml2::XMLElement* WindowConfig = RootElement->FirstChildElement("Window");
+			if (WindowConfig) {
+				std::cout << WindowConfig->FirstChildElement("Name")->GetText() << " " << WindowConfig->FirstChildElement("Width")->GetText() << " " <<
+					WindowConfig->FirstChildElement("Height")->GetText() << " " << WindowConfig->FirstChildElement("FPS")->GetText() << " ";
+			}
+			std::cout << RootElement->FirstChildElement("StartupLanguage")->GetText() << " ";
+
+			tinyxml2::XMLElement* SuportedLanguages = RootElement->FirstChildElement("SuportedLanguages");
+			if (SuportedLanguages) {
+				
+				tinyxml2::XMLElement* SuportedLanguage = SuportedLanguages->FirstChildElement("Language");
+				while (SuportedLanguage) {
+					std::cout << SuportedLanguage->GetText() << " ";
+					SuportedLanguage = SuportedLanguage->NextSiblingElement("Language");
+				}
+			}
+		}
 	}
 
 	m_Context = new AppContext(m_Config);
