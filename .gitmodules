@@ -1,0 +1,3 @@
+[submodule "DEngine/src/Core/Maths"]
+	path = DEngine/src/Core/Maths
+	url = https://github.com/g-truc/glm.git
