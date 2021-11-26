@@ -63,6 +63,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)_$(PlatformTarget).pch</PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(SolutionDir)DEngine/src/Utils3rd/Entt/;$(SolutionDir)DEngine/src/;$(SolutionDir)DEngine/src/Core/;$(SolutionDir)DEngine/src/Utils3rd/glfw/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

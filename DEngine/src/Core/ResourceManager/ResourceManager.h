@@ -3,6 +3,7 @@
 #include <vector>
 #include <FileSystem>
 #include <map>
+#include <tuple>
 
 class ResourceManager {
 public:
@@ -18,15 +19,13 @@ public:
 	virtual ~ResourceManager();
 
 private:
-	std::map<size_t, Resource*> m_Resource;
-
+	std::map<rsize_t, std::pair<size_t, Resource*>> m_Resource;
 };
-
 
 template<typename T>
 T * ResourceManager::GetResource(std::filesystem::path path) {
 	size_t handle = std::filesystem::hash_value(path);
-	if (m_Resource[handle] == nullptr) {
+	if (m_Resource[handle].second == nullptr) {
 		T* resource = new T();
 		//Load file
 		if (!resource->Load(path)) {
@@ -35,8 +34,9 @@ T * ResourceManager::GetResource(std::filesystem::path path) {
 			return nullptr;
 		}
 		std::cout << "Succesfully loaded resource " << path << " handle " << handle << std::endl;
-		m_Resource[handle] = resource;
+		m_Resource[handle] = std::make_pair(1, resource);
 		return resource;
 	}
-	return (T*)m_Resource[handle];
+	m_Resource[handle].first++;
+	return static_cast<T*>(m_Resource[handle].second);
 }

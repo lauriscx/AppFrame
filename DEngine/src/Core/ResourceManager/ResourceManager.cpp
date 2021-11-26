@@ -2,22 +2,35 @@
 #include <filesystem>
 #include "FileSystem/VFS/VFS.h"
 #include "FileSystem/File.h"
+#include <iostream>
 
 ResourceManager::ResourceManager() { }
 
 void ResourceManager::ReleaseResource(std::filesystem::path path) {
 	size_t handle = std::filesystem::hash_value(path);
-	if (m_Resource[handle] != nullptr) {
-		m_Resource[handle]->OnRelease();
+	if (m_Resource[handle].second != nullptr) {
+		m_Resource[handle].second->OnRelease();
+		m_Resource[handle].first--;
+		if (m_Resource[handle].first == 0) {
+			delete m_Resource[handle].second;//Deleting created resource
+			m_Resource.erase(handle);//Removed from resource manager
+			std::cout << "Releasing " << path << " handle " << handle << std::endl;
+		}
 	}
 }
 
 const bool ResourceManager::IsAvailable(std::filesystem::path path) {
 	size_t handle = std::filesystem::hash_value(path);
-	if (m_Resource[handle] == nullptr) {
+	if (m_Resource[handle].second == nullptr) {
 		return false;
 	}
 	return true;
 }
 
-ResourceManager::~ResourceManager() { }
+ResourceManager::~ResourceManager() { 
+	for (auto resource : m_Resource) {
+		resource.second.first = 0;
+		delete resource.second.second;
+	}
+
+}
