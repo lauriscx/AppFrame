@@ -93,9 +93,6 @@
     <ClInclude Include="src\Application\Modules\Module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Application\Modules\ModuleWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Core\Utils\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -133,6 +130,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Application\Resources\RecourceXML.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\InputSystem\InputData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Application\Modules\Windows\ModuleWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Application\Modules\Sound\SoundModule.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Application\Modules\Sound\ResourceSound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -176,9 +185,6 @@
     <ClCompile Include="src\Application\AppData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Application\Windows\ModuleWindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Core\FileSystem\File.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -216,6 +222,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Application\Resources\RecourceXML.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\InputSystem\InputData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\Modules\Windows\ModuleWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\Modules\Sound\SoundModule.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\Modules\Sound\ResourceSound.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

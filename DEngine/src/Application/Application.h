@@ -6,7 +6,7 @@
 #include "Core/InputSystem/InputHandler.h"
 #include "AppContext.h"
 #include "AppConfig.h"
-#include "Application/Modules/ModuleWindow.h"
+#include "Application/Modules/Windows/ModuleWindow.h"
 #include "Core/Utils/Timer.h"
 
 #include <vector>

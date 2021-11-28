@@ -21,6 +21,8 @@
 #include "Core/ResourceManager/Resource.h"
 #include "Resources/RecourceXML.h"
 
+#include "Modules/Sound/SoundModule.h"
+
 Engine::Application::Application() : EventHandler("Application") {
 	/* Important init data only in run function */
 
@@ -99,6 +101,7 @@ void Engine::Application::Run() {
 	m_Context = new AppContext(m_Config);
 	m_Device = new Device();
 	m_Close = false;
+	AddModule(new SoundModule());
 
 	for (Module* module : m_Modules) {
 		module->OnInit(m_Context);

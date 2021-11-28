@@ -12,8 +12,8 @@ Resource manager - https://codereview.stackexchange.com/questions/253737/resourc
 Error handling system -
 Json and XML support -
 Task threading system -
-Sound system -
-Mount zip/rar files -
+Sound system - https://www.linkedin.com/pulse/c-audio-engine-part-1-multithreaded-architecture-jack-campbell
+Mount zip/rar files add auto get application path -
 System graphic interface -
 Entyti(components) system (ECS) -
 Sripting language(native/and external) -

@@ -61,14 +61,14 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>DEnginePch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)_$(PlatformTarget).pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)DEngine/src/Utils3rd/Entt/;$(SolutionDir)DEngine/src/;$(SolutionDir)DEngine/src/Core/;$(SolutionDir)DEngine/src/Utils3rd/glfw/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)DEngine/src/;$(SolutionDir)DEngine/src/Core/;$(SolutionDir)Libraries/AL/include/;$(SolutionDir)Libraries/Entt/include/;$(SolutionDir)Libraries/glfw/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)DEngine/src/Utils3rd/glfw/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)Libraries/AL/lib/Win64/;$(SolutionDir)Libraries/glfw/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glfw3.lib;OpenAL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>MOVE /Y "$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\$(ProjectName).dll" "$(SolutionDir)bin\$(Configuration)-$(Platform)\SandBox\$(ProjectName).dll"</Command>
@@ -101,6 +101,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Modules\Sound\ResourceSound.h" />
+    <ClInclude Include="src\Application\Modules\Sound\SoundModule.h" />
+    <ClInclude Include="src\Core\InputSystem\InputData.h" />
     <ClInclude Include="src\Application\Resources\RecourceXML.h" />
     <ClInclude Include="src\Core\ResourceManager\Resource.h" />
     <ClInclude Include="src\Core\ResourceManager\ResourceManager.h" />
@@ -131,7 +134,7 @@
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Core\Core.h" />
     <ClInclude Include="src\Application\Modules\Module.h" />
-    <ClInclude Include="src\Application\Modules\ModuleWindow.h" />
+    <ClInclude Include="src\Application\Modules\Windows\ModuleWindow.h" />
     <ClInclude Include="src\DEngine.h" />
     <ClInclude Include="src\Application\Events\LanguageChange.h" />
     <ClInclude Include="src\Application\Events\WindowMaximized.h" />
@@ -143,6 +146,9 @@
     <ClInclude Include="src\Core\MultiThreading\TaskManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\Modules\Sound\ResourceSound.cpp" />
+    <ClCompile Include="src\Application\Modules\Sound\SoundModule.cpp" />
+    <ClCompile Include="src\Core\InputSystem\InputData.cpp" />
     <ClCompile Include="src\Application\Resources\RecourceXML.cpp" />
     <ClCompile Include="src\Core\ResourceManager\Resource.cpp" />
     <ClCompile Include="src\Core\ResourceManager\ResourceManager.cpp" />
@@ -173,7 +179,7 @@
     <ClCompile Include="src\Engine\ECS\Scene.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Application\Windows\ModuleWindow.cpp" />
+    <ClCompile Include="src\Application\Modules\Windows\ModuleWindow.cpp" />
     <ClCompile Include="src\Core\MultiThreading\Thread.cpp" />
     <ClCompile Include="src\Core\MultiThreading\TaskManager.cpp" />
   </ItemGroup>
