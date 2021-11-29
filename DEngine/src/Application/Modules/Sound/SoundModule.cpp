@@ -1,10 +1,9 @@
 #include "SoundModule.h"
-#include <alc.h>
 #include <iostream>
 
 Engine::SoundModule::SoundModule() {
 
-	ALCdevice* device = alcOpenDevice(nullptr);
+	device = alcOpenDevice(nullptr);
 	if (device == nullptr) {
 		std::cout << "Failed to get default sound device" << std::endl;
 			return;
@@ -29,13 +28,37 @@ Engine::SoundModule::SoundModule() {
 		name = alcGetString(device, ALC_DEVICE_SPECIFIER);
 	}
 	if (name) {
-		std::cout << "Devices: " << name << std::endl;
+		std::cout << "Default play devices: " << name << std::endl;
 	} else {
 		std::cout << "No device found" << std::endl;
+	}
+
+	GetAvailableSoundDevices();
+	int i = 0;
+	for (auto dev : m_Devices) {
+		i++;
+		std::cout << "Device " << i << ". " << dev << std::endl;
 	}
 }
 
 Engine::SoundModule::~SoundModule() {
+}
+
+std::vector<std::string> Engine::SoundModule::GetAvailableSoundDevices() {
+	m_Devices.clear();
+
+	const ALCchar *devices = alcGetString(NULL, ALC_ALL_DEVICES_SPECIFIER);
+	const ALCchar *device = devices, *next = devices + 1;
+	size_t len = 0;
+
+	while (device && *device != '\0' && next && *next != '\0') {
+		m_Devices.push_back(device);
+		len = strlen(device);
+		device += (len + 1);
+		next += (len + 2);
+	}
+
+	return m_Devices;
 }
 
 int Engine::SoundModule::ID() {
