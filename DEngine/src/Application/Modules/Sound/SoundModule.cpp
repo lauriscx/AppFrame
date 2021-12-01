@@ -1,5 +1,47 @@
 #include "SoundModule.h"
 #include <iostream>
+#include "SoundSource.h"
+#include "ResourceSound.h"
+#include "ResourceManager/ResourceManager.h"
+
+#define CASE_RETURN(err) case (err): return "##err"
+const char* al_err_str(ALenum err) {
+	//switch (err) {
+		//CASE_RETURN(AL_NO_ERROR);
+		if (err == AL_INVALID_NAME) {
+			return "invalid name";
+		} else if (err == AL_INVALID_ENUM) {
+			return "invalid enum";
+		}
+		else if (err == AL_INVALID_VALUE) {
+			return "invalid value";
+		}
+		else if (err == AL_INVALID_OPERATION) {
+			return "invalid operation";
+		}
+		else if (err == AL_OUT_OF_MEMORY) {
+			return "invalid memory";
+		}
+		//CASE_RETURN(AL_INVALID_NAME);
+		//CASE_RETURN(AL_INVALID_ENUM);
+		//CASE_RETURN(AL_INVALID_VALUE);
+		//CASE_RETURN(AL_INVALID_OPERATION);
+		//CASE_RETURN(AL_OUT_OF_MEMORY);
+	//}
+	return "unknown";
+}
+#undef CASE_RETURN
+
+#define __al_check_error(file,line) \
+    do { \
+        ALenum err = alGetError(); \
+        for(; err!=AL_NO_ERROR; err=alGetError()) { \
+            std::cerr << "AL Error " << al_err_str(err) << " at " << file << ":" << line << std::endl; \
+        } \
+    }while(0)
+
+#define al_check_error() \
+    __al_check_error(__FILE__, __LINE__)
 
 Engine::SoundModule::SoundModule() {
 
@@ -39,6 +81,28 @@ Engine::SoundModule::SoundModule() {
 		i++;
 		std::cout << "Device " << i << ". " << dev << std::endl;
 	}
+
+	al_check_error();
+
+	ResourceSound* resource = ResourceManager::GetInstace()->GetResource<ResourceSound>("");
+
+	al_check_error();
+
+
+	sound = new SoundSource();
+	al_check_error();
+	sound->SetSound(resource->Get());
+
+	sound->SetGain(1);
+	sound->SetPitch(0.5);
+	sound->SetLoop(false);
+	sound->SetPosition(0, 0, 0);
+	sound->SetVelocity(0, 0, 0);
+	al_check_error();
+
+	sound->Play();
+	al_check_error();
+
 }
 
 Engine::SoundModule::~SoundModule() {

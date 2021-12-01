@@ -2,6 +2,7 @@
 #include "Application/Modules/Module.h"
 #include <alc.h>
 #include <al.h>
+#include "SoundSource.h"
 
 namespace Engine {
 	class SoundModule : public Module {
@@ -15,5 +16,6 @@ namespace Engine {
 	private:
 		std::vector<std::string> m_Devices;
 		ALCdevice* device;
+		SoundSource* sound;
 	};
 }

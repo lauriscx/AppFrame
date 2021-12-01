@@ -94,8 +94,6 @@ void Engine::Application::Run() {
 	resource = ResourceManager::GetInstace()->GetResource<RecourceXML>("data.xml");
 
 	ResourceManager::GetInstace()->ReleaseResource("data.xml");
-	ResourceManager::GetInstace()->ReleaseResource("data.xml");
-	ResourceManager::GetInstace()->ReleaseResource("data.xml");
 
 
 	m_Context = new AppContext(m_Config);

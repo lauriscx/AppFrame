@@ -6,18 +6,23 @@
 
 ResourceSound::ResourceSound() {}
 
+unsigned int ResourceSound::Get() {
+	return m_ResourceHandle;
+}
+
 bool ResourceSound::IsAvailable() {
 	return m_ResourceHandle;
 }
 
 bool ResourceSound::Load(std::filesystem::path file) {
 	File* _file = Engine::VFS::GetInstance()->ReadFile(file);
-	if (_file && _file->IsDataAvailable()) {
+	/*if (_file && _file->IsDataAvailable()) {
 		//Copy data to WAV header from file.
 		WAV_HEADER Header;
 		memcpy(&Header, _file->GetData(), sizeof(WAV_HEADER));
 
-		alGenBuffers(1, &m_ResourceHandle);
+	//	alGenBuffers(1, &m_ResourceHandle);
+
 //		alBufferData(SoundBufferHandle, format, mmeBuffer, num_bytes, sampleRate);
 		//delete memBuffer
 
@@ -34,8 +39,23 @@ bool ResourceSound::Load(std::filesystem::path file) {
 			return false;
 		}
 		return true;
+	}*/
+	alGenBuffers(1, &m_ResourceHandle);
+	/* Fill buffer with Sine-Wave */
+	float freq = 440.f;
+	int seconds = 4;
+	unsigned sample_rate = 22050;
+	size_t buf_size = seconds * sample_rate;
+
+	char *samples;
+	samples = new char[buf_size];
+	for (int i = 0; i < buf_size; ++i) {
+		samples[i] = 32760 * sin((2.f*float(3.14)*freq) / sample_rate * i);
 	}
-	return false;
+
+	/* Download buffer to OpenAL */
+	alBufferData(m_ResourceHandle, AL_FORMAT_MONO16, samples, buf_size, sample_rate);
+	return true;
 }
 
 size_t ResourceSound::GetMemoryUsage() {
@@ -43,8 +63,8 @@ size_t ResourceSound::GetMemoryUsage() {
 }
 
 ResourceSound::~ResourceSound() {
-	alDeleteBuffers(1, &m_ResourceHandle);
-	m_ResourceHandle = 0;
+	//alDeleteBuffers(1, &m_ResourceHandle);
+	//m_ResourceHandle = 0;
 }
 
 

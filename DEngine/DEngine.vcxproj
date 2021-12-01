@@ -101,6 +101,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Modules\Sound\SoundSource.h" />
     <ClInclude Include="src\Application\Modules\Sound\ResourceSound.h" />
     <ClInclude Include="src\Application\Modules\Sound\SoundModule.h" />
     <ClInclude Include="src\Core\InputSystem\InputData.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="src\Core\MultiThreading\TaskManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\Modules\Sound\SoundSource.cpp" />
     <ClCompile Include="src\Application\Modules\Sound\ResourceSound.cpp" />
     <ClCompile Include="src\Application\Modules\Sound\SoundModule.cpp" />
     <ClCompile Include="src\Core\InputSystem\InputData.cpp" />

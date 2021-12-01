@@ -144,6 +144,9 @@
     <ClInclude Include="src\Application\Modules\Sound\ResourceSound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Application\Modules\Sound\SoundSource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\ECS\Entity.cpp">
@@ -234,6 +237,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Application\Modules\Sound\ResourceSound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Application\Modules\Sound\SoundSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

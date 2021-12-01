@@ -5,7 +5,7 @@ class ResourceSound : public Resource {
 public:
 	ResourceSound();
 
-	//tinyxml2::XMLDocument* Get();
+	unsigned int Get();
 
 	virtual bool IsAvailable() override;
 	virtual bool Load(std::filesystem::path file) override;
