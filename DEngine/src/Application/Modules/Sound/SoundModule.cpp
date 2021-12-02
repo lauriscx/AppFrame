@@ -84,24 +84,26 @@ Engine::SoundModule::SoundModule() {
 
 	al_check_error();
 
-	ResourceSound* resource = ResourceManager::GetInstace()->GetResource<ResourceSound>("");
+	ResourceSound* resource = ResourceManager::GetInstace()->GetResource<ResourceSound>("mixkit-arcade-retro-game-over-213.wav");
 
-	al_check_error();
+	if (resource) {
+		al_check_error();
 
 
-	sound = new SoundSource();
-	al_check_error();
-	sound->SetSound(resource->Get());
+		sound = new SoundSource();
+		al_check_error();
+		sound->SetSound(resource->Get());
 
-	sound->SetGain(1);
-	sound->SetPitch(0.5);
-	sound->SetLoop(false);
-	sound->SetPosition(0, 0, 0);
-	sound->SetVelocity(0, 0, 0);
-	al_check_error();
+		sound->SetGain(1);
+		sound->SetPitch(1);
+		sound->SetLoop(false);
+		sound->SetPosition(0, 0, 0);
+		sound->SetVelocity(0, 0, 0);
+		al_check_error();
 
-	sound->Play();
-	al_check_error();
+		sound->Play();
+		al_check_error();
+	}
 
 }
 
@@ -123,6 +125,22 @@ std::vector<std::string> Engine::SoundModule::GetAvailableSoundDevices() {
 	}
 
 	return m_Devices;
+}
+
+void Engine::SoundModule::OnAppInput(int x, int y, int action, int key) {
+	if (key == 65) {
+		sound->SetPitch(5);
+		al_check_error();
+
+		sound->Play();
+	}
+	if (key == 66) {
+		sound->SetPitch(2);
+		al_check_error();
+
+		sound->Play();
+	}
+
 }
 
 int Engine::SoundModule::ID() {

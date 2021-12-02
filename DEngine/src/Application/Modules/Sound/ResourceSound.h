@@ -3,20 +3,6 @@
 
 class ResourceSound : public Resource {
 public:
-	ResourceSound();
-
-	unsigned int Get();
-
-	virtual bool IsAvailable() override;
-	virtual bool Load(std::filesystem::path file) override;
-
-	virtual size_t GetMemoryUsage() override;
-
-	virtual ~ResourceSound();
-private:
-	unsigned int m_ResourceHandle;
-	//Add resource.
-
 	struct  WAV_HEADER {
 		/* RIFF Chunk Descriptor */
 		uint8_t         RIFF[4];        // RIFF Header Magic header
@@ -35,4 +21,23 @@ private:
 		uint8_t         Subchunk2ID[4]; // "data"  string
 		uint32_t        Subchunk2Size;  // Sampled data length
 	};
+public:
+	ResourceSound();
+
+	unsigned int Get();
+
+	WAV_HEADER GetInformation();
+	char* GetData();
+
+	virtual bool IsAvailable() override;
+	virtual bool Load(std::filesystem::path file) override;
+
+	virtual size_t GetMemoryUsage() override;
+
+	virtual ~ResourceSound();
+private:
+	unsigned int m_ResourceHandle;
+
+	WAV_HEADER m_Header;
+	char* m_Data;
 };
