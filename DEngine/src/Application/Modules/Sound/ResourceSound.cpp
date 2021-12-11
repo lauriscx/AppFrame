@@ -59,7 +59,6 @@ bool ResourceSound::Load(std::filesystem::path file) {
 		return true;
 	}
 	return false;
-
 }
 
 size_t ResourceSound::GetMemoryUsage() {
