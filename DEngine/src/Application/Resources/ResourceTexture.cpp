@@ -1,7 +1,9 @@
-#include "ResourceTexture.h"
-#include <stb_image.h>
+#include "ResourceTexture.h"  
 #include "FileSystem/File.h"
 #include "FileSystem/VFS/VFS.h"
+
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 
 ResourceTexture::ResourceTexture() { }
 

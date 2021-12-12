@@ -61,7 +61,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>DEnginePch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)_$(PlatformTarget).pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)DEngine/src/;$(SolutionDir)DEngine/src/Core/;$(SolutionDir)Libraries/AL/include/;$(SolutionDir)Libraries/Entt/include/;$(SolutionDir)Libraries/glfw/include/;$(SolutionDir)Libraries/gml/glm/;$(SolutionDir)Libraries/stb/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)DEngine/src/;$(SolutionDir)DEngine/src/Core/;$(SolutionDir)Libraries/AL/include/;$(SolutionDir)Libraries/Entt/include/;$(SolutionDir)Libraries/glfw/include/;$(SolutionDir)Libraries/gml/glm/;$(SolutionDir)Libraries/stb/include/;$(SolutionDir)Libraries/spdlog/include/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -101,6 +101,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Modules\Console\ModuleConsole.h" />
     <ClInclude Include="src\Application\Resources\ResourceTexture.h" />
     <ClInclude Include="src\Application\Modules\Sound\SoundSource.h" />
     <ClInclude Include="src\Application\Modules\Sound\ResourceSound.h" />
@@ -148,6 +149,7 @@
     <ClInclude Include="src\Core\MultiThreading\TaskManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Application\Modules\Console\ModuleConsole.cpp" />
     <ClCompile Include="src\Application\Resources\ResourceTexture.cpp" />
     <ClCompile Include="src\Application\Modules\Sound\SoundSource.cpp" />
     <ClCompile Include="src\Application\Modules\Sound\ResourceSound.cpp" />
