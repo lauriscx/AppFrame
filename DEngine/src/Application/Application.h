@@ -9,7 +9,7 @@
 #include "Application/Modules/Windows/ModuleWindow.h"
 #include "Core/Utils/Timer.h"
 
-#include <vector>
+#include <map>
 
 #include "Core/MultiThreading/TaskManager.h"
 
@@ -31,7 +31,8 @@ namespace Engine {
 		Application();
 
 		inline void SetConfig(AppConfig* config) { m_Config = config; }
-		void AddModule(Module* module);//change to use memory ref.
+		template<typename T>
+		void AddModule(T* module);//change to use memory ref.
 
 		virtual void Run();
 
@@ -40,8 +41,9 @@ namespace Engine {
 		virtual bool OnInput(int x, int y, int action, int key) override;
 
 		static Application* GetInstance() { static Application s_Instance; return &s_Instance; }
+
 		template <typename T>
-		T* GetModule(int ID);
+		T* GetModule();
 		virtual AppConfig	* GetConfig();
 		virtual AppContext	* GetContext();
 		virtual Device		* GetDevice();
@@ -67,17 +69,15 @@ namespace Engine {
 
 		bool m_Close;
 
-		std::vector<Module*> m_Modules;
-
+		std::map<std::string, Module*> m_Modules;
 	};
 
 	template<typename T>
-	inline T* Application::GetModule(int ID) {
-		for (Module* module : m_Modules) {
-			if (module->ID() == ID) {
-				return static_cast<T*>(module);
-			}
-		}
-		return nullptr;
+	inline void Application::AddModule(T * module) {
+		m_Modules[typeid(T).name()] = module;
+	}
+	template<typename T>
+	inline T* Application::GetModule() {
+		return  static_cast<T*>(m_Modules[typeid(T).name()]);
 	}
 }

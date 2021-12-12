@@ -48,7 +48,7 @@ Engine::SoundModule::SoundModule() {
 	device = alcOpenDevice(nullptr);
 	if (device == nullptr) {
 		std::cout << "Failed to get default sound device" << std::endl;
-			return;
+		return;
 	}
 	ALCcontext* context = alcCreateContext(device, nullptr);
 
@@ -141,8 +141,4 @@ void Engine::SoundModule::OnAppInput(int x, int y, int action, int key) {
 		sound->Play();
 	}
 
-}
-
-int Engine::SoundModule::ID() {
-	return 0;
 }

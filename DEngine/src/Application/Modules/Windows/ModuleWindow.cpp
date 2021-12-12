@@ -123,10 +123,5 @@ void Engine::ModuleWindow::OnStop() {
 	}
 }
 
-int Engine::ModuleWindow::ID()
-{
-	return 0;
-}
-
 Engine::ModuleWindow::~ModuleWindow() {
 }

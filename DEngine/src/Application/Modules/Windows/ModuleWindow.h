@@ -12,8 +12,6 @@ namespace Engine {
 		void OnUpdate(float deltaTime) override;
 		void OnStop() override;
 
-		virtual int ID() override;
-
 		virtual ~ModuleWindow();
 
 	private:

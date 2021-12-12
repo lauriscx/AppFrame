@@ -38,8 +38,6 @@ namespace Engine {
 		void Error	(const char* module, const char* message);
 		void Fatal	(const char* module, const char* message);
 
-		virtual int ID() override; 
-
 		virtual ~ModuleConsole();
 	private:
 		std::shared_ptr<spdlog::logger> m_Logger;

@@ -32,10 +32,6 @@ Engine::Application::Application() : EventHandler("Application") {
 	SubscribeToEvent(WindowResize::Type());
 }
 
-void Engine::Application::AddModule(Module * module) {
-	m_Modules.push_back(module);
-}
-
 void Engine::Application::Run() {
 
 	/*ARFMountPoint * VirtualFiles = new ARFMountPoint();
@@ -96,18 +92,17 @@ void Engine::Application::Run() {
 
 	ResourceManager::GetInstace()->ReleaseResource("data.xml");
 
-
 	m_Context = new AppContext(m_Config);
 	m_Device = new Device();
 	m_Close = false;
 	//AddModule(new SoundModule());
-	AddModule(new ModuleConsole());
+	AddModule<ModuleConsole>(new ModuleConsole());
 
-	for (Module* module : m_Modules) {
-		module->OnInit(m_Context);
+	for (auto module : m_Modules) {
+		module.second->OnInit(m_Context);
 	}
-	for (Module* module : m_Modules) {
-		module->OnStart();
+	for (auto module : m_Modules) {
+		module.second->OnStart();
 	}
 }
 
@@ -116,31 +111,29 @@ void Engine::Application::OnUpdate	() {
 		std::cout << taks.GetCickles() << std::endl;
 	}
 	m_Timer.Start();
-	for (Module* module : m_Modules) {
-		module->OnUpdate(m_Timer.Elapsed());
+
+	for (auto module : m_Modules) {
+		module.second->OnUpdate(m_Timer.Elapsed());
 	}
 	m_Timer.Stop();
 }
 bool Engine::Application::OnEvent	(BasicEvent & event) {
-	for (Module* module : m_Modules) {
-		module->OnAppEvent(&event);
+	for (auto module : m_Modules) {
+		module.second->OnAppEvent(&event);
 	}
 	if (WindowCloses* data = WindowCloses::Match(&event)) {
 		m_Close = true;
-		//std::cout << "Should application exit" << std::endl;
 		return true;
 	}
 	if (WindowResize* data = WindowResize::Match(&event)) {
-		std::cout << "Window size changed : x(" << data->GetX() << "), y(" << data->GetY() << ")" << std::endl;
 		return true;
 	}
 	return false;
 }
 bool Engine::Application::OnInput	(int x, int y, int action, int key) {
-	for (Module* module : m_Modules) {
-		module->OnAppInput(x, y, action, key);
+	for (auto module : m_Modules) {
+		module.second->OnAppInput(x, y, action, key);
 	}
-	//std::cout << "Action: " << action << " key: " << key << " x: " << x << " y: " << y << std::endl;
 	return true;
 }
 
@@ -158,8 +151,8 @@ bool Engine::Application::Close	() {
 	return m_Close;
 }
 void Engine::Application::Stop	() {
-	for (Module* module : m_Modules) {
-		module->OnStop();
+	for (auto module : m_Modules) {
+		module.second->OnStop();
 	}
 	delete m_Context;
 }

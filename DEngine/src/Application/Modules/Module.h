@@ -15,7 +15,6 @@ namespace Engine {
 		virtual void OnAppInput(int x, int y, int action, int key) {}
 		virtual void OnAppEvent(BasicEvent* event) {}
 		virtual void OnStop() {}
-		virtual int ID() = 0;
 		virtual ~Module() {};
 	protected:
 		AppContext* m_Context;

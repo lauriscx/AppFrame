@@ -147,6 +147,7 @@
     <ClInclude Include="src\Engine\ECS\Scene.h" />
     <ClInclude Include="src\Core\MultiThreading\Thread.h" />
     <ClInclude Include="src\Core\MultiThreading\TaskManager.h" />
+    <ClInclude Include="src\Core\UUID\UUID.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application\Modules\Console\ModuleConsole.cpp" />
@@ -188,6 +189,7 @@
     <ClCompile Include="src\Application\Modules\Windows\ModuleWindow.cpp" />
     <ClCompile Include="src\Core\MultiThreading\Thread.cpp" />
     <ClCompile Include="src\Core\MultiThreading\TaskManager.cpp" />
+    <ClCompile Include="src\Core\UUID\UUID.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

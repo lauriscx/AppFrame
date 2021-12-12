@@ -12,8 +12,6 @@ namespace Engine {
 
 		std::vector<std::string> GetAvailableSoundDevices();
 		virtual void OnAppInput(int x, int y, int action, int key) override;
-
-		virtual int ID() override;
 	private:
 		std::vector<std::string> m_Devices;
 		ALCdevice* device;

@@ -62,8 +62,4 @@ void Engine::ModuleConsole::Fatal	(const char * module, const char * message) {
 	m_Logger->critical("[{}] {}", module, message);
 }
 
-int Engine::ModuleConsole::ID() {
-	return 2;
-}
-
 Engine::ModuleConsole::~ModuleConsole() {}
