@@ -7,7 +7,8 @@ namespace Engine {
 			WindowResize,
 			WindowMaximized,
 			WindowMinimized,
-			LanguageChange
+			LanguageChange,
+			Log
 		};
 	}
 }

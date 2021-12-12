@@ -11,6 +11,7 @@
 #include <map>
 #include <filesystem>
 #include "Core/XML/XML.h"
+#include "Core/EventSystem/EventManager.h"
 
 #include "Core/FileSystem/VFS/VFS.h"
 #include "Core/FileSystem/VFS/MountPoints/PhysicalMountPoint.h"
@@ -24,12 +25,15 @@
 #include "Modules/Sound/SoundModule.h"
 #include "Modules/Console/ModuleConsole.h"
 
+#include "Logger.h"
+
 Engine::Application::Application() : EventHandler("Application") {
 	/* Important init data only in run function */
 
 	/* Here subscribe crucial events for application */
 	SubscribeToEvent(WindowCloses::Type());
 	SubscribeToEvent(WindowResize::Type());
+	SubscribeToEvent(Log::Type());//Used for Console module.
 }
 
 void Engine::Application::Run() {
@@ -60,43 +64,13 @@ void Engine::Application::Run() {
 	VFS::GetInstance()->Mount(PhysicalSystem);
 
 
-	//taks.Start();
-	std::cout << "Fiziniu gijiu skaicius " << std::thread::hardware_concurrency() << std::endl;
-	
-	RecourceXML* resource = ResourceManager::GetInstace()->GetResource<RecourceXML>("data.xml");
-	if (resource && resource->IsAvailable()) {
-		std::cout << "data size: " << resource->GetMemoryUsage() << std::endl;
-		//resource->Get()->GetDocument();
-		tinyxml2::XMLElement* RootElement = resource->Get()->RootElement();
-		if (RootElement) {
-			tinyxml2::XMLElement* WindowConfig = RootElement->FirstChildElement("Window");
-			if (WindowConfig) {
-				std::cout << WindowConfig->FirstChildElement("Name")->GetText() << " " << WindowConfig->FirstChildElement("Width")->GetText() << " " <<
-					WindowConfig->FirstChildElement("Height")->GetText() << " " << WindowConfig->FirstChildElement("FPS")->GetText() << " ";
-			}
-			std::cout << RootElement->FirstChildElement("StartupLanguage")->GetText() << " ";
-
-			tinyxml2::XMLElement* SuportedLanguages = RootElement->FirstChildElement("SuportedLanguages");
-			if (SuportedLanguages) {
-				
-				tinyxml2::XMLElement* SuportedLanguage = SuportedLanguages->FirstChildElement("Language");
-				while (SuportedLanguage) {
-					std::cout << SuportedLanguage->GetText() << " ";
-					SuportedLanguage = SuportedLanguage->NextSiblingElement("Language");
-				}
-			}
-		}
-	}
-
-	resource = ResourceManager::GetInstace()->GetResource<RecourceXML>("data.xml");
-
-	ResourceManager::GetInstace()->ReleaseResource("data.xml");
-
 	m_Context = new AppContext(m_Config);
 	m_Device = new Device();
 	m_Close = false;
 	//AddModule(new SoundModule());
 	AddModule<ModuleConsole>(new ModuleConsole());
+
+	ERROR("APPLICATION", "STARTED");
 
 	for (auto module : m_Modules) {
 		module.second->OnInit(m_Context);

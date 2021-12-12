@@ -1,4 +1,6 @@
 #include "ModuleConsole.h"
+#include "Application/Events/Log.h"
+
 #include <spdlog/sinks/stdout_color_sinks.h>
 
 Engine::ModuleConsole::ModuleConsole() {
@@ -40,7 +42,28 @@ void Engine::ModuleConsole::OnEarlyUpdate	(float deltaTime) {}
 void Engine::ModuleConsole::OnUpdate		(float deltaTime) {}
 void Engine::ModuleConsole::OnLateUpdate	(float deltaTime) {}
 void Engine::ModuleConsole::OnAppInput		(int x, int y, int action, int key) {}
-void Engine::ModuleConsole::OnAppEvent		(BasicEvent * event) {}
+void Engine::ModuleConsole::OnAppEvent		(BasicEvent * event) {
+	if (Log* log = Log::Match(event)) {
+		if (log->GetLevel() == Log::level::debug) {
+			Debug(log->GetModule(), log->GetMsg());
+		} else if (log->GetLevel() == Log::level::error) {
+			Error(log->GetModule(), log->GetMsg());
+		}
+		else if (log->GetLevel() == Log::level::fatal) {
+			Fatal(log->GetModule(), log->GetMsg());
+		}
+		else if (log->GetLevel() == Log::level::info) {
+			Info(log->GetModule(), log->GetMsg());
+		}
+		else if (log->GetLevel() == Log::level::trace) {
+			Trace(log->GetModule(), log->GetMsg());
+		}
+		else if (log->GetLevel() == Log::level::warn) {
+			Warn(log->GetModule(), log->GetMsg());
+		}
+	}
+
+}
 void Engine::ModuleConsole::OnStop			() {}
 
 void Engine::ModuleConsole::Info	(const char * module, const char * message) {

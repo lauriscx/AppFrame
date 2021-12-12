@@ -101,6 +101,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Application\Events\Log.h" />
+    <ClInclude Include="src\Application\Logger.h" />
     <ClInclude Include="src\Application\Modules\Console\ModuleConsole.h" />
     <ClInclude Include="src\Application\Resources\ResourceTexture.h" />
     <ClInclude Include="src\Application\Modules\Sound\SoundSource.h" />
