@@ -1,43 +1,69 @@
 #include "ModuleConsole.h"
-#include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
 
 Engine::ModuleConsole::ModuleConsole() {
-	auto console = spdlog::stdout_color_mt("console");
-	console->info("welcome to spdlog");
-	console->error("some error message with arguments {}", 1);
-		
-	auto err_logger = spdlog::stderr_color_mt("stderr");
-	err_logger->error("Some error");
-
-	spdlog::info("Welcome to spdlog!");
-	spdlog::error("Some error message with arg: {}", 1);
-
-	spdlog::warn("Easy padding in numbers like {:08d}", 12);
-	spdlog::critical("Support for int: {0:d};  hex: {0:x};  oct: {0:o}; bin: {0:b}", 42);
-	spdlog::info("Support for floats {:03.2f}", 1.23456);
-	spdlog::info("Positional args are {1} {0}..", "too", "supported");
-	spdlog::info("{:<30}", "left aligned");
-
-	spdlog::set_level(spdlog::level::debug); // Set global log level to debug
-	spdlog::debug("This message should be displayed..");
-
-	// change log pattern
-	spdlog::set_pattern("[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v");
-
-	// Compile time log levels
-	// define SPDLOG_ACTIVE_LEVEL to desired level
-	SPDLOG_TRACE("Some trace message with param {}", 42);
-	SPDLOG_DEBUG("Some debug message");
-
+	spdlog::set_pattern("%^[%H:%M:%S] %l [thread %t] %v%$");
+	m_Logger = spdlog::stdout_color_mt("APP FRAME");
+	m_Logger->set_level(spdlog::level::trace);
 }
 
-Engine::ModuleConsole::~ModuleConsole() {
+void Engine::ModuleConsole::SetLoggingLevel(ModuleConsole::level level) {
+	if (level == level::trace) {
+		m_Logger->set_level(spdlog::level::trace);
+	} else if(level == level::debug) {
+		m_Logger->set_level(spdlog::level::debug);
+	}
+	else if (level == level::info) {
+		m_Logger->set_level(spdlog::level::info);
+	}
+	else if (level == level::warn) {
+		m_Logger->set_level(spdlog::level::warn);
+	}
+	else if (level == level::error) {
+		m_Logger->set_level(spdlog::level::err);
+	}
+	else if (level == level::fatal) {
+		m_Logger->set_level(spdlog::level::critical);
+	}
+	else if (level == level::off) {
+		m_Logger->set_level(spdlog::level::off);
+	}
+	else {
+		m_Logger->set_level(spdlog::level::trace);
+	}
 }
 
-void Engine::ModuleConsole::OnAppInput(int x, int y, int action, int key) {
+void Engine::ModuleConsole::OnStart			() {
+	Info(quote(ModuleConsole), "Started");
+}
+void Engine::ModuleConsole::OnEarlyUpdate	(float deltaTime) {}
+void Engine::ModuleConsole::OnUpdate		(float deltaTime) {}
+void Engine::ModuleConsole::OnLateUpdate	(float deltaTime) {}
+void Engine::ModuleConsole::OnAppInput		(int x, int y, int action, int key) {}
+void Engine::ModuleConsole::OnAppEvent		(BasicEvent * event) {}
+void Engine::ModuleConsole::OnStop			() {}
+
+void Engine::ModuleConsole::Info	(const char * module, const char * message) {
+	m_Logger->info("[{}] {}", module, message);
+}
+void Engine::ModuleConsole::Trace	(const char * module, const char * message) {
+	m_Logger->trace("[{}] {}", module, message);
+}
+void Engine::ModuleConsole::Debug	(const char * module, const char * message) {
+	m_Logger->debug("[{}] {}", module, message);
+}
+void Engine::ModuleConsole::Warn	(const char * module, const char * message) {
+	m_Logger->warn("[{}] {}", module, message);
+}
+void Engine::ModuleConsole::Error	(const char * module, const char * message) {
+	m_Logger->error("[{}] {}", module, message);
+}
+void Engine::ModuleConsole::Fatal	(const char * module, const char * message) {
+	m_Logger->critical("[{}] {}", module, message);
 }
 
 int Engine::ModuleConsole::ID() {
 	return 2;
 }
+
+Engine::ModuleConsole::~ModuleConsole() {}

@@ -1,5 +1,7 @@
 #pragma once
 
+#define quote(x) #x
+
 #define NOMINMAX
 
 #ifdef ENGINE_PLATFORM_WINDOWS
