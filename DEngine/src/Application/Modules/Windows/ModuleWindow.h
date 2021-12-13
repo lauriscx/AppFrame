@@ -9,8 +9,12 @@ namespace Engine {
 		ModuleWindow();
 
 		void OnStart() override;
-		void OnUpdate(float deltaTime) override;
+		virtual void OnEarlyUpdate(float deltaTime) override;
+		virtual void OnUpdate(float deltaTime) override;
+		virtual void OnLateUpdate(float deltaTime) override;
 		void OnStop() override;
+
+		void* GetWindow() { return m_Window; }
 
 		virtual ~ModuleWindow();
 

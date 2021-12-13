@@ -24,6 +24,8 @@
 
 #include "Modules/Sound/SoundModule.h"
 #include "Modules/Console/ModuleConsole.h"
+#include "Modules/GUI/ModuleGUI.h"
+#include "Modules/Windows/ModuleWindow.h"
 
 #include "Logger.h"
 
@@ -65,12 +67,12 @@ void Engine::Application::Run() {
 
 
 	m_Context = new AppContext(m_Config);
-	m_Device = new Device();
+	m_Device = new Device(); 
 	m_Close = false;
 	//AddModule(new SoundModule());
+	AddModule<ModuleWindow>(new ModuleWindow());
 	AddModule<ModuleConsole>(new ModuleConsole());
-
-	ERROR("APPLICATION", "STARTED");
+	AddModule<ModuleGUI>(new ModuleGUI());
 
 	for (auto module : m_Modules) {
 		module.second->OnInit(m_Context);
@@ -80,17 +82,26 @@ void Engine::Application::Run() {
 	}
 }
 
-void Engine::Application::OnUpdate	() {
-	if (taks.CanRetirieve()) {
-		std::cout << taks.GetCickles() << std::endl;
-	}
+void Engine::Application::OnEarlyUpdate() {
 	m_Timer.Start();
+	for (auto module : m_Modules) {
+		module.second->OnEarlyUpdate(m_Timer.Elapsed());
+	}
+}
 
+void Engine::Application::OnUpdate	() {
 	for (auto module : m_Modules) {
 		module.second->OnUpdate(m_Timer.Elapsed());
 	}
+}
+
+void Engine::Application::OnLateUpdate() {
+	for (auto module : m_Modules) {
+		module.second->OnLateUpdate(m_Timer.Elapsed());
+	}
 	m_Timer.Stop();
 }
+
 bool Engine::Application::OnEvent	(BasicEvent & event) {
 	for (auto module : m_Modules) {
 		module.second->OnAppEvent(&event);

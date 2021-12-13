@@ -10,6 +10,7 @@
 #include "Core/Utils/Timer.h"
 
 #include <map>
+#include <unordered_map>
 
 #include "Core/MultiThreading/TaskManager.h"
 
@@ -36,7 +37,9 @@ namespace Engine {
 
 		virtual void Run();
 
+		virtual void OnEarlyUpdate();
 		virtual void OnUpdate();
+		virtual void OnLateUpdate();
 		virtual bool OnEvent(BasicEvent& event) override;
 		virtual bool OnInput(int x, int y, int action, int key) override;
 
@@ -69,7 +72,7 @@ namespace Engine {
 
 		bool m_Close;
 
-		std::map<std::string, Module*> m_Modules;
+		std::unordered_map<std::string, Module*> m_Modules;
 	};
 
 	template<typename T>

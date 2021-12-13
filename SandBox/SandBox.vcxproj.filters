@@ -24,13 +24,5 @@
     <ClCompile Include="Testas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VFS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="VFS.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

@@ -37,13 +37,13 @@ int main() {
 		Application * aap = static_cast<Application*>(Engine::Application::GetInstance());
 		AppConfig config;
 		aap->SetConfig(&config);
-		Engine::ModuleWindow window;
-		aap->AddModule(&window);
 		aap->Run();
 		//Examples();
 
 		while (!aap->Close()) {
+			aap->OnEarlyUpdate();
 			aap->OnUpdate();
+			aap->OnLateUpdate();
 		}
 		aap->Stop();
 	}
