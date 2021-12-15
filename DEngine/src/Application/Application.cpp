@@ -24,8 +24,8 @@
 
 #include "Modules/Sound/SoundModule.h"
 #include "Modules/Console/ModuleConsole.h"
-#include "Modules/GUI/ModuleGUI.h"
-#include "Modules/Windows/ModuleWindow.h"
+#include "Modules/GUI/ModuleIMGUI.h"
+#include "Modules/Window/ModuleWindow.h"
 
 #include "Logger.h"
 
@@ -72,7 +72,7 @@ void Engine::Application::Run() {
 	//AddModule(new SoundModule());
 	AddModule<ModuleWindow>(new ModuleWindow());
 	AddModule<ModuleConsole>(new ModuleConsole());
-	AddModule<ModuleGUI>(new ModuleGUI());
+	AddModule<ModuleIMGUI>(new ModuleIMGUI());
 
 	for (auto module : m_Modules) {
 		module.second->OnInit(m_Context);

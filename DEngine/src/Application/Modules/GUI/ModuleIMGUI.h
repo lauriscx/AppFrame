@@ -3,9 +3,9 @@
 #include "Core/Core.h"
 
 namespace Engine {
-	class ModuleGUI : public Module {
+	class ModuleIMGUI : public Module {
 	public:
-		ModuleGUI();
+		ModuleIMGUI();
 
 		virtual void OnStart() override;
 		virtual void OnEarlyUpdate(float deltaTime) override;
@@ -15,6 +15,6 @@ namespace Engine {
 		virtual void OnAppEvent(BasicEvent* event) override;
 		virtual void OnStop() override;
 
-		virtual ~ModuleGUI();
+		virtual ~ModuleIMGUI();
 	};
 }

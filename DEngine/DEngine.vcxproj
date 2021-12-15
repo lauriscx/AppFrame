@@ -110,7 +110,7 @@
     <ClInclude Include="src\Application\Modules\GUI\imgui\imstb_rectpack.h" />
     <ClInclude Include="src\Application\Modules\GUI\imgui\imstb_textedit.h" />
     <ClInclude Include="src\Application\Modules\GUI\imgui\imstb_truetype.h" />
-    <ClInclude Include="src\Application\Modules\GUI\ModuleGUI.h" />
+    <ClInclude Include="src\Application\Modules\GUI\ModuleIMGUI.h" />
     <ClInclude Include="src\Application\Events\Log.h" />
     <ClInclude Include="src\Application\Logger.h" />
     <ClInclude Include="src\Application\Modules\Console\ModuleConsole.h" />
@@ -149,7 +149,7 @@
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Core\Core.h" />
     <ClInclude Include="src\Application\Modules\Module.h" />
-    <ClInclude Include="src\Application\Modules\Windows\ModuleWindow.h" />
+    <ClInclude Include="src\Application\Modules\Window\ModuleWindow.h" />
     <ClInclude Include="src\DEngine.h" />
     <ClInclude Include="src\Application\Events\LanguageChange.h" />
     <ClInclude Include="src\Application\Events\WindowMaximized.h" />
@@ -169,7 +169,7 @@
     <ClCompile Include="src\Application\Modules\GUI\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="src\Application\Modules\GUI\imgui\imgui_tables.cpp" />
     <ClCompile Include="src\Application\Modules\GUI\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="src\Application\Modules\GUI\ModuleGUI.cpp" />
+    <ClCompile Include="src\Application\Modules\GUI\ModuleIMGUI.cpp" />
     <ClCompile Include="src\Application\Modules\Console\ModuleConsole.cpp" />
     <ClCompile Include="src\Application\Resources\ResourceTexture.cpp" />
     <ClCompile Include="src\Application\Modules\Sound\SoundSource.cpp" />
@@ -206,7 +206,7 @@
     <ClCompile Include="src\Engine\ECS\Scene.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Application\Modules\Windows\ModuleWindow.cpp" />
+    <ClCompile Include="src\Application\Modules\Window\ModuleWindow.cpp" />
     <ClCompile Include="src\Core\MultiThreading\Thread.cpp" />
     <ClCompile Include="src\Core\MultiThreading\TaskManager.cpp" />
     <ClCompile Include="src\Core\UUID\UUID.cpp" />

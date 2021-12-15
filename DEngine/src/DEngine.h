@@ -3,7 +3,7 @@
 #include "Core/Asserts.h"
 #include "Core/Memory/Memory.h"
 #include "Application/Modules/Module.h"
-#include "Application/Modules/Windows/ModuleWindow.h"
+#include "Application/Modules/Window/ModuleWindow.h"
 #include "Core/XML/XML.h"
 
 

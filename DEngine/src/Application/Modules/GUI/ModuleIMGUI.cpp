@@ -1,6 +1,6 @@
-#include "ModuleGUI.h"
+#include "ModuleIMGUI.h"
 #include "Application/Application.h"
-#include "Application/Modules/Windows/ModuleWindow.h"
+#include "Application/Modules/Window/ModuleWindow.h"
 #include "Application/Events/Log.h"
 #include "Application/Logger.h"
 
@@ -27,11 +27,9 @@
 #endif
 
 
-Engine::ModuleGUI::ModuleGUI()
-{
-}
+Engine::ModuleIMGUI::ModuleIMGUI() {}
 
-void Engine::ModuleGUI::OnStart() {
+void Engine::ModuleIMGUI::OnStart() {
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -77,13 +75,13 @@ void Engine::ModuleGUI::OnStart() {
 
 }
 
-void Engine::ModuleGUI::OnEarlyUpdate(float deltaTime) {
+void Engine::ModuleIMGUI::OnEarlyUpdate(float deltaTime) {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 }
 
-void Engine::ModuleGUI::OnUpdate(float deltaTime) {
+void Engine::ModuleIMGUI::OnUpdate(float deltaTime) {
 
 	// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
 	//if (show_demo_window)
@@ -125,26 +123,26 @@ void Engine::ModuleGUI::OnUpdate(float deltaTime) {
 	// Rendering
 }
 
-void Engine::ModuleGUI::OnLateUpdate(float deltaTime) {
+void Engine::ModuleIMGUI::OnLateUpdate(float deltaTime) {
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-void Engine::ModuleGUI::OnAppInput(int x, int y, int action, int key)
+void Engine::ModuleIMGUI::OnAppInput(int x, int y, int action, int key)
 {
 }
 
-void Engine::ModuleGUI::OnAppEvent(BasicEvent * event)
+void Engine::ModuleIMGUI::OnAppEvent(BasicEvent * event)
 {
 }
 
-void Engine::ModuleGUI::OnStop() {
+void Engine::ModuleIMGUI::OnStop() {
 	// Cleanup
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 }
 
-Engine::ModuleGUI::~ModuleGUI()
+Engine::ModuleIMGUI::~ModuleIMGUI()
 {
 }

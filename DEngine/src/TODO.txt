@@ -8,15 +8,20 @@ Event System + //Need to check multitreading feature.
 Input system +
 Windows abstraction class +
 File reading(saves/loading) +
-Resource manager - https://codereview.stackexchange.com/questions/253737/resource-management-in-c-game-engine
+Resource manager + https://codereview.stackexchange.com/questions/253737/resource-management-in-c-game-engine
 Error handling system -
-Json and XML support -
+XML support +
+Json support -
+yaml support -
 Task threading system -
 Sound system + https://www.linkedin.com/pulse/c-audio-engine-part-1-multithreaded-architecture-jack-campbell
 Mount zip/rar files add auto get application path -
-System graphic interface -
+System graphic interface +
+
+------------------Game Engine features--------------------------------
 Entyti(components) system (ECS) -
 Sripting language(native/and external) -
+
 ------------------Advanced-------------------
 
 Graphic System -
@@ -24,7 +29,6 @@ Graphic System -
 	Graphic sub system Buffers -
 	Graphic sub system FrameBufers -
 	Graphic sub system Textures -
-	Graphic sub system Materials -
 	Graphic sub system Materials -
 	Graphic sub system Animations -
 	Graphic sub system batch/instance rendering -
