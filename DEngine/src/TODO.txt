@@ -1,3 +1,30 @@
+APP FRAME V1 features.
+	Memory manager +
+	File system +
+	Virtual file system +
+	Event System + //Need to check multitreading feature.
+	Input system +
+	Windows abstraction class +
+	File reading(saves/loading) +
+	Resource manager + https://codereview.stackexchange.com/questions/253737/resource-management-in-c-game-engine
+	XML support +
+	Sound system + https://www.linkedin.com/pulse/c-audio-engine-part-1-multithreaded-architecture-jack-campbell
+	System graphic interface +
+
+	Task threading system -
+	Application modules sequence for early, middle and late updates -
+	Application modules sequence for OnAppEvent and onAppInput -
+	Added input keys or event functions to determinate which button was clicked or released -
+
+APP FRAME V2 features.
+	Json support -
+	yaml support -
+	Error handling system(exeptions) -
+	Mount zip/rar files add auto get application path -
+	Bug fixes.
+	Add file watcher.
+	Resource manager implement resource holder which take over of release and request resource job.
+
 //First support windows.
 
 -----------------Less Advance----------------
