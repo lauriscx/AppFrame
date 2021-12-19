@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/Core.h"
-#include "ResourceManager/Resource.h"
+#include "Core/ResourceManager/Resource.h"
 
 class ENGINE_API ResourceSound : public Resource {
 public:

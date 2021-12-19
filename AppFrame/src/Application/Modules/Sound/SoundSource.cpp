@@ -1,4 +1,5 @@
 #include "SoundSource.h"
+#include <al.h>
 
 SoundSource::SoundSource() {
 	m_Pitch = 1;

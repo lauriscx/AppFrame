@@ -1,15 +1,13 @@
 #pragma once
 #include "Core/Core.h"
-#include "Core/Hardware/Device.h"
-#include "Core/ModuleSystem/Module.h"
-#include "Core/ModuleSystem/ModuleRegistry.h"
-#include "Core/EventSystem/EventHandler.h"
-#include "Core/InputSystem/InputHandler.h"
 #include "AppContext.h"
 #include "AppConfig.h"
+#include "Core/EventSystem/EventHandler.h"
+#include "Core/InputSystem/InputHandler.h"
+#include "Core/ModuleSystem/Module.h"
+#include "Core/ModuleSystem/ModuleRegistry.h"
+#include "Core/Hardware/Device.h"
 #include "Core/Utils/Timer.h"
-
-#include "Core/MultiThreading/TaskManager.h"
 
 namespace Engine {
 	class ENGINE_API Application : public EventHandler, public InputHandler, public ModuleRegistry {
@@ -38,13 +36,13 @@ namespace Engine {
 		virtual bool OnEvent(BasicEvent& event) override;
 		virtual bool OnInput(int x, int y, int action, int key) override;
 
-		static Application* GetInstance() { static Application s_Instance; return &s_Instance; }
+		static Application* GetInstance() { return s_Instance; }
+		static void SetInstance(Application* instance) { s_Instance = instance; }
 
 		virtual AppConfig	* GetConfig();
 		virtual AppContext	* GetContext();
 		virtual Device		* GetDevice();
 
-		virtual bool Close();
 		virtual void Stop();
 
 		virtual void AddStatus(Status status);
@@ -58,12 +56,9 @@ namespace Engine {
 		AppConfig * m_Config;
 		AppContext* m_Context;
 		Device	  * m_Device;
-		TaskManager taks;
 
 		Status m_Status;
 		Timer m_Timer;
-
-		bool m_Close;
 
 		virtual void OnFatal	(const char* module, const char* file, unsigned int line, const char* msg);
 		virtual void OnError	(const char* module, const char* file, unsigned int line, const char* msg);
@@ -71,5 +66,7 @@ namespace Engine {
 		virtual void OnInfo		(const char* module, const char* file, unsigned int line, const char* msg);
 		virtual void OnTrace	(const char* module, const char* file, unsigned int line, const char* msg);
 		virtual void OnDebug	(const char* module, const char* file, unsigned int line, const char* msg);
+
+		static Application* s_Instance;
 	};
 }

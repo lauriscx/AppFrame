@@ -1,10 +1,9 @@
 #pragma once
 #include "Core/Core.h"
 #include "Core/ModuleSystem/Module.h"
-#include <alc.h>
-#include <al.h>
 #include "SoundSource.h"
 
+class ALCdevice;
 namespace Engine {
 	class ENGINE_API SoundModule : public Module {
 	public:

@@ -151,7 +151,7 @@
     <ClInclude Include="src\Core\Core.h" />
     <ClInclude Include="src\Core\ModuleSystem\Module.h" />
     <ClInclude Include="src\Application\Modules\Window\ModuleWindow.h" />
-    <ClInclude Include="src\DEngine.h" />
+    <ClInclude Include="src\AppFrame.h" />
     <ClInclude Include="src\Application\Events\LanguageChange.h" />
     <ClInclude Include="src\Application\Events\WindowMaximized.h" />
     <ClInclude Include="src\Application\Events\WindowMinimized.h" />

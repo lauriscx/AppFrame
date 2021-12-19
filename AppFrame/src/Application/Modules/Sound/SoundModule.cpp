@@ -1,4 +1,6 @@
 #include "SoundModule.h"
+#include <alc.h>
+#include <al.h>
 #include <iostream>
 #include "SoundSource.h"
 #include "ResourceSound.h"

@@ -1,6 +1,5 @@
 #pragma once
 #include "Core/Core.h"
-#include <al.h>
 
 class ENGINE_API SoundSource {
 public:
@@ -19,9 +18,9 @@ public:
 
 	~SoundSource();
 private:
-	ALuint m_Source;
+	unsigned int m_Source;
 
-	ALuint m_Sound;
+	unsigned int m_Sound;
 
 	unsigned int m_Pitch;
 	unsigned int m_Gain;

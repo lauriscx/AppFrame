@@ -86,7 +86,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AppFrame\AppFrame.vcxproj">
+    <ProjectReference Include="..\DEngine\DEngine.vcxproj">
       <Project>{72e7ea57-7452-4521-b937-e5109f9d27d5}</Project>
     </ProjectReference>
   </ItemGroup>

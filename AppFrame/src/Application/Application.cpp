@@ -1,35 +1,11 @@
 #include "Application.h"
 #include "Asserts.h"
+
 #include "Application/Events/AppEvents.h"
-#include <iostream>
-#include <filesystem>
-
-#include <iostream>
-#include <fstream>
-#include <iterator>
-#include <vector>
-#include <map>
-#include <filesystem>
-#include "Core/XML/XML.h"
-#include "Core/EventSystem/EventManager.h"
-
-#include "Core/FileSystem/VFS/VFS.h"
-#include "Core/FileSystem/VFS/MountPoints/PhysicalMountPoint.h"
-#include "Core/FileSystem/VFS/MountPoints/ARFMountPoint.h"
-#include "Core/FileSystem/File.h"
-
-#include "Core/ResourceManager/ResourceManager.h"
-#include "Core/ResourceManager/Resource.h"
-#include "Resources/RecourceXML.h"
-
-#include "Modules/Sound/SoundModule.h"
-#include "Modules/Console/ModuleConsole.h"
-#include "Modules/GUI/ModuleIMGUI.h"
-#include "Modules/Window/ModuleWindow.h"
 
 #include <functional>
 
-#include "Logger.h"
+Engine::Application* Engine::Application::s_Instance = nullptr;
 
 Engine::Application::Application() : EventHandler("Application") {
 	/* Important init data only in run function */
@@ -37,7 +13,6 @@ Engine::Application::Application() : EventHandler("Application") {
 	/* Here subscribe crucial events for application */
 	SubscribeToEvent(WindowCloses::Type());
 	SubscribeToEvent(WindowResize::Type());
-	SubscribeToEvent(Log::Type());//Used for Console module.
 
 	SetOnFatal	(std::bind(&Application::OnFatal,	this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
 	SetOnError	(std::bind(&Application::OnError,	this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
@@ -48,40 +23,8 @@ Engine::Application::Application() : EventHandler("Application") {
 }
 
 void Engine::Application::Run() {
-
-	/*ARFMountPoint * VirtualFiles = new ARFMountPoint();
-	//VirtualFiles->CreateMount("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF");
-	VirtualFiles->SetMountPoint("C:/Users/Kosmosas/Desktop/GameData/Contet.ARF");
-	VFS::GetInstance().Mount(VirtualFiles);
-
-	PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
-	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Export/");
-	VFS::GetInstance().Mount(PhysicalSystem);
-
-	PhysicalMountPoint * _PhysicalSystem = new PhysicalMountPoint();
-	_PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Import/");
-	VFS::GetInstance().Mount(_PhysicalSystem);
-
-
-
-	File* file = PhysicalSystem->ReadFile("Data/zip.zip");//Get file from exports folder.
-	VirtualFiles->WriteFile(file);//write file to virtual file system.
-	File* VRfile = VirtualFiles->ReadFile("Data/zip.zip");
-	ASSERT(VRfile != nullptr);
-	_PhysicalSystem->WriteFile(VRfile);//write file to virtual file system.*/
-
-	PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
-	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Application/");
-	VFS::GetInstance()->Mount(PhysicalSystem);
-
-
 	m_Context = new AppContext(m_Config);
-	m_Device = new Device(); 
-	m_Close = false;
-	//AddModule(new SoundModule());
-	AddModule<ModuleWindow>(new ModuleWindow());
-	AddModule<ModuleConsole>(new ModuleConsole());
-	AddModule<ModuleIMGUI>(new ModuleIMGUI());
+	m_Device = new Device();
 
 	for (auto module : m_Modules) {
 		module.second->OnInit(m_Context);
@@ -107,13 +50,6 @@ bool Engine::Application::OnEvent	(BasicEvent & event) {
 	for (auto module : m_Modules) {
 		module.second->OnAppEvent(&event);
 	}
-	if (WindowCloses* data = WindowCloses::Match(&event)) {
-		m_Close = true;
-		return true;
-	}
-	if (WindowResize* data = WindowResize::Match(&event)) {
-		return true;
-	}
 	return false;
 }
 bool Engine::Application::OnInput	(int x, int y, int action, int key) {
@@ -133,9 +69,6 @@ Engine::Device	* Engine::Application::GetDevice	() {
 	return m_Device;
 }
 
-bool Engine::Application::Close	() {
-	return m_Close;
-}
 void Engine::Application::Stop	() {
 	for (auto module : m_Modules) {
 		module.second->OnStop();

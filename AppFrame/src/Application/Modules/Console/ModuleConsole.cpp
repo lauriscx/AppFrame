@@ -1,3 +1,7 @@
+
+#define SPDLOG_LEVEL_NAMES { "[ trace ]", "[ debug ]", "[ info ]", "[warning]", "[ error ]", "[ fatal ]", "[     ]" }//Defining names for logging
+#include <spdlog/spdlog.h>
+
 #include "ModuleConsole.h"
 #include "Application/Events/Log.h"
 
