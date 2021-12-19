@@ -15,6 +15,7 @@
     <ProjectGuid>{72E7EA57-7452-4521-B937-E5109F9D27D5}</ProjectGuid>
     <RootNamespace>DEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <ProjectName>AppFrame</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
