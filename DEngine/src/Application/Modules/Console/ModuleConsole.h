@@ -1,12 +1,12 @@
 #pragma once
-#include "Application/Modules/Module.h"
 #include "Core/Core.h"
+#include "Core/ModuleSystem/Module.h"
 
 #define SPDLOG_LEVEL_NAMES { "[ trace ]", "[ debug ]", "[ info ]", "[warning]", "[ error ]", "[ fatal ]", "[     ]" }//Defining names for logging
 #include <spdlog/spdlog.h>
 
 namespace Engine {
-	class ModuleConsole : public Module {
+	class ENGINE_API ModuleConsole : public Module {
 	public:
 		enum level {
 			trace,

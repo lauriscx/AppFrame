@@ -1,11 +1,12 @@
 #pragma once
+#include "Core/Core.h"
 #include "Core/ResourceManager/Resource.h"
 
 namespace tinyxml2 {
 	class XMLDocument;
 }
 
-class RecourceXML : public Resource {
+class ENGINE_API RecourceXML : public Resource {
 public:
 	RecourceXML();
 

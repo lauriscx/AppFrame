@@ -1,10 +1,11 @@
 #pragma once
+#include "Core/Core.h"
 #include <filesystem>
 #include <vector>
 
 class File;
 
-class MountPoint {
+class ENGINE_API MountPoint {
 public:
 	MountPoint();
 

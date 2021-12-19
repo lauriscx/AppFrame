@@ -1,7 +1,8 @@
 #pragma once
+#include "Core/Core.h"
 #include "Core/FileSystem/VFS/MountPoints/MountPoint.h"
 
-class RAMMountPoint : public MountPoint {
+class ENGINE_API RAMMountPoint : public MountPoint {
 public:
 	RAMMountPoint();
 

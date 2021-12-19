@@ -1,7 +1,8 @@
 #pragma once
+#include "Core/Core.h"
 #include <al.h>
 
-class SoundSource {
+class ENGINE_API SoundSource {
 public:
 	SoundSource();
 

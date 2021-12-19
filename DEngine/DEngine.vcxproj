@@ -101,6 +101,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Core\ModuleSystem\ModuleRegistry.h" />
     <ClInclude Include="src\Application\Modules\GUI\imgui\imconfig.h" />
     <ClInclude Include="src\Application\Modules\GUI\imgui\imgui.h" />
     <ClInclude Include="src\Application\Modules\GUI\imgui\imgui_impl_glfw.h" />
@@ -133,7 +134,6 @@
     <ClInclude Include="src\Core\XML\tinyxml2.h" />
     <ClInclude Include="src\Core\XML\XML.h" />
     <ClInclude Include="src\Core\FileSystem\VFS\VFS.h" />
-    <ClInclude Include="src\Engine\GraphicModule.h" />
     <ClInclude Include="src\Application\Events\EventTypes.h" />
     <ClInclude Include="src\Core\InputSystem\InputHandler.h" />
     <ClInclude Include="src\Application\AppConfig.h" />
@@ -148,20 +148,19 @@
     <ClInclude Include="src\Core\Memory\Memory.h" />
     <ClInclude Include="src\Application\Application.h" />
     <ClInclude Include="src\Core\Core.h" />
-    <ClInclude Include="src\Application\Modules\Module.h" />
+    <ClInclude Include="src\Core\ModuleSystem\Module.h" />
     <ClInclude Include="src\Application\Modules\Window\ModuleWindow.h" />
     <ClInclude Include="src\DEngine.h" />
     <ClInclude Include="src\Application\Events\LanguageChange.h" />
     <ClInclude Include="src\Application\Events\WindowMaximized.h" />
     <ClInclude Include="src\Application\Events\WindowMinimized.h" />
     <ClInclude Include="src\Application\Events\WindowResize.h" />
-    <ClInclude Include="src\Engine\ECS\Entity.h" />
-    <ClInclude Include="src\Engine\ECS\Scene.h" />
     <ClInclude Include="src\Core\MultiThreading\Thread.h" />
     <ClInclude Include="src\Core\MultiThreading\TaskManager.h" />
     <ClInclude Include="src\Core\UUID\UUID.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Core\ModuleSystem\ModuleRegistry.cpp" />
     <ClCompile Include="src\Application\Modules\GUI\imgui\imgui.cpp" />
     <ClCompile Include="src\Application\Modules\GUI\imgui\imgui_demo.cpp" />
     <ClCompile Include="src\Application\Modules\GUI\imgui\imgui_draw.cpp" />
@@ -189,7 +188,6 @@
     <ClCompile Include="src\Core\Hardware\Device.cpp" />
     <ClCompile Include="src\Core\XML\tinyxml2.cpp" />
     <ClCompile Include="src\Core\FileSystem\VFS\VFS.cpp" />
-    <ClCompile Include="src\Engine\GraphicModule.cpp" />
     <ClCompile Include="src\Application\Events\AppEvents.h" />
     <ClCompile Include="src\Core\InputSystem\InputHandler.cpp" />
     <ClCompile Include="src\Application\AppConfig.cpp" />
@@ -200,12 +198,6 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\Application\Events\WindowCloses.h" />
-    <ClCompile Include="src\Engine\ECS\Entity.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="src\Engine\ECS\Scene.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
     <ClCompile Include="src\Application\Modules\Window\ModuleWindow.cpp" />
     <ClCompile Include="src\Core\MultiThreading\Thread.cpp" />
     <ClCompile Include="src\Core\MultiThreading\TaskManager.cpp" />

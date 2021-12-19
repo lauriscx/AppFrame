@@ -1,7 +1,8 @@
 #pragma once
+#include "Core/Core.h"
 #include "Thread.h"
 
-class TaskManager : public Thread {
+class ENGINE_API TaskManager : public Thread {
 public:
 	TaskManager();
 

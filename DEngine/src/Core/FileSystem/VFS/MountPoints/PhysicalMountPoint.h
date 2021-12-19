@@ -1,8 +1,9 @@
 #pragma once
+#include "Core/Core.h"
 #include "MountPoint.h"
 
 class File;
-class PhysicalMountPoint : public MountPoint {
+class ENGINE_API PhysicalMountPoint : public MountPoint {
 public:
 	PhysicalMountPoint();
 

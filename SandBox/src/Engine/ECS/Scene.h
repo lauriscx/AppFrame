@@ -3,10 +3,7 @@
 #include "entt.hpp"
 
 
-/*
- * Scene is like level or world.
- * In scene is saved all entities(objects) which exist.
- */
+
 
 class Entity;
 

@@ -1,21 +1,18 @@
 #pragma once
 #include "Core/Core.h"
 #include "Core/Hardware/Device.h"
-#include "Application/Modules/Module.h"
+#include "Core/ModuleSystem/Module.h"
+#include "Core/ModuleSystem/ModuleRegistry.h"
 #include "Core/EventSystem/EventHandler.h"
 #include "Core/InputSystem/InputHandler.h"
 #include "AppContext.h"
 #include "AppConfig.h"
-#include "Application/Modules/Window/ModuleWindow.h"
 #include "Core/Utils/Timer.h"
-
-#include <map>
-#include <unordered_map>
 
 #include "Core/MultiThreading/TaskManager.h"
 
 namespace Engine {
-	class ENGINE_API Application : public EventHandler, public InputHandler {
+	class ENGINE_API Application : public EventHandler, public InputHandler, public ModuleRegistry {
 	public:
 		enum Status {
 			Unknow = 1 << 0,
@@ -32,8 +29,6 @@ namespace Engine {
 		Application();
 
 		inline void SetConfig(AppConfig* config) { m_Config = config; }
-		template<typename T>
-		void AddModule(T* module);//change to use memory ref.
 
 		virtual void Run();
 
@@ -45,8 +40,6 @@ namespace Engine {
 
 		static Application* GetInstance() { static Application s_Instance; return &s_Instance; }
 
-		template <typename T>
-		T* GetModule();
 		virtual AppConfig	* GetConfig();
 		virtual AppContext	* GetContext();
 		virtual Device		* GetDevice();
@@ -72,15 +65,11 @@ namespace Engine {
 
 		bool m_Close;
 
-		std::unordered_map<std::string, Module*> m_Modules;
+		virtual void OnFatal	(const char* module, const char* file, unsigned int line, const char* msg);
+		virtual void OnError	(const char* module, const char* file, unsigned int line, const char* msg);
+		virtual void OnWarning	(const char* module, const char* file, unsigned int line, const char* msg);
+		virtual void OnInfo		(const char* module, const char* file, unsigned int line, const char* msg);
+		virtual void OnTrace	(const char* module, const char* file, unsigned int line, const char* msg);
+		virtual void OnDebug	(const char* module, const char* file, unsigned int line, const char* msg);
 	};
-
-	template<typename T>
-	inline void Application::AddModule(T * module) {
-		m_Modules[typeid(T).name()] = module;
-	}
-	template<typename T>
-	inline T* Application::GetModule() {
-		return  static_cast<T*>(m_Modules[typeid(T).name()]);
-	}
 }

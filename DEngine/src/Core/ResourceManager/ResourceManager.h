@@ -1,11 +1,12 @@
 #pragma once
+#include "Core/Core.h"
 #include "Resource.h"
 #include <vector>
 #include <FileSystem>
 #include <map>
 #include <tuple>
 
-class ResourceManager {
+class ENGINE_API ResourceManager {
 public:
 	ResourceManager();
 

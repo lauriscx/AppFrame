@@ -1,8 +1,9 @@
 #pragma once
+#include "Core/Core.h"
 #include <fstream>
 #include <filesystem>
 
-class File {
+class ENGINE_API File {
 public:
 	File();
 

@@ -1,8 +1,9 @@
 #pragma once
+#include "Core/Core.h"
 #include <thread>
 #include <mutex>
 
-class Thread {
+class ENGINE_API Thread {
 public:
 	Thread();
 

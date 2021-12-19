@@ -1,7 +1,7 @@
 #pragma once
+#include "Core/Core.h"
 
-
-class UUID {
+class ENGINE_API UUID {
 public:
 	UUID();
 	~UUID();

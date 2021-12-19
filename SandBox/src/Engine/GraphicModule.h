@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/core.h"
-#include "Application/Modules/Module.h"
+#include "Core/ModuleSystem/Module.h"
 
 namespace Engine {
 	class ENGINE_API GraphicModule : public Module {

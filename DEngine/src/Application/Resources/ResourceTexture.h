@@ -1,7 +1,8 @@
 #pragma once
+#include "Core/Core.h"
 #include "Core/ResourceManager/Resource.h"
 
-class ResourceTexture : public Resource {
+class ENGINE_API ResourceTexture : public Resource {
 public:
 	ResourceTexture();
 

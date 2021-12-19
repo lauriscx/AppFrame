@@ -7,7 +7,7 @@
 namespace Engine {
 	class InputHandler;
 
-	class InputManager {
+	class ENGINE_API InputManager {
 	public:
 		void OnButtonClick(int button) {}
 		void OnButtonRelease(int button) {}

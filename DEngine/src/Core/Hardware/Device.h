@@ -1,7 +1,6 @@
 #pragma once
-
-#include "Core/Memory/DataTypes.h"
 #include "Core/Core.h"
+#include "Core/Memory/DataTypes.h"
 
 namespace Engine {
 	class ENGINE_API Device {

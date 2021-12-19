@@ -1,6 +1,7 @@
 #pragma once
+#include "Core/Core.h"
 
-class InputData {
+class ENGINE_API InputData {
 public:
 	int x;
 	int y;

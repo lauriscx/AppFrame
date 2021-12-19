@@ -1,7 +1,8 @@
 #pragma once
+#include "Core/Core.h"
 #include "ResourceManager/Resource.h"
 
-class ResourceSound : public Resource {
+class ENGINE_API ResourceSound : public Resource {
 public:
 	struct  WAV_HEADER {
 		/* RIFF Chunk Descriptor */

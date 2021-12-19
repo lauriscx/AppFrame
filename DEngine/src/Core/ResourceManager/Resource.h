@@ -1,7 +1,8 @@
 #pragma once
+#include "Core/Core.h"
 #include <filesystem>
 
-class Resource {
+class ENGINE_API Resource {
 public:
 	Resource();
 

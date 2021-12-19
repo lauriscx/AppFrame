@@ -1,11 +1,12 @@
 #pragma once
-#include "Application/Modules/Module.h"
+#include "Core/Core.h"
+#include "Core/ModuleSystem/Module.h"
 #include <alc.h>
 #include <al.h>
 #include "SoundSource.h"
 
 namespace Engine {
-	class SoundModule : public Module {
+	class ENGINE_API SoundModule : public Module {
 	public:
 		SoundModule();
 		virtual ~SoundModule();

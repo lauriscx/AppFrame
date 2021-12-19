@@ -1,9 +1,9 @@
 #pragma once
-#include "Application/Modules/Module.h"
 #include "Core/Core.h"
+#include "Core/ModuleSystem/Module.h"
 
 namespace Engine {
-	class ModuleIMGUI : public Module {
+	class ENGINE_API ModuleIMGUI : public Module {
 	public:
 		ModuleIMGUI();
 

@@ -27,6 +27,8 @@
 #include "Modules/GUI/ModuleIMGUI.h"
 #include "Modules/Window/ModuleWindow.h"
 
+#include <functional>
+
 #include "Logger.h"
 
 Engine::Application::Application() : EventHandler("Application") {
@@ -36,6 +38,13 @@ Engine::Application::Application() : EventHandler("Application") {
 	SubscribeToEvent(WindowCloses::Type());
 	SubscribeToEvent(WindowResize::Type());
 	SubscribeToEvent(Log::Type());//Used for Console module.
+
+	SetOnFatal	(std::bind(&Application::OnFatal,	this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
+	SetOnError	(std::bind(&Application::OnError,	this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
+	SetOnWarning(std::bind(&Application::OnWarning, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
+	SetOnInfo	(std::bind(&Application::OnInfo,	this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
+	SetOnTrace	(std::bind(&Application::OnTrace,	this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
+	SetOnDebug	(std::bind(&Application::OnDebug,	this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
 }
 
 void Engine::Application::Run() {
@@ -84,21 +93,13 @@ void Engine::Application::Run() {
 
 void Engine::Application::OnEarlyUpdate() {
 	m_Timer.Start();
-	for (auto module : m_Modules) {
-		module.second->OnEarlyUpdate(m_Timer.Elapsed());
-	}
+	ModuleRegistry::OnEarlyUpdate(m_Timer.Elapsed());
 }
-
 void Engine::Application::OnUpdate	() {
-	for (auto module : m_Modules) {
-		module.second->OnUpdate(m_Timer.Elapsed());
-	}
+	ModuleRegistry::OnMiddleUpdate(m_Timer.Elapsed());
 }
-
 void Engine::Application::OnLateUpdate() {
-	for (auto module : m_Modules) {
-		module.second->OnLateUpdate(m_Timer.Elapsed());
-	}
+	ModuleRegistry::OnLateUpdate(m_Timer.Elapsed());
 	m_Timer.Stop();
 }
 
@@ -156,3 +157,11 @@ Engine::Application::Status Engine::Application::GetStatus() {
 }
 
 Engine::Application::~Application() {}
+
+/* these callbacks are used for module system. If happen some event/log then will be called these functions */
+void Engine::Application::OnFatal	(const char * module, const char * file, unsigned int line, const char * msg) {}
+void Engine::Application::OnError	(const char * module, const char * file, unsigned int line, const char * msg) {}
+void Engine::Application::OnWarning	(const char * module, const char * file, unsigned int line, const char * msg) {}
+void Engine::Application::OnInfo	(const char * module, const char * file, unsigned int line, const char * msg) {}
+void Engine::Application::OnTrace	(const char * module, const char * file, unsigned int line, const char * msg) {}
+void Engine::Application::OnDebug	(const char * module, const char * file, unsigned int line, const char * msg) {}

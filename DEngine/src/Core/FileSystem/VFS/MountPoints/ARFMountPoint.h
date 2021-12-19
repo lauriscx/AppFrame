@@ -1,9 +1,9 @@
 #pragma once
+#include "Core/Core.h"
 #include "MountPoint.h"
-#include "Core.h"
 
 class File;
-class ARFMountPoint : public MountPoint {
+class ENGINE_API ARFMountPoint : public MountPoint {
 public:
 	ARFMountPoint();
 

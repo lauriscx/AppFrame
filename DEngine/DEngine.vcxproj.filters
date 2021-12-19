@@ -24,12 +24,6 @@
     <ClInclude Include="src\Core\Asserts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\ECS\Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\ECS\Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Application\Application.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -69,9 +63,6 @@
     <ClInclude Include="src\Core\InputSystem\InputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\GraphicModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Core\XML\tinyxml2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -88,9 +79,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Core\Memory\DataTypes.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Application\Modules\Module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Core\Utils\Timer.h">
@@ -192,14 +180,14 @@
     <ClInclude Include="src\Application\Modules\Window\ModuleWindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Core\ModuleSystem\ModuleRegistry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core\ModuleSystem\Module.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Engine\ECS\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\ECS\Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Application\AppConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -222,9 +210,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\InputSystem\InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\GraphicModule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Core\XML\tinyxml2.cpp">
@@ -318,6 +303,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Application\Modules\Window\ModuleWindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Core\ModuleSystem\ModuleRegistry.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

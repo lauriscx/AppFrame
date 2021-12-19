@@ -1,6 +1,6 @@
 #pragma once
 #include "Core/Core.h"
-#include "Application/Modules/Module.h"
+#include "Core/ModuleSystem/Module.h"
 #include "Application/AppContext.h"
 
 namespace Engine {
