@@ -4,7 +4,7 @@
 #include "Core/EventSystem/Event.h"
 #include "Application/Events/EventTypes.h"
 
-namespace Engine {
+namespace AppFrame {
 	class WindowCloses : public BasicEvent {
 	public:
 		static int Type() { return Events::WindowCloses; }

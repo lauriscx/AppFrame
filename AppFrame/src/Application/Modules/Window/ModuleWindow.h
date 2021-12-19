@@ -3,7 +3,7 @@
 #include "Core/ModuleSystem/Module.h"
 #include "Application/AppContext.h"
 
-namespace Engine {
+namespace AppFrame {
 	class ENGINE_API ModuleWindow : public Module {
 	public:
 		ModuleWindow();

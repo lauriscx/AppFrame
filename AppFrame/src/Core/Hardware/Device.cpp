@@ -11,7 +11,7 @@
 #include <sysinfoapi.h>
 #include <winreg.h>
 
-const char * Engine::Device::GetDeviceModel() {
+const char * AppFrame::Device::GetDeviceModel() {
 	std::string deviceModel;
 	HKEY hKey;
 	char buf[255] = { 0 };
@@ -29,7 +29,7 @@ const char * Engine::Device::GetDeviceModel() {
 	catch (...) {}
 	return deviceModel.c_str();
 }
-const char * Engine::Device::GetDeviceOS() {
+const char * AppFrame::Device::GetDeviceOS() {
 	std::string OSVersion;
 
 	/*OSVERSIONINFOEX  versionInfo;
@@ -47,7 +47,7 @@ const char * Engine::Device::GetDeviceOS() {
 
 	return OSVersion.c_str();
 }
-const char * Engine::Device::GetCPUModel() {
+const char * AppFrame::Device::GetCPUModel() {
 	std::string cpu;
 
 	std::array<int, 4> cpuId = {};
@@ -100,7 +100,7 @@ const char * Engine::Device::GetCPUModel() {
 
 	return cpu.c_str();
 }
-const char * Engine::Device::GetGPUModel() {
+const char * AppFrame::Device::GetGPUModel() {
 	std::string GPUInfo;
 
 	HKEY keyServ;
@@ -213,7 +213,7 @@ const char * Engine::Device::GetGPUModel() {
 	}
 	return GPUInfo.c_str();
 }
-const char * Engine::Device::GetRegion() {
+const char * AppFrame::Device::GetRegion() {
 	//Get a GEOID by calling
 	LCID LangId = GetUserDefaultLCID();
 	GEOID id = GetUserGeoID(GEOCLASS_NATION);
@@ -224,10 +224,10 @@ const char * Engine::Device::GetRegion() {
 	//Pass the GEOID to GetGeoInfo() along with GEO_FRIENDLYNAME to fetch the string in the language specified in LangId(GetUserDefaultLCID() for the current)
 	return ISOcodeW.c_str();
 }
-unsigned int Engine::Device::GetHardwareConcurrency() {
+unsigned int AppFrame::Device::GetHardwareConcurrency() {
 	return std::thread::hardware_concurrency();
 }
-const char * Engine::Device::GetCurrency() {
+const char * AppFrame::Device::GetCurrency() {
 	LCID LangId = GetUserDefaultLCID();
 	GEOID id = GetUserGeoID(GEOCLASS_NATION);
 
@@ -241,23 +241,23 @@ const char * Engine::Device::GetCurrency() {
 	::GetCurrencyFormat(LOCALE_USER_DEFAULT, LOCALE_NOUSEROVERRIDE, "", NULL, &sout[0], SomeSortOfID);
 	return sout.c_str();
 }
-const char * Engine::Device::GetDeviceLanguage() {
+const char * AppFrame::Device::GetDeviceLanguage() {
 	return std::locale().name().c_str();
 }
-int Engine::Device::GetRAMMemory() {
+int AppFrame::Device::GetRAMMemory() {
 	unsigned __int64 memory;
 	GetPhysicallyInstalledSystemMemory(&memory);
 	return memory;
 	return 0;
 }
-int Engine::Device::GetHardMemory() {
+int AppFrame::Device::GetHardMemory() {
 	unsigned __int64 totalSpace;
 	unsigned __int64 freeSpace;
 	return ::GetDiskFreeSpaceEx("c:\\", nullptr, reinterpret_cast<ULARGE_INTEGER*>(&totalSpace), reinterpret_cast<ULARGE_INTEGER*>(&freeSpace));
 	return totalSpace;
 	return 0;
 }
-int Engine::Device::GetScreenWidth() {
+int AppFrame::Device::GetScreenWidth() {
 	RECT desktop;
 	// Get a handle to the desktop window
 	const HWND hDesktop = GetDesktopWindow();
@@ -269,7 +269,7 @@ int Engine::Device::GetScreenWidth() {
 	return desktop.right;
 	return 0;
 }
-int Engine::Device::GetScreenHeight() {
+int AppFrame::Device::GetScreenHeight() {
 	RECT desktop;
 	// Get a handle to the desktop window
 	const HWND hDesktop = GetDesktopWindow();
@@ -278,25 +278,25 @@ int Engine::Device::GetScreenHeight() {
 
 	return desktop.bottom;
 }
-int Engine::Device::GetInputType() {
+int AppFrame::Device::GetInputType() {
 	return 0;
 }
 
-void Engine::Device::Vibrate(int sec) {
+void AppFrame::Device::Vibrate(int sec) {
 }
 
-void Engine::Device::ShowPopup(const char * title, const char * desc, const char * button1, const char * button2) {
+void AppFrame::Device::ShowPopup(const char * title, const char * desc, const char * button1, const char * button2) {
 	MessageBox(NULL, desc, title, MB_OK | MB_ICONQUESTION);
 }
 
-void Engine::Device::AddNotification(const char * title, const char * desc, const char * image, const char * parameters) {
+void AppFrame::Device::AddNotification(const char * title, const char * desc, const char * image, const char * parameters) {
 	std::string notificationMessage = "Notification: ";
 	notificationMessage += desc;
 
 	MessageBox(NULL, notificationMessage.c_str(), title, MB_OK | MB_ICONQUESTION);
 }
 
-void Engine::Device::OnEventCallback(const char * functionAddress) {
+void AppFrame::Device::OnEventCallback(const char * functionAddress) {
 }
 
 #else

@@ -7,13 +7,13 @@
 
 #include <spdlog/sinks/stdout_color_sinks.h>
 
-Engine::ModuleConsole::ModuleConsole() {
+AppFrame::ModuleConsole::ModuleConsole() {
 	spdlog::set_pattern("%^[%H:%M:%S] %l [thread %t] %v%$");
 	m_Logger = spdlog::stdout_color_mt("APP FRAME");
 	m_Logger->set_level(spdlog::level::trace);
 }
 
-void Engine::ModuleConsole::SetLoggingLevel(ModuleConsole::level level) {
+void AppFrame::ModuleConsole::SetLoggingLevel(ModuleConsole::level level) {
 	if (level == level::trace) {
 		m_Logger->set_level(spdlog::level::trace);
 	} else if(level == level::debug) {
@@ -39,14 +39,14 @@ void Engine::ModuleConsole::SetLoggingLevel(ModuleConsole::level level) {
 	}
 }
 
-void Engine::ModuleConsole::OnStart			() {
+void AppFrame::ModuleConsole::OnStart			() {
 	Info(quote(ModuleConsole), "Started");
 }
-void Engine::ModuleConsole::OnEarlyUpdate	(float deltaTime) {}
-void Engine::ModuleConsole::OnUpdate		(float deltaTime) {}
-void Engine::ModuleConsole::OnLateUpdate	(float deltaTime) {}
-void Engine::ModuleConsole::OnAppInput		(int x, int y, int action, int key) {}
-void Engine::ModuleConsole::OnAppEvent		(BasicEvent * event) {
+void AppFrame::ModuleConsole::OnEarlyUpdate	(float deltaTime) {}
+void AppFrame::ModuleConsole::OnUpdate		(float deltaTime) {}
+void AppFrame::ModuleConsole::OnLateUpdate	(float deltaTime) {}
+void AppFrame::ModuleConsole::OnAppInput		(int x, int y, int action, int key) {}
+void AppFrame::ModuleConsole::OnAppEvent		(BasicEvent * event) {
 	if (Log* log = Log::Match(event)) {
 		if (log->GetLevel() == Log::level::debug) {
 			Debug(log->GetModule(), log->GetMsg());
@@ -68,25 +68,25 @@ void Engine::ModuleConsole::OnAppEvent		(BasicEvent * event) {
 	}
 
 }
-void Engine::ModuleConsole::OnStop			() {}
+void AppFrame::ModuleConsole::OnStop			() {}
 
-void Engine::ModuleConsole::Info	(const char * module, const char * message) {
+void AppFrame::ModuleConsole::Info	(const char * module, const char * message) {
 	m_Logger->info("[{}] {}", module, message);
 }
-void Engine::ModuleConsole::Trace	(const char * module, const char * message) {
+void AppFrame::ModuleConsole::Trace	(const char * module, const char * message) {
 	m_Logger->trace("[{}] {}", module, message);
 }
-void Engine::ModuleConsole::Debug	(const char * module, const char * message) {
+void AppFrame::ModuleConsole::Debug	(const char * module, const char * message) {
 	m_Logger->debug("[{}] {}", module, message);
 }
-void Engine::ModuleConsole::Warn	(const char * module, const char * message) {
+void AppFrame::ModuleConsole::Warn	(const char * module, const char * message) {
 	m_Logger->warn("[{}] {}", module, message);
 }
-void Engine::ModuleConsole::Error	(const char * module, const char * message) {
+void AppFrame::ModuleConsole::Error	(const char * module, const char * message) {
 	m_Logger->error("[{}] {}", module, message);
 }
-void Engine::ModuleConsole::Fatal	(const char * module, const char * message) {
+void AppFrame::ModuleConsole::Fatal	(const char * module, const char * message) {
 	m_Logger->critical("[{}] {}", module, message);
 }
 
-Engine::ModuleConsole::~ModuleConsole() {}
+AppFrame::ModuleConsole::~ModuleConsole() {}

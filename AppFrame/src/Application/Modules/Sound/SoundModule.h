@@ -4,7 +4,7 @@
 #include "SoundSource.h"
 
 class ALCdevice;
-namespace Engine {
+namespace AppFrame {
 	class ENGINE_API SoundModule : public Module {
 	public:
 		SoundModule();

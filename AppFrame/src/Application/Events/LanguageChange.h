@@ -3,7 +3,7 @@
 #include "Core/EventSystem/Event.h"
 #include "Application/Events/EventTypes.h"
 
-namespace Engine {
+namespace AppFrame {
 	class LanguageChange : public BasicEvent {
 	public:
 		LanguageChange(const char* language) : m_language(language) {}

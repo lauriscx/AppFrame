@@ -4,7 +4,7 @@
 #include "Core/EventSystem/Event.h"
 #include "Application/Events/EventTypes.h"
 
-namespace Engine {
+namespace AppFrame {
 	class WindowResize : public BasicEvent {
 	public:
 		WindowResize(int x, int y) : X(x), Y(y) {}

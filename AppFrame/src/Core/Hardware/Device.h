@@ -2,7 +2,7 @@
 #include "Core/Core.h"
 #include "Core/Memory/DataTypes.h"
 
-namespace Engine {
+namespace AppFrame {
 	class ENGINE_API Device {
 	public:
 

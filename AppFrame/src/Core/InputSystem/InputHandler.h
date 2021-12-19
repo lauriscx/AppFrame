@@ -1,7 +1,7 @@
 #pragma once
 #include "Core/Core.h"
 
-namespace Engine {
+namespace AppFrame {
 	class ENGINE_API InputHandler {
 	public:
 		InputHandler();

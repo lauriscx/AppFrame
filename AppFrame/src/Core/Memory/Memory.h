@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-namespace Engine {
+namespace AppFrame {
 	namespace Memory {
 
 		/*

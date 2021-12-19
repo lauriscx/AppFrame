@@ -2,7 +2,7 @@
 #include "Core/Core.h"
 #include "Core/ModuleSystem/Module.h"
 
-namespace Engine {
+namespace AppFrame {
 	class ENGINE_API ModuleIMGUI : public Module {
 	public:
 		ModuleIMGUI();

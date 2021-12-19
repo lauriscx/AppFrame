@@ -27,9 +27,9 @@
 #endif
 
 
-Engine::ModuleIMGUI::ModuleIMGUI() {}
+AppFrame::ModuleIMGUI::ModuleIMGUI() {}
 
-void Engine::ModuleIMGUI::OnStart() {
+void AppFrame::ModuleIMGUI::OnStart() {
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -75,13 +75,13 @@ void Engine::ModuleIMGUI::OnStart() {
 
 }
 
-void Engine::ModuleIMGUI::OnEarlyUpdate(float deltaTime) {
+void AppFrame::ModuleIMGUI::OnEarlyUpdate(float deltaTime) {
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 }
 
-void Engine::ModuleIMGUI::OnUpdate(float deltaTime) {
+void AppFrame::ModuleIMGUI::OnUpdate(float deltaTime) {
 
 	// 1. Show the big demo window (Most of the sample code is in ImGui::ShowDemoWindow()! You can browse its code to learn more about Dear ImGui!).
 	//if (show_demo_window)
@@ -123,26 +123,26 @@ void Engine::ModuleIMGUI::OnUpdate(float deltaTime) {
 	// Rendering
 }
 
-void Engine::ModuleIMGUI::OnLateUpdate(float deltaTime) {
+void AppFrame::ModuleIMGUI::OnLateUpdate(float deltaTime) {
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-void Engine::ModuleIMGUI::OnAppInput(int x, int y, int action, int key)
+void AppFrame::ModuleIMGUI::OnAppInput(int x, int y, int action, int key)
 {
 }
 
-void Engine::ModuleIMGUI::OnAppEvent(BasicEvent * event)
+void AppFrame::ModuleIMGUI::OnAppEvent(BasicEvent * event)
 {
 }
 
-void Engine::ModuleIMGUI::OnStop() {
+void AppFrame::ModuleIMGUI::OnStop() {
 	// Cleanup
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 }
 
-Engine::ModuleIMGUI::~ModuleIMGUI()
+AppFrame::ModuleIMGUI::~ModuleIMGUI()
 {
 }

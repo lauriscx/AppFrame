@@ -4,7 +4,7 @@
 #include "Core/EventSystem/Event.h"
 #include "Application/Events/EventTypes.h"
 
-namespace Engine {
+namespace AppFrame {
 	class WindowMinimized : public BasicEvent {
 	public:
 		WindowMinimized() {}

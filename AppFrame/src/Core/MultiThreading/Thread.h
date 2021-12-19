@@ -3,19 +3,21 @@
 #include <thread>
 #include <mutex>
 
-class ENGINE_API Thread {
-public:
-	Thread();
+namespace AppFrame {
+	class ENGINE_API Thread {
+	public:
+		Thread();
 
-	void Start();
+		void Start();
 
-	std::thread::id GetThreadID();
-	unsigned int GetHardwareConcurrency();
-	virtual void Run();
+		std::thread::id GetThreadID();
+		unsigned int GetHardwareConcurrency();
+		virtual void Run();
 
-	~Thread();
+		~Thread();
 
-private:
-	std::thread m_Thread;
-	std::mutex m_Mutex;
-};
+	private:
+		std::thread m_Thread;
+		std::mutex m_Mutex;
+	};
+}

@@ -45,7 +45,7 @@ const char* al_err_str(ALenum err) {
 #define al_check_error() \
     __al_check_error(__FILE__, __LINE__)
 
-Engine::SoundModule::SoundModule() {
+AppFrame::SoundModule::SoundModule() {
 
 	device = alcOpenDevice(nullptr);
 	if (device == nullptr) {
@@ -109,10 +109,10 @@ Engine::SoundModule::SoundModule() {
 
 }
 
-Engine::SoundModule::~SoundModule() {
+AppFrame::SoundModule::~SoundModule() {
 }
 
-std::vector<std::string> Engine::SoundModule::GetAvailableSoundDevices() {
+std::vector<std::string> AppFrame::SoundModule::GetAvailableSoundDevices() {
 	m_Devices.clear();
 
 	const ALCchar *devices = alcGetString(NULL, ALC_ALL_DEVICES_SPECIFIER);
@@ -129,7 +129,7 @@ std::vector<std::string> Engine::SoundModule::GetAvailableSoundDevices() {
 	return m_Devices;
 }
 
-void Engine::SoundModule::OnAppInput(int x, int y, int action, int key) {
+void AppFrame::SoundModule::OnAppInput(int x, int y, int action, int key) {
 	if (key == 65) {
 		sound->SetPitch(5);
 		al_check_error();

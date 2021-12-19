@@ -1,9 +1,9 @@
 #include "InputManager.h"
 #include "InputHandler.h"
 
-Engine::InputManager* Engine::InputManager::s_Instance = new Engine::InputManager();
+AppFrame::InputManager* AppFrame::InputManager::s_Instance = new AppFrame::InputManager();
 
-void Engine::InputManager::SendInput(int x, int y, int action, int key) {
+void AppFrame::InputManager::SendInput(int x, int y, int action, int key) {
 	std::lock_guard<std::mutex> lock(m_Mutex);
 	for (std::vector<InputHandler*>::iterator it = m_Handlers.begin(); it != m_Handlers.end(); it++) {
 		if ((*it)->OnInput(x, y, action, key)) {
@@ -12,12 +12,12 @@ void Engine::InputManager::SendInput(int x, int y, int action, int key) {
 	}
 }
 
-void Engine::InputManager::AddHandler(InputHandler* handler) {
+void AppFrame::InputManager::AddHandler(InputHandler* handler) {
 	std::lock_guard<std::mutex> lock(m_Mutex);
 	m_Handlers.push_back(handler);
 }
 
-void Engine::InputManager::RemoveHandler(InputHandler * handler) {
+void AppFrame::InputManager::RemoveHandler(InputHandler * handler) {
 	std::lock_guard<std::mutex> lock(m_Mutex);
 	for (std::vector<InputHandler*>::iterator it = m_Handlers.begin(); it != m_Handlers.end(); it++) {
 		if ((*it) == handler) {

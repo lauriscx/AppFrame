@@ -6,18 +6,20 @@ namespace tinyxml2 {
 	class XMLDocument;
 }
 
-class ENGINE_API RecourceXML : public Resource {
-public:
-	RecourceXML();
+namespace AppFrame {
+	class ENGINE_API RecourceXML : public Resource {
+	public:
+		RecourceXML();
 
-	tinyxml2::XMLDocument* Get();
+		tinyxml2::XMLDocument* Get();
 
-	virtual bool IsAvailable() override;
-	virtual bool Load(std::filesystem::path file) override;
+		virtual bool IsAvailable() override;
+		virtual bool Load(std::filesystem::path file) override;
 
-	virtual size_t GetMemoryUsage() override;
+		virtual size_t GetMemoryUsage() override;
 
-	~RecourceXML();
-private:
-	tinyxml2::XMLDocument* m_Resource;
-};
+		~RecourceXML();
+	private:
+		tinyxml2::XMLDocument* m_Resource;
+	};
+}

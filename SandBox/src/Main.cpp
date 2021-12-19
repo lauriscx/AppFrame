@@ -6,16 +6,18 @@
 #include <map>
 #include <filesystem>
 
-class Application : public Engine::Application {
+class Application : public AppFrame::Application {
 public:
 	Application() {
 		//graphic = new Engine::GraphicModule();
 		//AddModule(graphic);
-		SubscribeToEvent(Engine::Log::Type());//Used for Console module.
+		SubscribeToEvent(AppFrame::WindowCloses::Type());
+		SubscribeToEvent(AppFrame::WindowResize::Type());
+		SubscribeToEvent(AppFrame::Log::Type());//Used for Console module.
 	}
 
 	void Run() override;
-	bool OnEvent(Engine::BasicEvent & event) override;
+	bool OnEvent(AppFrame::BasicEvent & event) override;
 	bool Close() {
 		return m_Close;
 	}
@@ -52,25 +54,25 @@ void Application::Run() {
 	File* VRfile = VirtualFiles->ReadFile("Data/zip.zip");
 	ASSERT(VRfile != nullptr);
 	_PhysicalSystem->WriteFile(VRfile);//write file to virtual file system.*/
-	PhysicalMountPoint * PhysicalSystem = new PhysicalMountPoint();
+	AppFrame::PhysicalMountPoint * PhysicalSystem = new AppFrame::PhysicalMountPoint();
 	PhysicalSystem->SetMountPoint("C:/Users/Kosmosas/Desktop/Application/");
-	Engine::VFS::GetInstance()->Mount(PhysicalSystem);
+	AppFrame::VFS::GetInstance()->Mount(PhysicalSystem);
 
-	AddModule<Engine::ModuleWindow>(new Engine::ModuleWindow());
-	AddModule<Engine::ModuleConsole>(new Engine::ModuleConsole());
-	AddModule<Engine::SoundModule>(new Engine::SoundModule());
-	AddModule<Engine::ModuleIMGUI>(new Engine::ModuleIMGUI());
+	AddModule<AppFrame::ModuleWindow>(new AppFrame::ModuleWindow());
+	AddModule<AppFrame::ModuleConsole>(new AppFrame::ModuleConsole());
+	AddModule<AppFrame::SoundModule>(new AppFrame::SoundModule());
+	AddModule<AppFrame::ModuleIMGUI>(new AppFrame::ModuleIMGUI());
 
 
 	std::cout << "Run" << std::endl;
-	Engine::Application::Run();
+	AppFrame::Application::Run();
 }
-bool Application::OnEvent(Engine::BasicEvent & event) {
-	if (Engine::WindowCloses* data = Engine::WindowCloses::Match(&event)) {
+bool Application::OnEvent(AppFrame::BasicEvent & event) {
+	if (AppFrame::WindowCloses* data = AppFrame::WindowCloses::Match(&event)) {
 		m_Close = true;
 		return true;
 	}
-	if (Engine::WindowResize* data = Engine::WindowResize::Match(&event)) {
+	if (AppFrame::WindowResize* data = AppFrame::WindowResize::Match(&event)) {
 		return true;
 	}
 }
@@ -82,7 +84,7 @@ int main() {
 		//Engine::Memory::Scope<Application> app = Engine::Memory::CreateScope<Application>();
 		Application * aap = new Application();
 		Application::SetInstance(aap);
-		AppConfig config;
+		AppFrame::AppConfig config;
 		aap->SetConfig(&config);
 		aap->Run();
 		//Examples();

@@ -3,7 +3,7 @@
 #include "Core/EventSystem/Event.h"
 #include "Application/Events/EventTypes.h"
 
-namespace Engine {
+namespace AppFrame {
 	class Log : public BasicEvent {
 	public:
 		enum level {

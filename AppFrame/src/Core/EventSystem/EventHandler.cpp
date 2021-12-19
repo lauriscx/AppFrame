@@ -5,23 +5,23 @@
 
 /* Add priority support for receiving events */
 
-Engine::EventHandler::EventHandler() : m_Name("Event handler empty") {}
-Engine::EventHandler::EventHandler(const char * name) : m_Name(name) {}
+AppFrame::EventHandler::EventHandler() : m_Name("Event handler empty") {}
+AppFrame::EventHandler::EventHandler(const char * name) : m_Name(name) {}
 
-void Engine::EventHandler::SubscribeToEvent		(int eventType) {
+void AppFrame::EventHandler::SubscribeToEvent		(int eventType) {
 	EventManager::GetInstance()->Surscribe(eventType, this);
 }
-void Engine::EventHandler::UnsubscribeToEvent	(int eventType) {
+void AppFrame::EventHandler::UnsubscribeToEvent	(int eventType) {
 	EventManager::GetInstance()->UnSurscribe(eventType, this);
 }
-void Engine::EventHandler::UnsubscribeToEvents	() {
+void AppFrame::EventHandler::UnsubscribeToEvents	() {
 	EventManager::GetInstance()->UnSurscribe(this);
 }
 
-const char * Engine::EventHandler::GetHandlerName() {
+const char * AppFrame::EventHandler::GetHandlerName() {
 	return m_Name.c_str();
 }
 
-Engine::EventHandler::~EventHandler() {
+AppFrame::EventHandler::~EventHandler() {
 	UnsubscribeToEvents();
 }

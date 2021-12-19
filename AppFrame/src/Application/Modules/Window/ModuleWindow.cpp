@@ -7,8 +7,8 @@
 
 #include <iostream>
 
-Engine::ModuleWindow::ModuleWindow() { }
-void Engine::ModuleWindow::OnStart() {
+AppFrame::ModuleWindow::ModuleWindow() { }
+void AppFrame::ModuleWindow::OnStart() {
 
 	/* Initialize the library */
 	if (!glfwInit())
@@ -107,22 +107,22 @@ void Engine::ModuleWindow::OnStart() {
 	return;
 }
 
-void Engine::ModuleWindow::OnEarlyUpdate(float deltaTime) {
+void AppFrame::ModuleWindow::OnEarlyUpdate(float deltaTime) {
 	glfwPollEvents();
 }
 
 
 
-void Engine::ModuleWindow::OnUpdate(float deltaTime) {
+void AppFrame::ModuleWindow::OnUpdate(float deltaTime) {
 
 }
 
-void Engine::ModuleWindow::OnLateUpdate(float deltaTime) {
+void AppFrame::ModuleWindow::OnLateUpdate(float deltaTime) {
 	glfwSwapBuffers((GLFWwindow*)m_Window);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
-void Engine::ModuleWindow::OnStop() {
+void AppFrame::ModuleWindow::OnStop() {
 	glfwTerminate();
 	glfwDestroyWindow((GLFWwindow*)m_Window);
 	if (m_Window) {
@@ -130,5 +130,5 @@ void Engine::ModuleWindow::OnStop() {
 	}
 }
 
-Engine::ModuleWindow::~ModuleWindow() {
+AppFrame::ModuleWindow::~ModuleWindow() {
 }

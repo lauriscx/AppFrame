@@ -4,7 +4,7 @@
 #include "Core/EventSystem/Event.h"
 #include "Application/Events/EventTypes.h"
 
-namespace Engine {
+namespace AppFrame {
 	class WindowMaximized : public BasicEvent {
 	public:
 		WindowMaximized(const char* language) {}

@@ -5,11 +5,11 @@
 #include "Asserts.h"
 #include "Core/FileSystem/File.h"
 
-char ARFMountPoint::ARF_Version = 1;
+char AppFrame::ARFMountPoint::ARF_Version = 1;
 
-ARFMountPoint::ARFMountPoint() {}
+AppFrame::ARFMountPoint::ARFMountPoint() {}
 
-void ARFMountPoint::OnMount() {
+void AppFrame::ARFMountPoint::OnMount() {
 	m_ARF_File_data = new ARFFileHeader();
 	m_ARF_File_data->Version = ARF_Version;
 	m_ARF_File_data->ConntentVersion = 0;
@@ -45,11 +45,11 @@ void ARFMountPoint::OnMount() {
 	}
 
 }
-void ARFMountPoint::OnUnMount() {
+void AppFrame::ARFMountPoint::OnUnMount() {
 	m_VirtualFiles.erase(m_VirtualFiles.begin(), m_VirtualFiles.end());
 }
 
-bool ARFMountPoint::CreateMount(const std::filesystem::path file) {
+bool AppFrame::ARFMountPoint::CreateMount(const std::filesystem::path file) {
 	if (!std::filesystem::exists(file)) {
 		std::ofstream out(file, std::ifstream::ate | std::ifstream::binary);
 		if (out.is_open()) {
@@ -72,7 +72,7 @@ bool ARFMountPoint::CreateMount(const std::filesystem::path file) {
 	return false;
 }
 
-bool ARFMountPoint::HasFile(const std::filesystem::path file) {
+bool AppFrame::ARFMountPoint::HasFile(const std::filesystem::path file) {
 	ASSERT(m_ARF_File_data != nullptr);
 	for (auto _file : m_VirtualFiles) {
 		if (!_file->Deleted && file.compare(_file->Path) == 0) {
@@ -81,12 +81,12 @@ bool ARFMountPoint::HasFile(const std::filesystem::path file) {
 	}
 	return false;
 }
-bool ARFMountPoint::HasDirectory(const std::filesystem::path directory) {
+bool AppFrame::ARFMountPoint::HasDirectory(const std::filesystem::path directory) {
 	ASSERT(m_ARF_File_data != nullptr);
 	return false;
 }
 
-size_t ARFMountPoint::FileSize(const std::filesystem::path file) {
+size_t AppFrame::ARFMountPoint::FileSize(const std::filesystem::path file) {
 	ASSERT(m_ARF_File_data != nullptr);
 	for (auto _file : m_VirtualFiles) {
 		if (!_file->Deleted && file.compare(_file->Path) == 0) {
@@ -96,7 +96,7 @@ size_t ARFMountPoint::FileSize(const std::filesystem::path file) {
 	return -1;
 }
 
-bool ARFMountPoint::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
+bool AppFrame::ARFMountPoint::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
 	ASSERT(data != nullptr);
 	ASSERT(m_ARF_File_data != nullptr);
 	if (!HasFile(path)) {
@@ -113,10 +113,10 @@ bool ARFMountPoint::WriteFile(const std::filesystem::path & path, char * data, s
 	}
 	return false;
 }
-bool ARFMountPoint::WriteFile(File * file) {
+bool AppFrame::ARFMountPoint::WriteFile(File * file) {
 	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
 }
-File* ARFMountPoint::ReadFile(const std::filesystem::path & path) {
+AppFrame::File* AppFrame::ARFMountPoint::ReadFile(const std::filesystem::path & path) {
 	ASSERT(m_ARF_File_data != nullptr);
 	for (auto file : m_VirtualFiles) {
 		if (!file->Deleted && path.compare(file->Path) == 0) {/* Do not use HasFile in this case */
@@ -143,16 +143,16 @@ File* ARFMountPoint::ReadFile(const std::filesystem::path & path) {
 	return nullptr;
 }
 
-bool ARFMountPoint::CreateDirectory(const std::filesystem::path directory) {
+bool AppFrame::ARFMountPoint::CreateDirectory(const std::filesystem::path directory) {
 	ASSERT(m_ARF_File_data != nullptr);
 	return false;
 }
-bool ARFMountPoint::CreateFile(const std::filesystem::path file, size_t size) {
+bool AppFrame::ARFMountPoint::CreateFile(const std::filesystem::path file, size_t size) {
 	ASSERT(m_ARF_File_data != nullptr);
 	return false;
 }
 
-bool ARFMountPoint::RemoveFile(const std::filesystem::path file) {
+bool AppFrame::ARFMountPoint::RemoveFile(const std::filesystem::path file) {
 	ASSERT(m_ARF_File_data != nullptr);
 	for (auto _file : m_VirtualFiles) {
 		if (file.compare(_file->Path) == 0 && !_file->Deleted) {
@@ -168,24 +168,24 @@ bool ARFMountPoint::RemoveFile(const std::filesystem::path file) {
 	}
 	return false;
 }
-int ARFMountPoint::RemoveDirectory(const std::filesystem::path directory) {
+int AppFrame::ARFMountPoint::RemoveDirectory(const std::filesystem::path directory) {
 	ASSERT(m_ARF_File_data != nullptr);
 	return 0;
 }
 
-ARFMountPoint::~ARFMountPoint() {
+AppFrame::ARFMountPoint::~ARFMountPoint() {
 	ASSERT(m_ARF_File_data != nullptr);
 	delete m_ARF_File_data;
 }
 
-void ARFMountPoint::UpdateARFHeader(std::ofstream* out, int FilesAdded, ARFFileHeader* header) {
+void AppFrame::ARFMountPoint::UpdateARFHeader(std::ofstream* out, int FilesAdded, ARFFileHeader* header) {
 	//Update ARF header file.
 	header->FilesCount += FilesAdded;
 	header->ConntentVersion++;
 	out->seekp(0);
 	out->write((char*)header, sizeof(ARFFileHeader));
 }
-ARFMountPoint::VirtualFileHeader* ARFMountPoint::CreateVirtualFileHeader(std::ofstream * out, uint32_t size, std::filesystem::path path) {
+AppFrame::ARFMountPoint::VirtualFileHeader* AppFrame::ARFMountPoint::CreateVirtualFileHeader(std::ofstream * out, uint32_t size, std::filesystem::path path) {
 	/* Create virtual file header */
 	VirtualFileHeader* header = new VirtualFileHeader();
 
@@ -206,21 +206,21 @@ ARFMountPoint::VirtualFileHeader* ARFMountPoint::CreateVirtualFileHeader(std::of
 	}*/
 	return header;
 }
-void ARFMountPoint::WriteVirtualFileHeader(std::ofstream * out, VirtualFileHeader * header) {
+void AppFrame::ARFMountPoint::WriteVirtualFileHeader(std::ofstream * out, VirtualFileHeader * header) {
 	out->write((char*)header, sizeof(VirtualFileHeader));
 	m_VirtualFiles.push_back(header);//Save localy writed file header.
 }
-void ARFMountPoint::UpdateVirtualFileHeader(std::ofstream * out, VirtualFileHeader * header, ARFFileHeader * ARF_header, int addedFiles) {
+void AppFrame::ARFMountPoint::UpdateVirtualFileHeader(std::ofstream * out, VirtualFileHeader * header, ARFFileHeader * ARF_header, int addedFiles) {
 	out->seekp(header->StartsAt - sizeof(VirtualFileHeader));//Update virtual file header find where stars virtual file then step back in size of header.
 	out->write((char*)header, sizeof(VirtualFileHeader));//Write virtual file.
 	UpdateARFHeader(out, addedFiles, ARF_header);//Update ARF header
 }
-void ARFMountPoint::WriteVirtualFile(std::ofstream * out, char * data, VirtualFileHeader* header) {
+void AppFrame::ARFMountPoint::WriteVirtualFile(std::ofstream * out, char * data, VirtualFileHeader* header) {
 	//Write virtual file immedetly after virtual file header.
 	out->seekp(header->StartsAt);//Set start position in ARF file.
 	out->write((char*)data, header->Size);//Write virtual file.
 }
-char * ARFMountPoint::ReadVirtualFile(std::ifstream * in, VirtualFileHeader * header) {
+char * AppFrame::ARFMountPoint::ReadVirtualFile(std::ifstream * in, VirtualFileHeader * header) {
 	in->seekg(header->StartsAt);//Set read position in ARF file.
 	char* data = new char[header->Size + 1];//Create buffer for readed data.
 	in->read(data, header->Size);//Reada virtual file data.

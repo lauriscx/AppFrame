@@ -5,29 +5,29 @@
 #include <stdio.h>
 #include <iostream>
 
-ResourceSound::ResourceSound() {
+AppFrame::ResourceSound::ResourceSound() {
 	alGenBuffers(1, &m_ResourceHandle);
 }
 
-unsigned int ResourceSound::Get() {
+unsigned int AppFrame::ResourceSound::Get() {
 	return m_ResourceHandle;
 }
 
-ResourceSound::WAV_HEADER ResourceSound::GetInformation() {
+AppFrame::ResourceSound::WAV_HEADER AppFrame::ResourceSound::GetInformation() {
 	return m_Header;
 }
 
-char * ResourceSound::GetData() {
+char * AppFrame::ResourceSound::GetData() {
 	return m_Data;
 }
 
-bool ResourceSound::IsAvailable() {
+bool AppFrame::ResourceSound::IsAvailable() {
 	return m_ResourceHandle;
 }
 
-bool ResourceSound::Load(std::filesystem::path file) {
+bool AppFrame::ResourceSound::Load(std::filesystem::path file) {
 	/* Read file and parse wav data */
-	File* _file = Engine::VFS::GetInstance()->ReadFile(file);
+	File* _file = AppFrame::VFS::GetInstance()->ReadFile(file);
 	if (_file && _file->IsDataAvailable()) {
 
 		memcpy(&m_Header, _file->GetData(), sizeof(WAV_HEADER));
@@ -61,11 +61,11 @@ bool ResourceSound::Load(std::filesystem::path file) {
 	return false;
 }
 
-size_t ResourceSound::GetMemoryUsage() {
+size_t AppFrame::ResourceSound::GetMemoryUsage() {
 	return size_t();
 }
 
-ResourceSound::~ResourceSound() {
+AppFrame::ResourceSound::~ResourceSound() {
 	alDeleteBuffers(1, &m_ResourceHandle);
 	m_ResourceHandle = 0;
 	if (m_Data != nullptr) {

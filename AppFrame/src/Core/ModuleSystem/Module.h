@@ -5,7 +5,7 @@
 
 #include <functional>
 
-namespace Engine {
+namespace AppFrame {
 	class ENGINE_API Module {
 	public:
 		Module() {};

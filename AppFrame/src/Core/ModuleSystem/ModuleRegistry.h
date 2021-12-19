@@ -5,7 +5,7 @@
 #include <map>
 #include <vector>
 
-namespace Engine {
+namespace AppFrame {
 	class ENGINE_API ModuleRegistry {
 	public:
 		ModuleRegistry();

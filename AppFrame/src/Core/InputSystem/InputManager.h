@@ -4,7 +4,7 @@
 #include <vector>
 #include <mutex>
 
-namespace Engine {
+namespace AppFrame {
 	class InputHandler;
 
 	class ENGINE_API InputManager {

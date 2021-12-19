@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Engine {
+namespace AppFrame {
 	namespace Events {
 		enum Event {
 			WindowCloses,

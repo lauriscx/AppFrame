@@ -1,48 +1,48 @@
 #include "CloudMountPoint.h"
 #include "FileSystem/File.h"
 
-CloudMountPoint::CloudMountPoint() {}
+AppFrame::CloudMountPoint::CloudMountPoint() {}
 
-void CloudMountPoint::OnMount() {}
-void CloudMountPoint::OnUnMount() {}
+void AppFrame::CloudMountPoint::OnMount() {}
+void AppFrame::CloudMountPoint::OnUnMount() {}
 
-bool CloudMountPoint::CreateMount(const std::filesystem::path file) {
+bool AppFrame::CloudMountPoint::CreateMount(const std::filesystem::path file) {
 	return false;
 }
 
-bool CloudMountPoint::HasFile(const std::filesystem::path file) {
+bool AppFrame::CloudMountPoint::HasFile(const std::filesystem::path file) {
 	return false;
 }
-bool CloudMountPoint::HasDirectory(const std::filesystem::path directory) {
+bool AppFrame::CloudMountPoint::HasDirectory(const std::filesystem::path directory) {
 	return false;
 }
 
-size_t CloudMountPoint::FileSize(const std::filesystem::path file) {
+size_t AppFrame::CloudMountPoint::FileSize(const std::filesystem::path file) {
 	return size_t();
 }
 
-bool CloudMountPoint::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
+bool AppFrame::CloudMountPoint::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
 	return false;
 }
-bool CloudMountPoint::WriteFile(File * file) {
+bool AppFrame::CloudMountPoint::WriteFile(File * file) {
 	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
 }
-File* CloudMountPoint::ReadFile(const std::filesystem::path & path) {
+AppFrame::File* AppFrame::CloudMountPoint::ReadFile(const std::filesystem::path & path) {
 	return nullptr;
 }
 
-bool CloudMountPoint::CreateDirectory(const std::filesystem::path directory) {
+bool AppFrame::CloudMountPoint::CreateDirectory(const std::filesystem::path directory) {
 	return false;
 }
-bool CloudMountPoint::CreateFile(const std::filesystem::path file, size_t size) {
+bool AppFrame::CloudMountPoint::CreateFile(const std::filesystem::path file, size_t size) {
 	return false;
 }
 
-bool CloudMountPoint::RemoveFile(const std::filesystem::path file) {
+bool AppFrame::CloudMountPoint::RemoveFile(const std::filesystem::path file) {
 	return false;
 }
-int CloudMountPoint::RemoveDirectory(const std::filesystem::path directory) {
+int AppFrame::CloudMountPoint::RemoveDirectory(const std::filesystem::path directory) {
 	return 0;
 }
 
-CloudMountPoint::~CloudMountPoint() {}
+AppFrame::CloudMountPoint::~CloudMountPoint() {}

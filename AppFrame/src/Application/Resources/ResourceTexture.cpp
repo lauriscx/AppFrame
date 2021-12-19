@@ -5,19 +5,19 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-ResourceTexture::ResourceTexture() { }
+AppFrame::ResourceTexture::ResourceTexture() { }
 
-void * ResourceTexture::Get() {
+void * AppFrame::ResourceTexture::Get() {
 	return m_data;
 }
 
-bool ResourceTexture::IsAvailable() {
+bool AppFrame::ResourceTexture::IsAvailable() {
 	return m_data != nullptr;
 }
 
-bool ResourceTexture::Load(std::filesystem::path file) {
+bool AppFrame::ResourceTexture::Load(std::filesystem::path file) {
 	/* Read file and parse wav data */
-	File* _file = Engine::VFS::GetInstance()->ReadFile(file);
+	File* _file = AppFrame::VFS::GetInstance()->ReadFile(file);
 	if (_file && _file->IsDataAvailable()) {
 		stbi_uc* l_data = stbi_load_from_memory((unsigned char*)_file->GetData(), _file->GetSize(), &m_Width, &m_Height, &m_Chanels, 0);
 		m_data = l_data;
@@ -31,11 +31,11 @@ bool ResourceTexture::Load(std::filesystem::path file) {
 	return false;
 }
 
-size_t ResourceTexture::GetMemoryUsage() {
+size_t AppFrame::ResourceTexture::GetMemoryUsage() {
 	return sizeof(ResourceTexture) + (4 * m_Chanels * m_Width * m_Height);
 }
 
-ResourceTexture::~ResourceTexture() {
+AppFrame::ResourceTexture::~ResourceTexture() {
 	if (m_data) {
 		stbi_image_free(m_data);
 	}

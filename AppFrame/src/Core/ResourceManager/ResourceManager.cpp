@@ -4,9 +4,9 @@
 #include "FileSystem/File.h"
 #include <iostream>
 
-ResourceManager::ResourceManager() { }
+AppFrame::ResourceManager::ResourceManager() { }
 
-void ResourceManager::ReleaseResource(std::filesystem::path path) {
+void AppFrame::ResourceManager::ReleaseResource(std::filesystem::path path) {
 	size_t handle = std::filesystem::hash_value(path);
 	if (m_Resource[handle].second != nullptr) {
 		m_Resource[handle].first--;
@@ -19,7 +19,7 @@ void ResourceManager::ReleaseResource(std::filesystem::path path) {
 	}
 }
 
-const bool ResourceManager::IsAvailable(std::filesystem::path path) {
+const bool AppFrame::ResourceManager::IsAvailable(std::filesystem::path path) {
 	size_t handle = std::filesystem::hash_value(path);
 	if (m_Resource[handle].second == nullptr) {
 		return false;
@@ -27,7 +27,7 @@ const bool ResourceManager::IsAvailable(std::filesystem::path path) {
 	return true;
 }
 
-ResourceManager::~ResourceManager() { 
+AppFrame::ResourceManager::~ResourceManager() {
 	for (auto resource : m_Resource) {
 		resource.second.first = 0;
 		if (resource.second.second != nullptr) {

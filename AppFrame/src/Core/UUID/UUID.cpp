@@ -1,9 +1,4 @@
 #include "UUID.h"
 
-UUID::UUID()
-{
-}
-
-UUID::~UUID()
-{
-}
+AppFrame::UUID::UUID() {}
+AppFrame::UUID::~UUID() {}

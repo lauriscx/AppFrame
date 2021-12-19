@@ -1,4 +1,5 @@
 #pragma once
+#include "Asserts.h"
 
 #define quote(x) #x
 

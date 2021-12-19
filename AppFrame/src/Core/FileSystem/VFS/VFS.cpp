@@ -2,7 +2,7 @@
 #include "Core/FileSystem/VFS/VFS.h"
 #include "FileSystem/File.h"
 
-bool Engine::VFS::Mount(MountPoint* mount) {
+bool AppFrame::VFS::Mount(MountPoint* mount) {
 	if (!MountExist(mount->GetPath())) {
 		m_MountingPoints[mount->GetPath()] = mount;
 		m_MountingPoints[mount->GetPath()]->OnMount();
@@ -12,7 +12,7 @@ bool Engine::VFS::Mount(MountPoint* mount) {
 	return false;
 }
 
-bool Engine::VFS::Unmount(const std::filesystem::path & _virtual) {
+bool AppFrame::VFS::Unmount(const std::filesystem::path & _virtual) {
 	if (MountExist(_virtual)) {
 		m_MountingPoints[_virtual]->OnUnMount();
 		m_MountingPoints.erase(_virtual);
@@ -21,7 +21,7 @@ bool Engine::VFS::Unmount(const std::filesystem::path & _virtual) {
 	return false;
 }
 
-bool Engine::VFS::MountExist(const std::filesystem::path & _virtual) {
+bool AppFrame::VFS::MountExist(const std::filesystem::path & _virtual) {
 	auto moutingPoint = m_MountingPoints.find(_virtual);
 	if (moutingPoint != m_MountingPoints.end()) {
 		return true;
@@ -29,7 +29,7 @@ bool Engine::VFS::MountExist(const std::filesystem::path & _virtual) {
 	return false;
 }
 
-MountPoint * Engine::VFS::GetMount(std::filesystem::path mount) {
+AppFrame::MountPoint * AppFrame::VFS::GetMount(std::filesystem::path mount) {
 	auto moutingPoint = m_MountingPoints.find(mount);
 	if (moutingPoint != m_MountingPoints.end()) {
 		return moutingPoint->second;
@@ -37,7 +37,7 @@ MountPoint * Engine::VFS::GetMount(std::filesystem::path mount) {
 	return nullptr;
 }
 
-bool Engine::VFS::HasFile(const std::filesystem::path file) {
+bool AppFrame::VFS::HasFile(const std::filesystem::path file) {
 	for (auto mount : m_MountingPoints) {
 		if (mount.second->HasFile(file)) {
 			return true;
@@ -46,7 +46,7 @@ bool Engine::VFS::HasFile(const std::filesystem::path file) {
 	return false;
 }
 
-bool Engine::VFS::HasDirectory(const std::filesystem::path directory) {
+bool AppFrame::VFS::HasDirectory(const std::filesystem::path directory) {
 	for (auto mount : m_MountingPoints) {
 		if (mount.second->HasDirectory(directory)) {
 			return true;
@@ -55,7 +55,7 @@ bool Engine::VFS::HasDirectory(const std::filesystem::path directory) {
 	return false;
 }
 
-size_t Engine::VFS::FileSize(const std::filesystem::path file) {
+size_t AppFrame::VFS::FileSize(const std::filesystem::path file) {
 	for (auto mount : m_MountingPoints) {
 		int fileSize = mount.second->FileSize(file);
 		if (fileSize != -1) {
@@ -65,46 +65,46 @@ size_t Engine::VFS::FileSize(const std::filesystem::path file) {
 	return -1;
 }
 
-bool Engine::VFS::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
+bool AppFrame::VFS::WriteFile(const std::filesystem::path & path, char * data, size_t size) {
 	for (auto mount : m_MountingPoints) {
 		return mount.second->WriteFile(path, data, size);
 	}
 	return false;
 }
 
-bool Engine::VFS::WriteFile(File * file) {
+bool AppFrame::VFS::WriteFile(File * file) {
 	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
 }
 
-File* Engine::VFS::ReadFile(const std::filesystem::path & path) {
+AppFrame::File* AppFrame::VFS::ReadFile(const std::filesystem::path & path) {
 	for (auto mount : m_MountingPoints) {
 		return mount.second->ReadFile(path);
 	}
 	return nullptr;
 }
 
-bool Engine::VFS::CreateDirectory(const std::filesystem::path directory) {
+bool AppFrame::VFS::CreateDirectory(const std::filesystem::path directory) {
 	for (auto mount : m_MountingPoints) {
 		return mount.second->CreateDirectory(directory);
 	}
 	return false;
 }
 
-bool Engine::VFS::CreateFile(const std::filesystem::path file, size_t size) {
+bool AppFrame::VFS::CreateFile(const std::filesystem::path file, size_t size) {
 	for (auto mount : m_MountingPoints) {
 		return mount.second->CreateFile(file, size);
 	}
 	return false;
 }
 
-bool Engine::VFS::RemoveFile(const std::filesystem::path file) {
+bool AppFrame::VFS::RemoveFile(const std::filesystem::path file) {
 	for (auto mount : m_MountingPoints) {
 		return mount.second->RemoveFile(file);
 	}
 	return false;
 }
 
-int Engine::VFS::RemoveDirectory(const std::filesystem::path directory) {
+int AppFrame::VFS::RemoveDirectory(const std::filesystem::path directory) {
 	for (auto mount : m_MountingPoints) {
 		return mount.second->RemoveDirectory(directory);
 	}

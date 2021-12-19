@@ -8,7 +8,7 @@
  * as interface with event handler.
  * Also used to subscribe and unsubscribe events.
  */
-namespace Engine {
+namespace AppFrame {
 	class ENGINE_API EventHandler {
 	public:
 		EventHandler();

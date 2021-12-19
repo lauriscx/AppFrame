@@ -1,11 +1,11 @@
 #include "TaskManager.h"
 #include <iostream>
 
-TaskManager::TaskManager() {
+AppFrame::TaskManager::TaskManager() {
 	m_CanRetrieve = false;
 }
 
-void TaskManager::Run() {
+void AppFrame::TaskManager::Run() {
 	uint32_t value = 0;
 	while (true) {
 		value++;
@@ -18,13 +18,13 @@ void TaskManager::Run() {
 	}
 }
 
-int TaskManager::GetCickles() {
+int AppFrame::TaskManager::GetCickles() {
 	m_CanRetrieve = false;
 	return m_Cicles;
 }
 
-bool TaskManager::CanRetirieve() {
+bool AppFrame::TaskManager::CanRetirieve() {
 	return m_CanRetrieve;
 }
 
-TaskManager::~TaskManager() {}
+AppFrame::TaskManager::~TaskManager() {}

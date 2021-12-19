@@ -5,7 +5,7 @@
 #include "MountPoints/MountPoint.h"
 
 class File;
-namespace Engine {
+namespace AppFrame {
 	class ENGINE_API VFS {
 	public:
 		bool Mount(MountPoint* mount);

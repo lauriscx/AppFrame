@@ -6,7 +6,7 @@ namespace spdlog {
 	class logger;
 }
 
-namespace Engine {
+namespace AppFrame {
 	class ENGINE_API ModuleConsole : public Module {
 	public:
 		enum level {

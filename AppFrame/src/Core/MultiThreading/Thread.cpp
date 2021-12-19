@@ -1,24 +1,24 @@
 #include "Thread.h"
 
-Thread::Thread() {}
+AppFrame::Thread::Thread() {}
 
-void Thread::Start() {
+void AppFrame::Thread::Start() {
 	m_Thread = std::thread(&Thread::Run, this);
 }
 
-std::thread::id Thread::GetThreadID() {
+std::thread::id AppFrame::Thread::GetThreadID() {
 	return m_Thread.get_id();
 }
 
-unsigned int Thread::GetHardwareConcurrency() {
+unsigned int AppFrame::Thread::GetHardwareConcurrency() {
 	return m_Thread.hardware_concurrency();
 }
 
-void Thread::Run() {
+void AppFrame::Thread::Run() {
 
 }
 
-Thread::~Thread() {
+AppFrame::Thread::~Thread() {
 	if (m_Thread.joinable()) {
 		m_Thread.join();
 	}

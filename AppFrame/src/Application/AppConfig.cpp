@@ -1,13 +1,13 @@
 #include "AppConfig.h"
 #include "Core/XML/XML.h"
 
-AppConfig::AppConfig() {
+AppFrame::AppConfig::AppConfig() {
 	ParseConfigXML("C:/Users/Kosmosas/Desktop/xml.xml");
 }
 
-AppConfig::~AppConfig() {}
+AppFrame::AppConfig::~AppConfig() {}
 
-void AppConfig::ParseConfigXML(const char * path) {
+void AppFrame::AppConfig::ParseConfigXML(const char * path) {
 	tinyxml2::XMLDocument Configuration;
 	if (Configuration.LoadFile(path) == tinyxml2::XML_SUCCESS) {
 		tinyxml2::XMLElement* RootElement = Configuration.RootElement();

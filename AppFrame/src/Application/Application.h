@@ -9,7 +9,7 @@
 #include "Core/Hardware/Device.h"
 #include "Core/Utils/Timer.h"
 
-namespace Engine {
+namespace AppFrame {
 	class ENGINE_API Application : public EventHandler, public InputHandler, public ModuleRegistry {
 	public:
 		enum Status {

@@ -1,20 +1,20 @@
 #include "Resource.h"
 
-Resource::Resource() {}
+AppFrame::Resource::Resource() {}
 
-bool Resource::IsAvailable() {
+bool AppFrame::Resource::IsAvailable() {
 	return false;
 }
 
-bool Resource::Load(std::filesystem::path file) {
+bool AppFrame::Resource::Load(std::filesystem::path file) {
 	return false;
 }
 
-void Resource::OnLoad() { }
-void Resource::OnRelease() { }
+void AppFrame::Resource::OnLoad() { }
+void AppFrame::Resource::OnRelease() { }
 
-size_t Resource::GetMemoryUsage() {
+size_t AppFrame::Resource::GetMemoryUsage() {
 	return sizeof(this);
 }
 
-Resource::~Resource() {}
+AppFrame::Resource::~Resource() {}

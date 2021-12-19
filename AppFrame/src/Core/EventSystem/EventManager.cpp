@@ -2,15 +2,15 @@
 #include "EventHandler.h"
 #include "EventManager.h"
 
-Engine::EventManager * Engine::EventManager::GetInstance() {
+AppFrame::EventManager * AppFrame::EventManager::GetInstance() {
 	static EventManager instance; return &instance;
 }
 
-void Engine::EventManager::Surscribe	(int eventType, EventHandler * eventHandler) {
+void AppFrame::EventManager::Surscribe	(int eventType, EventHandler * eventHandler) {
 	std::lock_guard<std::mutex> lock(m_Mutex);
 	m_EventHandlerEvents.insert(std::make_pair(eventType, eventHandler));
 }
-void Engine::EventManager::UnSurscribe	(int eventType, EventHandler * eventHandler) {
+void AppFrame::EventManager::UnSurscribe	(int eventType, EventHandler * eventHandler) {
 	std::lock_guard<std::mutex> lock(m_Mutex);
 	/* Store 2 pointers from map. First pointer stores address where stars objects with key value,
 	 * second stores addres where ends objects with key value.
@@ -32,7 +32,7 @@ void Engine::EventManager::UnSurscribe	(int eventType, EventHandler * eventHandl
 		}
 	}
 }
-void Engine::EventManager::UnSurscribe	(EventHandler * eventHandler) {
+void AppFrame::EventManager::UnSurscribe	(EventHandler * eventHandler) {
 	std::lock_guard<std::mutex> lock(m_Mutex);
 	//Iterate through map.
 	for (std::map<int, EventHandler*>::iterator it = m_EventHandlerEvents.begin(); it != m_EventHandlerEvents.end();) {
@@ -52,7 +52,7 @@ void Engine::EventManager::UnSurscribe	(EventHandler * eventHandler) {
 	 * to loop trought surscribers only one time
 	 * insted of looping everytime we send event.
 	 */
-void Engine::EventManager::SendEvent	(BasicEvent * event) {
+void AppFrame::EventManager::SendEvent	(BasicEvent * event) {
 	std::lock_guard<std::mutex> lock(m_Mutex);
 	m_Events.push_back(event);
 }
@@ -61,7 +61,7 @@ void Engine::EventManager::SendEvent	(BasicEvent * event) {
 	 * Not optimal because we everytime send event
 	 * we have to loop throught m_EventHandlerEvents map.
 	 */
-void Engine::EventManager::SendEventNow (BasicEvent * event) {
+void AppFrame::EventManager::SendEventNow (BasicEvent * event) {
 	std::lock_guard<std::mutex> lock(m_Mutex);
 	/* Store 2 pointers from map. First pointer stores address where stars objects with key value,
 	 * second stores addres where ends objects with key value.
@@ -84,7 +84,7 @@ void Engine::EventManager::SendEventNow (BasicEvent * event) {
 	delete event;
 }
 
-void Engine::EventManager::Update() {
+void AppFrame::EventManager::Update() {
 	std::lock_guard<std::mutex> lock(m_Mutex);
 	/*Lock for multithread*/
 	for (int i = 0; i < m_Events.size(); i++) {

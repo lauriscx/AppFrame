@@ -2,17 +2,19 @@
 #include "Core/Core.h"
 #include <filesystem>
 
-class ENGINE_API Resource {
-public:
-	Resource();
+namespace AppFrame {
+	class ENGINE_API Resource {
+	public:
+		Resource();
 
-	virtual bool IsAvailable();
-	virtual bool Load(std::filesystem::path file);
+		virtual bool IsAvailable();
+		virtual bool Load(std::filesystem::path file);
 
-	virtual void OnLoad();
-	virtual void OnRelease();
+		virtual void OnLoad();
+		virtual void OnRelease();
 
-	virtual size_t GetMemoryUsage();
+		virtual size_t GetMemoryUsage();
 
-	virtual ~Resource();
-};
+		virtual ~Resource();
+	};
+}
