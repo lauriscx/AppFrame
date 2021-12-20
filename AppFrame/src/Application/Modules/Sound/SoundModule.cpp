@@ -45,8 +45,12 @@ const char* al_err_str(ALenum err) {
 #define al_check_error() \
     __al_check_error()
 
-AppFrame::SoundModule::SoundModule() {
+AppFrame::SoundModule::SoundModule() { }
 
+AppFrame::SoundModule::~SoundModule() {
+}
+
+void AppFrame::SoundModule::OnStart() {
 	device = alcOpenDevice(nullptr);
 	if (device == nullptr) {
 		//std::cout << "Failed to get default sound device" << std::endl;
@@ -60,7 +64,7 @@ AppFrame::SoundModule::SoundModule() {
 		Error("SoundModule", __FILE__, __LINE__, "Failed to create sound context");
 		return;
 	}
-	
+
 	if (!alcMakeContextCurrent(context)) {
 		Error("SoundModule", __FILE__, __LINE__, "Failed to make current sound context");
 		//std::cout << "Failed to make current sound context" << std::endl;
@@ -77,7 +81,8 @@ AppFrame::SoundModule::SoundModule() {
 	if (name) {
 		Info("SoundModule", __FILE__, __LINE__, (std::string("Default play devices: ") + name).c_str());
 		//std::cout << "Default play devices: " << name << std::endl;
-	} else {
+	}
+	else {
 		Warning("SoundModule", __FILE__, __LINE__, "No sound device found");
 		//std::cout << "No device found" << std::endl;
 	}
@@ -112,10 +117,6 @@ AppFrame::SoundModule::SoundModule() {
 		sound->Play();
 		al_check_error();
 	}
-
-}
-
-AppFrame::SoundModule::~SoundModule() {
 }
 
 std::vector<std::string> AppFrame::SoundModule::GetAvailableSoundDevices() {
