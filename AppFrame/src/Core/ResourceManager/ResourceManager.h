@@ -5,6 +5,7 @@
 #include <FileSystem>
 #include <map>
 #include <tuple>
+#include <iostream>
 
 namespace AppFrame {
 	class ENGINE_API ResourceManager {

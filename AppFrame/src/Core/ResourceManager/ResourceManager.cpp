@@ -2,7 +2,6 @@
 #include <filesystem>
 #include "FileSystem/VFS/VFS.h"
 #include "FileSystem/File.h"
-#include <iostream>
 
 AppFrame::ResourceManager::ResourceManager() { }
 
