@@ -11,8 +11,10 @@ AppFrame::ModuleWindow::ModuleWindow() { }
 void AppFrame::ModuleWindow::OnStart() {
 
 	/* Initialize the library */
-	if (!glfwInit())
+	if (!glfwInit()) {
+		Fatal("ModuleWindow", __FILE__, __LINE__, "Failed to init GLFW");
 		return;
+	}
 
 	glfwWindowHint(GLFW_SAMPLES, 4); // 4x antialiasing
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -25,6 +27,7 @@ void AppFrame::ModuleWindow::OnStart() {
 
 	if (!m_Window) {
 		glfwTerminate();
+		Fatal("ModuleWindow", __FILE__, __LINE__, "Failed to create window");
 		return;
 	}
 

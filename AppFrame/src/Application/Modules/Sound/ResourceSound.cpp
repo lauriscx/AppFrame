@@ -4,6 +4,7 @@
 #include "FileSystem/File.h"
 #include <stdio.h>
 #include <iostream>
+#include "Application/Logger.h"
 
 AppFrame::ResourceSound::ResourceSound() {
 	alGenBuffers(1, &m_ResourceHandle);
@@ -35,12 +36,14 @@ bool AppFrame::ResourceSound::Load(std::filesystem::path file) {
 		if (checkSring.size() > 0) {
 			checkSring[4] = '\0';
 			if (strcmp(checkSring.c_str(), "data") != 0) {
-				fprintf(stderr, "Not supported wav file format(it should be data) but is: %s\n", checkSring.c_str());
+				ERROR("ResourceSound", "Not supported wav file format(it should be data) but is : %s\n" + checkSring.c_str());
+				//fprintf(stderr, "Not supported wav file format(it should be data) but is: %s\n", checkSring.c_str());
 				delete _file;//It will erease all allocated memory inside(mean data which is char*).
 				return false;
 			}
 		} else {
-			fprintf(stderr, "Not supported wav file format unknow format and error");
+			ERROR("ResourceSound", "Not supported wav file format unknow format and error");
+			//fprintf(stderr, "Not supported wav file format unknow format and error");
 			return false;
 		}
 
@@ -53,7 +56,8 @@ bool AppFrame::ResourceSound::Load(std::filesystem::path file) {
 		
 		ALenum err = alGetError();
 		if (err != AL_NO_ERROR) {
-			fprintf(stderr, "OpenAL Error: %s\n", alGetString(err));
+			ERROR("ResourceSound", "OpenAL Error: %s\n" + alGetString(err));
+			//fprintf(stderr, "OpenAL Error: %s\n", alGetString(err));
 			return false;
 		}
 		return true;

@@ -9,8 +9,6 @@
 class Application : public AppFrame::Application {
 public:
 	Application() {
-		//graphic = new Engine::GraphicModule();
-		//AddModule(graphic);
 		SubscribeToEvent(AppFrame::WindowCloses::Type());
 		SubscribeToEvent(AppFrame::WindowResize::Type());
 		SubscribeToEvent(AppFrame::Log::Type());//Used for Console module.
@@ -23,13 +21,9 @@ public:
 	}
 
 	~Application() {
-		//if (graphic) {
-	//		delete graphic;
-		//}
 	}
 private:
 	bool m_Close;
-	//Engine::GraphicModule * graphic;
 };
 
 void Application::Run() {
