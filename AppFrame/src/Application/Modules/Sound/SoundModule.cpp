@@ -1,7 +1,7 @@
 #include "SoundModule.h"
 #include <alc.h>
 #include <al.h>
-#include <iostream>
+//#include <iostream>
 #include "SoundSource.h"
 #include "ResourceSound.h"
 #include "ResourceManager/ResourceManager.h"
@@ -34,33 +34,36 @@ const char* al_err_str(ALenum err) {
 }
 #undef CASE_RETURN
 
-#define __al_check_error(file,line) \
+#define __al_check_error() \
     do { \
         ALenum err = alGetError(); \
         for(; err!=AL_NO_ERROR; err=alGetError()) { \
-            std::cerr << "AL Error " << al_err_str(err) << " at " << file << ":" << line << std::endl; \
+			Error("SoundModule", __FILE__, __LINE__, ( std::string("AL Error: ") + al_err_str(err)).c_str()); \
         } \
     }while(0)
 
 #define al_check_error() \
-    __al_check_error(__FILE__, __LINE__)
+    __al_check_error()
 
 AppFrame::SoundModule::SoundModule() {
 
 	device = alcOpenDevice(nullptr);
 	if (device == nullptr) {
-		std::cout << "Failed to get default sound device" << std::endl;
+		//std::cout << "Failed to get default sound device" << std::endl;
+		Error("SoundModule", __FILE__, __LINE__, "Failed to get default sound device");
 		return;
 	}
 	ALCcontext* context = alcCreateContext(device, nullptr);
 
 	if (context == nullptr) {
-		std::cout << "Failed to create sound context" << std::endl;
+		//std::cout << "Failed to create sound context" << std::endl;
+		Error("SoundModule", __FILE__, __LINE__, "Failed to create sound context");
 		return;
 	}
 	
 	if (!alcMakeContextCurrent(context)) {
-		std::cout << "Failed to make current sound context" << std::endl;
+		Error("SoundModule", __FILE__, __LINE__, "Failed to make current sound context");
+		//std::cout << "Failed to make current sound context" << std::endl;
 		return;
 	}
 
@@ -72,16 +75,19 @@ AppFrame::SoundModule::SoundModule() {
 		name = alcGetString(device, ALC_DEVICE_SPECIFIER);
 	}
 	if (name) {
-		std::cout << "Default play devices: " << name << std::endl;
+		Info("SoundModule", __FILE__, __LINE__, (std::string("Default play devices: ") + name).c_str());
+		//std::cout << "Default play devices: " << name << std::endl;
 	} else {
-		std::cout << "No device found" << std::endl;
+		Warning("SoundModule", __FILE__, __LINE__, "No sound device found");
+		//std::cout << "No device found" << std::endl;
 	}
 
 	GetAvailableSoundDevices();
 	int i = 0;
 	for (auto dev : m_Devices) {
 		i++;
-		std::cout << "Device " << i << ". " << dev << std::endl;
+		Info("SoundModule", __FILE__, __LINE__, (std::string("Device: ") + std::to_string(i) + ". " + dev).c_str());
+		//std::cout << "Device " << i << ". " << dev << std::endl;
 	}
 
 	al_check_error();

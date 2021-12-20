@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "Application/Events/AppEvents.h"
 #include <functional>
+#include "EventSystem/EventManager.h"
 
 AppFrame::Application* AppFrame::Application::s_Instance = nullptr;
 
@@ -84,9 +85,21 @@ AppFrame::Application::Status AppFrame::Application::GetStatus() {
 AppFrame::Application::~Application() {}
 
 /* these callbacks are used for module system. If happen some event/log then will be called these functions */
-void AppFrame::Application::OnFatal	(const char * module, const char * file, unsigned int line, const char * msg) {}
-void AppFrame::Application::OnError	(const char * module, const char * file, unsigned int line, const char * msg) {}
-void AppFrame::Application::OnWarning	(const char * module, const char * file, unsigned int line, const char * msg) {}
-void AppFrame::Application::OnInfo	(const char * module, const char * file, unsigned int line, const char * msg) {}
-void AppFrame::Application::OnTrace	(const char * module, const char * file, unsigned int line, const char * msg) {}
-void AppFrame::Application::OnDebug	(const char * module, const char * file, unsigned int line, const char * msg) {}
+void AppFrame::Application::OnFatal		(const char * module, const char * file, unsigned int line, const char * msg) {
+	EventManager::GetInstance()->SendEventNow(new Log(module, msg, Log::fatal));
+}
+void AppFrame::Application::OnError		(const char * module, const char * file, unsigned int line, const char * msg) {
+	EventManager::GetInstance()->SendEventNow(new Log(module, msg, Log::error));
+}
+void AppFrame::Application::OnWarning	(const char * module, const char * file, unsigned int line, const char * msg) {
+	EventManager::GetInstance()->SendEventNow(new Log(module, msg, Log::warn));
+}
+void AppFrame::Application::OnInfo		(const char * module, const char * file, unsigned int line, const char * msg) {
+	EventManager::GetInstance()->SendEventNow(new Log(module, msg, Log::info));
+}
+void AppFrame::Application::OnTrace		(const char * module, const char * file, unsigned int line, const char * msg) {
+	EventManager::GetInstance()->SendEventNow(new Log(module, msg, Log::trace));
+}
+void AppFrame::Application::OnDebug		(const char * module, const char * file, unsigned int line, const char * msg) {
+	EventManager::GetInstance()->SendEventNow(new Log(module, msg, Log::debug));
+}
