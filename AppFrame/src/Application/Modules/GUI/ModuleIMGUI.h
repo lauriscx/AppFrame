@@ -1,6 +1,8 @@
 #pragma once
 #include "Core/Core.h"
 #include "Core/ModuleSystem/Module.h"
+#include "imgui/imgui.h"
+#include "imgui/imgui_internal.h"
 
 namespace AppFrame {
 	class ENGINE_API ModuleIMGUI : public Module {
