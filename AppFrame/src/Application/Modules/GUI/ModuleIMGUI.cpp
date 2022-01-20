@@ -51,7 +51,6 @@ void AppFrame::ModuleIMGUI::OnStart() {
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init("#version 130");
 	ImGui::SetCurrentContext(context);
-
 }
 
 void AppFrame::ModuleIMGUI::OnEarlyUpdate(float deltaTime) {
@@ -61,6 +60,8 @@ void AppFrame::ModuleIMGUI::OnEarlyUpdate(float deltaTime) {
 }
 
 void AppFrame::ModuleIMGUI::OnUpdate(float deltaTime) {
+	//bool show = true;
+	//ImGui::ShowDemoWindow(&show);
 }
 
 void AppFrame::ModuleIMGUI::OnLateUpdate(float deltaTime) {

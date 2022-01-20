@@ -10,7 +10,7 @@
 #include "Core/Utils/Timer.h"
 
 namespace AppFrame {
-	class ENGINE_API Application : public EventHandler, public InputHandler, public ModuleRegistry {
+	class ENGINE_API Application : public EventHandler, public InputHandler, public ModuleRegistry, public AppContext {
 	public:
 		enum Status {
 			Unknow = 1 << 0,
@@ -24,7 +24,7 @@ namespace AppFrame {
 			Loading = 1 << 8
 		};
 	public:
-		Application();
+		Application(AppFrame::AppConfig* config);
 
 		inline void SetConfig(AppConfig* config) { m_Config = config; }
 
@@ -40,7 +40,6 @@ namespace AppFrame {
 		static void SetInstance(Application* instance) { s_Instance = instance; }
 
 		virtual AppConfig	* GetConfig();
-		virtual AppContext	* GetContext();
 		virtual Device		* GetDevice();
 
 		virtual void Stop();
@@ -54,7 +53,6 @@ namespace AppFrame {
 	/* Application data */
 	private:
 		AppConfig * m_Config;
-		AppContext* m_Context;
 		Device	  * m_Device;
 
 		Status m_Status;

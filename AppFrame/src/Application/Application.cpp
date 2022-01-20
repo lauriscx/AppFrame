@@ -5,7 +5,7 @@
 
 AppFrame::Application* AppFrame::Application::s_Instance = nullptr;
 
-AppFrame::Application::Application() : EventHandler("Application") {
+AppFrame::Application::Application(AppFrame::AppConfig* config) : EventHandler("Application"), AppContext(config) {
 	/* Important init data only in run function */
 	SetOnFatal	(std::bind(&Application::OnFatal,	this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
 	SetOnError	(std::bind(&Application::OnError,	this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
@@ -16,11 +16,10 @@ AppFrame::Application::Application() : EventHandler("Application") {
 }
 
 void AppFrame::Application::Run() {
-	m_Context = new AppContext(m_Config);
 	m_Device = new Device();
 
 	for (auto module : m_Modules) {
-		module.second->OnInit(m_Context);
+		module.second->OnInit(this);
 	}
 	for (auto module : m_Modules) {
 		module.second->OnStart();
@@ -55,9 +54,7 @@ bool AppFrame::Application::OnInput	(int x, int y, int action, int key) {
 AppFrame::AppConfig		* AppFrame::Application::GetConfig	() {
 	return m_Config;
 }
-AppFrame::AppContext	* AppFrame::Application::GetContext	() {
-	return m_Context;
-}
+
 AppFrame::Device	* AppFrame::Application::GetDevice	() {
 	return m_Device;
 }
@@ -66,7 +63,6 @@ void AppFrame::Application::Stop	() {
 	for (auto module : m_Modules) {
 		module.second->OnStop();
 	}
-	delete m_Context;
 }
 
 void AppFrame::Application::AddStatus(Status status) {

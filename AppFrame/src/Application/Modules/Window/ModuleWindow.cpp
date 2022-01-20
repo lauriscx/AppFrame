@@ -20,7 +20,8 @@ void AppFrame::ModuleWindow::OnStart() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // We don't want the old OpenGL 
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_COMPAT_PROFILE); // We don't want the old OpenGL 
+	//glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // We don't want the old OpenGL 
 
 	/* Create a windowed mode window and its OpenGL context */
 	m_Window = glfwCreateWindow(m_Context->GetWindowWidth(), m_Context->GetWindowHeight(), m_Context->GetApplicationName().c_str(), NULL, NULL);
@@ -112,6 +113,7 @@ void AppFrame::ModuleWindow::OnStart() {
 
 void AppFrame::ModuleWindow::OnEarlyUpdate(float deltaTime) {
 	glfwPollEvents();
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
 
@@ -122,7 +124,6 @@ void AppFrame::ModuleWindow::OnUpdate(float deltaTime) {
 
 void AppFrame::ModuleWindow::OnLateUpdate(float deltaTime) {
 	glfwSwapBuffers((GLFWwindow*)m_Window);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 }
 
 void AppFrame::ModuleWindow::OnStop() {

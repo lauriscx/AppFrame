@@ -6,7 +6,6 @@
 namespace AppFrame {
 	class ENGINE_API AppContext : public AppData {
 	public:
-		AppContext() {}
 		AppContext(AppData * data) {
 			if (data) {
 				SetWindowWidth(data->GetWindowWidth());

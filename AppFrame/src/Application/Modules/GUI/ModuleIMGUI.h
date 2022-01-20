@@ -1,6 +1,7 @@
 #pragma once
 #include "Core/Core.h"
 #include "Core/ModuleSystem/Module.h"
+//#define IMGUI_IMPL_OPENGL_LOADER_GLAD
 #include "imgui/imgui.h"
 #include "imgui/imgui_internal.h"
 

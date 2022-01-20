@@ -58,7 +58,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOWS;BUILD_ENGINE_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOWS;BUILD_ENGINE_DLL;IMGUI_API=__declspec(dllexport);_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>DEnginePch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)_$(PlatformTarget).pch</PrecompiledHeaderOutputFile>
@@ -83,7 +83,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOWS;BUILD_ENGINE_DLL;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ENGINE_PLATFORM_WINDOWS;BUILD_ENGINE_DLL;IMGUI_API=__declspec(dllexport);_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>DEnginePch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)_$(PlatformTarget).pch</PrecompiledHeaderOutputFile>
@@ -102,7 +102,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Core\ModuleSystem\ModuleRegistry.h" />
     <ClInclude Include="src\Application\Modules\GUI\imgui\imconfig.h" />
     <ClInclude Include="src\Application\Modules\GUI\imgui\imgui.h" />
     <ClInclude Include="src\Application\Modules\GUI\imgui\imgui_impl_glfw.h" />
@@ -113,6 +112,7 @@
     <ClInclude Include="src\Application\Modules\GUI\imgui\imstb_textedit.h" />
     <ClInclude Include="src\Application\Modules\GUI\imgui\imstb_truetype.h" />
     <ClInclude Include="src\Application\Modules\GUI\ModuleIMGUI.h" />
+    <ClInclude Include="src\Core\ModuleSystem\ModuleRegistry.h" />
     <ClInclude Include="src\Application\Events\Log.h" />
     <ClInclude Include="src\Application\Logger.h" />
     <ClInclude Include="src\Application\Modules\Console\ModuleConsole.h" />
@@ -161,7 +161,6 @@
     <ClInclude Include="src\Core\UUID\UUID.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Core\ModuleSystem\ModuleRegistry.cpp" />
     <ClCompile Include="src\Application\Modules\GUI\imgui\imgui.cpp" />
     <ClCompile Include="src\Application\Modules\GUI\imgui\imgui_demo.cpp" />
     <ClCompile Include="src\Application\Modules\GUI\imgui\imgui_draw.cpp" />
@@ -170,6 +169,7 @@
     <ClCompile Include="src\Application\Modules\GUI\imgui\imgui_tables.cpp" />
     <ClCompile Include="src\Application\Modules\GUI\imgui\imgui_widgets.cpp" />
     <ClCompile Include="src\Application\Modules\GUI\ModuleIMGUI.cpp" />
+    <ClCompile Include="src\Core\ModuleSystem\ModuleRegistry.cpp" />
     <ClCompile Include="src\Application\Modules\Console\ModuleConsole.cpp" />
     <ClCompile Include="src\Application\Resources\ResourceTexture.cpp" />
     <ClCompile Include="src\Application\Modules\Sound\SoundSource.cpp" />
