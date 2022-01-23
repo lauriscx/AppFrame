@@ -43,7 +43,7 @@ namespace AppFrame {
 		}
 
 		/*
-		 * This type is used to pas Reference pointer
+		 * This type is used to pass Reference pointer
 		 * to other function without increasing
 		 * reference count.
 		*/
@@ -59,7 +59,7 @@ namespace AppFrame {
 };
 
 #if defined(_DEBUG)//Only for VS
-
+/*
 static __int64 m_MemoryAllocated = 0;
 static __int64 m_MemoryRelease = 0;
 static __int64 m_MemoryCurrentMemory = 0;
@@ -77,10 +77,10 @@ void * operator new(size_t size) {
 void operator delete(void * p, std::size_t size) {
 	//std::cout << "Releasing memory " << size << std::endl;
 
-	/* 
-	 * Big red warnning!!! If you start suddently get memory leak error probably
-	 * you alocate memory in one module and release in another.
-	 */
+	
+	//Big red warnning!!! If you start suddently get memory leak error probably
+	//you alocate memory in one module and release in another.
+	
 #ifdef NO_MEMORY_BUG
 	if (m_MemoryCurrentMemory >= (m_MemoryCurrentMemory - size)) {
 		m_MemoryCurrentMemory -= size;
@@ -95,5 +95,5 @@ void operator delete(void * p, std::size_t size) {
 #endif
 	free(p);
 }
-
+*/
 #endif // DEBUG

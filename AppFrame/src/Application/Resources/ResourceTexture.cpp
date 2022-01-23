@@ -11,16 +11,29 @@ void * AppFrame::ResourceTexture::Get() {
 	return m_data;
 }
 
+int AppFrame::ResourceTexture::GetWidth() {
+	return m_Width;
+}
+int AppFrame::ResourceTexture::GetHeight() {
+	return m_Height;
+}
+int AppFrame::ResourceTexture::GetChannels() {
+	return m_Channels;
+}
+
 bool AppFrame::ResourceTexture::IsAvailable() {
 	return m_data != nullptr;
 }
 
 bool AppFrame::ResourceTexture::Load(std::filesystem::path file) {
-	/* Read file and parse wav data */
+	/* Read file and parse png data */
 	File* _file = AppFrame::VFS::GetInstance()->ReadFile(file);
 	if (_file && _file->IsDataAvailable()) {
-		stbi_uc* l_data = stbi_load_from_memory((unsigned char*)_file->GetData(), _file->GetSize(), &m_Width, &m_Height, &m_Chanels, 0);
+		//stbi_set_flip_vertically_on_load();//for openGL
+		//stbi_set_flip_vertically_on_load(1);
+		stbi_uc* l_data = stbi_load_from_memory((unsigned char*)_file->GetData(), _file->GetSize(), &m_Width, &m_Height, &m_Channels, 0);
 		m_data = l_data;
+		stbi__vertical_flip(m_data, m_Width, m_Height, m_Channels);
 		if (l_data == nullptr) {
 			stbi_image_free(l_data);
 			return false;
@@ -32,7 +45,7 @@ bool AppFrame::ResourceTexture::Load(std::filesystem::path file) {
 }
 
 size_t AppFrame::ResourceTexture::GetMemoryUsage() {
-	return sizeof(ResourceTexture) + (4 * m_Chanels * m_Width * m_Height);
+	return sizeof(ResourceTexture) + (m_Channels * m_Width * m_Height);
 }
 
 AppFrame::ResourceTexture::~ResourceTexture() {

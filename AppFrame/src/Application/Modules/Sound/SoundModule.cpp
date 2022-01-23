@@ -97,7 +97,7 @@ void AppFrame::SoundModule::OnStart() {
 
 	al_check_error();
 
-	ResourceSound* resource = ResourceManager::GetInstace()->GetResource<ResourceSound>("mixkit-arcade-retro-game-over-213.wav");
+	ResourceSound* resource = ResourceManager::GetInstance()->GetResource<ResourceSound>("mixkit-arcade-retro-game-over-213.wav");
 
 	if (resource) {
 		al_check_error();

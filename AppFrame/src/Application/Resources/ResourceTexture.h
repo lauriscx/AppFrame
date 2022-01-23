@@ -8,6 +8,9 @@ namespace AppFrame {
 		ResourceTexture();
 
 		void* Get();
+		int GetWidth();
+		int GetHeight();
+		int GetChannels();
 
 		virtual bool IsAvailable() override;
 		virtual bool Load(std::filesystem::path file) override;
@@ -19,6 +22,6 @@ namespace AppFrame {
 		unsigned char* m_data;
 		int m_Width;
 		int m_Height;
-		int m_Chanels;
+		int m_Channels;
 	};
 }

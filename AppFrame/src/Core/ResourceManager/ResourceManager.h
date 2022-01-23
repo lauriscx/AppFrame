@@ -17,7 +17,7 @@ namespace AppFrame {
 		void ReleaseResource(std::filesystem::path path);
 		const bool IsAvailable(std::filesystem::path path);
 
-		static ResourceManager* GetInstace() { static ResourceManager s_Instance; return &s_Instance; }
+		static ResourceManager* GetInstance() { static ResourceManager s_Instance; return &s_Instance; }
 
 		virtual ~ResourceManager();
 
