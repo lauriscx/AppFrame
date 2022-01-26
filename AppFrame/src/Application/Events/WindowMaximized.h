@@ -7,7 +7,7 @@
 namespace AppFrame {
 	class WindowMaximized : public BasicEvent {
 	public:
-		WindowMaximized(const char* language) {}
+		WindowMaximized() {}
 		static int Type() { return Events::WindowMaximized; }
 		static WindowMaximized* Match(BasicEvent* event) {
 			if (event->GetType() == Type()) {

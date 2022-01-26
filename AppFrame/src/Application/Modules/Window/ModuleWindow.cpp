@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+bool AppFrame::ModuleWindow::Minimized = false;
+
 AppFrame::ModuleWindow::ModuleWindow() { }
 void AppFrame::ModuleWindow::OnStart() {
 
@@ -41,7 +43,16 @@ void AppFrame::ModuleWindow::OnStart() {
 
 	// Set GLFW callbacks
 	glfwSetWindowSizeCallback((GLFWwindow*)m_Window, [](GLFWwindow* window, int width, int height) {
-		EventManager::GetInstance()->SendEventNow(new WindowResize(width, height));
+		if (width == 0 && height == 0) {
+			EventManager::GetInstance()->SendEventNow(new WindowMinimized());
+			Minimized = true;
+		} else {
+			if (Minimized) {
+				EventManager::GetInstance()->SendEventNow(new WindowMaximized());
+				Minimized = false;
+			}
+			EventManager::GetInstance()->SendEventNow(new WindowResize(width, height));
+		}
 	});
 
 	glfwSetWindowCloseCallback((GLFWwindow*)m_Window, [](GLFWwindow* window) {
@@ -95,6 +106,7 @@ void AppFrame::ModuleWindow::OnStart() {
 
 	glfwSetScrollCallback((GLFWwindow*)m_Window, [](GLFWwindow* window, double x, double y) {
 		InputManager::GetInstance()->SendInput((int)x, (int)y, -1, 0);
+		EventManager::GetInstance()->SendEventNow(new InputScroll(x, y));
 		/*Events* events = (Events*)glfwGetWindowUserPointer(window);
 
 		MauseScrollEvent* event = new MauseScrollEvent(x, y);

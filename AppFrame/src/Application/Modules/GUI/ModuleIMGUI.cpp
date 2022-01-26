@@ -28,24 +28,25 @@
 
 AppFrame::ModuleIMGUI::ModuleIMGUI() {}
 
-void AppFrame::ModuleIMGUI::OnStart() {
-	// Setup Dear ImGui context
-	IMGUI_CHECKVERSION();
-	ImGuiContext* context = ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO(); (void)io;
-	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-
-	// Setup Dear ImGui style
-	ImGui::StyleColorsDark();
-	//ImGui::StyleColorsClassic();
-
-	
+void AppFrame::ModuleIMGUI::OnStart() {	
 	GLFWwindow * window = static_cast<GLFWwindow*>(static_cast<ModuleWindow*>(Application::GetInstance()->GetModule<ModuleWindow>())->GetWindow());
 	if (!window) {
 		FATAL("IMGUI", "Window not created or window module not exist!");
 		return;
 	}
+
+	// Setup Dear ImGui context
+	IMGUI_CHECKVERSION();
+	ImGuiContext* context = ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	//io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+	io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+
+	// Setup Dear ImGui style
+	ImGui::StyleColorsDark();
+	//ImGui::StyleColorsClassic();
 
 	// Setup Platform/Renderer backends
 	ImGui_ImplGlfw_InitForOpenGL(window, true);

@@ -186,6 +186,9 @@
     <ClInclude Include="src\Application\Modules\GUI\ModuleIMGUI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Application\Events\InputScroll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application\AppConfig.cpp">

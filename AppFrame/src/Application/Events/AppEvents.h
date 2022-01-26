@@ -6,3 +6,4 @@
 #include "Application/Events/WindowMinimized.h"
 #include "Application/Events/WindowResize.h"
 #include "Application/Events/Log.h"
+#include "Application/Events/InputScroll.h"

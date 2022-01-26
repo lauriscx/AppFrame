@@ -8,7 +8,8 @@ namespace AppFrame {
 			WindowMaximized,
 			WindowMinimized,
 			LanguageChange,
-			Log
+			Log,
+			InputScroll
 		};
 	}
 }

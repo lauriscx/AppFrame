@@ -20,5 +20,6 @@ namespace AppFrame {
 
 	private:
 		void* m_Window;
+		static bool Minimized;
 	};
 }
