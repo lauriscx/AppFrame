@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Application">
+      <UniqueIdentifier>{D9DE78AF-4594-F1A4-CE88-EB7B3A3DE8A8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Events">
+      <UniqueIdentifier>{9D3C56BE-8920-1714-F280-1167DE830196}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Modules">
+      <UniqueIdentifier>{A1348DE0-0D96-6AEE-9603-B1A00264A1AD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Modules\Console">
+      <UniqueIdentifier>{C35C4C37-2F6A-7A1D-B850-7608245D46D4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Modules\GUI">
+      <UniqueIdentifier>{359C8317-A1D3-CBAE-AADD-2FD21694F2A7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Modules\GUI\imgui">
+      <UniqueIdentifier>{5F3DE34F-CB55-CA79-9402-5A1300DA5E13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Modules\Sound">
+      <UniqueIdentifier>{19AFC307-8571-F791-CE21-861E3A23D06F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Modules\Window">
+      <UniqueIdentifier>{68A21D09-54B2-C9D9-BD6B-2EF8A99AB872}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Application\Resources">
+      <UniqueIdentifier>{8327DDB9-EF93-98B4-B887-301224B3BA1C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{2EB4837C-1AEB-840D-C3D7-6A10AFED000F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\EventSystem">
+      <UniqueIdentifier>{E4AE7F5F-D0A7-9EB1-F9D9-8336E5317EBD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\FileSystem">
+      <UniqueIdentifier>{82DDE3E0-EE68-51A5-F779-D4996384ADA5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\FileSystem\VFS">
+      <UniqueIdentifier>{800BD642-EC6C-B350-75DA-F902E13AEA0F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\FileSystem\VFS\MountPoints">
+      <UniqueIdentifier>{1F512638-8B34-3578-9437-63B4009AFBC8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Hardware">
+      <UniqueIdentifier>{6B824279-D742-BEAF-A07D-072D0CFD028C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\InputSystem">
+      <UniqueIdentifier>{12A8C3CB-FEA0-E21D-27D3-C7A2132BC229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Memory">
+      <UniqueIdentifier>{D62B9585-42E1-0D7B-CBD5-0752378A047F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ModuleSystem">
+      <UniqueIdentifier>{08E4350C-74FA-33A2-BD71-BFC329C7042A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\MultiThreading">
+      <UniqueIdentifier>{5E74E22B-CAD5-BF39-5343-06ECBFA3F6F8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\ResourceManager">
+      <UniqueIdentifier>{40397598-2CC8-FE61-D5E6-125DC1540F08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\UUID">
+      <UniqueIdentifier>{1410C415-807A-788C-C9B8-2932356256E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Utils">
+      <UniqueIdentifier>{0EA057CE-FA57-991B-635F-72774F36340C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\XML">
+      <UniqueIdentifier>{8E6199C2-7A2E-F4CD-A347-E2758F73295C}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AppFrame\src\AppFrame.h" />
+    <ClInclude Include="AppFrame\src\Application\AppConfig.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\AppContext.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\AppData.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Application.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Events\AppEvents.h">
+      <Filter>Application\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Events\EventTypes.h">
+      <Filter>Application\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Events\InputScroll.h">
+      <Filter>Application\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Events\LanguageChange.h">
+      <Filter>Application\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Events\Log.h">
+      <Filter>Application\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Events\WindowCloses.h">
+      <Filter>Application\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Events\WindowMaximized.h">
+      <Filter>Application\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Events\WindowMinimized.h">
+      <Filter>Application\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Events\WindowResize.h">
+      <Filter>Application\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Logger.h">
+      <Filter>Application</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\Console\ModuleConsole.h">
+      <Filter>Application\Modules\Console</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\GUI\ModuleIMGUI.h">
+      <Filter>Application\Modules\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\GUI\imgui\imconfig.h">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\GUI\imgui\imgui.h">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\GUI\imgui\imgui_impl_glfw.h">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\GUI\imgui\imgui_impl_opengl3.h">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\GUI\imgui\imgui_impl_opengl3_loader.h">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\GUI\imgui\imgui_internal.h">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\GUI\imgui\imstb_rectpack.h">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\GUI\imgui\imstb_textedit.h">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\GUI\imgui\imstb_truetype.h">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\Sound\ResourceSound.h">
+      <Filter>Application\Modules\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\Sound\SoundModule.h">
+      <Filter>Application\Modules\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\Sound\SoundSource.h">
+      <Filter>Application\Modules\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Modules\Window\ModuleWindow.h">
+      <Filter>Application\Modules\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Resources\RecourceXML.h">
+      <Filter>Application\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Application\Resources\ResourceTexture.h">
+      <Filter>Application\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\Asserts.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\Core.h">
+      <Filter>Core</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\EventSystem\Event.h">
+      <Filter>Core\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\EventSystem\EventHandler.h">
+      <Filter>Core\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\EventSystem\EventManager.h">
+      <Filter>Core\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\FileSystem\File.h">
+      <Filter>Core\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\FileSystem\VFS\MountPoints\ARFMountPoint.h">
+      <Filter>Core\FileSystem\VFS\MountPoints</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\FileSystem\VFS\MountPoints\CloudMountPoint.h">
+      <Filter>Core\FileSystem\VFS\MountPoints</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\FileSystem\VFS\MountPoints\MountPoint.h">
+      <Filter>Core\FileSystem\VFS\MountPoints</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\FileSystem\VFS\MountPoints\PhysicalMountPoint.h">
+      <Filter>Core\FileSystem\VFS\MountPoints</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\FileSystem\VFS\MountPoints\RAMMountPoint.h">
+      <Filter>Core\FileSystem\VFS\MountPoints</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\FileSystem\VFS\VFS.h">
+      <Filter>Core\FileSystem\VFS</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\Hardware\Device.h">
+      <Filter>Core\Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\InputSystem\InputData.h">
+      <Filter>Core\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\InputSystem\InputHandler.h">
+      <Filter>Core\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\InputSystem\InputManager.h">
+      <Filter>Core\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\Memory\DataTypes.h">
+      <Filter>Core\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\Memory\Memory.h">
+      <Filter>Core\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\ModuleSystem\Module.h">
+      <Filter>Core\ModuleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\ModuleSystem\ModuleRegistry.h">
+      <Filter>Core\ModuleSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\MultiThreading\Queue.h">
+      <Filter>Core\MultiThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\MultiThreading\Task.h">
+      <Filter>Core\MultiThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\MultiThreading\TaskManager.h">
+      <Filter>Core\MultiThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\MultiThreading\Thread.h">
+      <Filter>Core\MultiThreading</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\ResourceManager\Resource.h">
+      <Filter>Core\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\ResourceManager\ResourceManager.h">
+      <Filter>Core\ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\UUID\UUID.h">
+      <Filter>Core\UUID</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\Utils\Timer.h">
+      <Filter>Core\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\XML\XML.h">
+      <Filter>Core\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="AppFrame\src\Core\XML\tinyxml2.h">
+      <Filter>Core\XML</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AppFrame\src\Application\AppConfig.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\AppData.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Application.cpp">
+      <Filter>Application</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\Console\ModuleConsole.cpp">
+      <Filter>Application\Modules\Console</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\GUI\ModuleIMGUI.cpp">
+      <Filter>Application\Modules\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\GUI\imgui\imgui.cpp">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\GUI\imgui\imgui_demo.cpp">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\GUI\imgui\imgui_draw.cpp">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\GUI\imgui\imgui_impl_glfw.cpp">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\GUI\imgui\imgui_impl_opengl3.cpp">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\GUI\imgui\imgui_tables.cpp">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\GUI\imgui\imgui_widgets.cpp">
+      <Filter>Application\Modules\GUI\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\Sound\ResourceSound.cpp">
+      <Filter>Application\Modules\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\Sound\SoundModule.cpp">
+      <Filter>Application\Modules\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\Sound\SoundSource.cpp">
+      <Filter>Application\Modules\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Modules\Window\ModuleWindow.cpp">
+      <Filter>Application\Modules\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Resources\RecourceXML.cpp">
+      <Filter>Application\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Application\Resources\ResourceTexture.cpp">
+      <Filter>Application\Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\EventSystem\EventHandler.cpp">
+      <Filter>Core\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\EventSystem\EventManager.cpp">
+      <Filter>Core\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\FileSystem\File.cpp">
+      <Filter>Core\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\FileSystem\VFS\MountPoints\ARFMountPoint.cpp">
+      <Filter>Core\FileSystem\VFS\MountPoints</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\FileSystem\VFS\MountPoints\CloudMountPoint.cpp">
+      <Filter>Core\FileSystem\VFS\MountPoints</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\FileSystem\VFS\MountPoints\MountPoint.cpp">
+      <Filter>Core\FileSystem\VFS\MountPoints</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\FileSystem\VFS\MountPoints\PhysicalMountPoint.cpp">
+      <Filter>Core\FileSystem\VFS\MountPoints</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\FileSystem\VFS\MountPoints\RAMMountPoint.cpp">
+      <Filter>Core\FileSystem\VFS\MountPoints</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\FileSystem\VFS\VFS.cpp">
+      <Filter>Core\FileSystem\VFS</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\Hardware\Device.cpp">
+      <Filter>Core\Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\InputSystem\InputData.cpp">
+      <Filter>Core\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\InputSystem\InputHandler.cpp">
+      <Filter>Core\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\InputSystem\InputManager.cpp">
+      <Filter>Core\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\ModuleSystem\ModuleRegistry.cpp">
+      <Filter>Core\ModuleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\MultiThreading\TaskManager.cpp">
+      <Filter>Core\MultiThreading</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\MultiThreading\Thread.cpp">
+      <Filter>Core\MultiThreading</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\ResourceManager\Resource.cpp">
+      <Filter>Core\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\ResourceManager\ResourceManager.cpp">
+      <Filter>Core\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\UUID\UUID.cpp">
+      <Filter>Core\UUID</Filter>
+    </ClCompile>
+    <ClCompile Include="AppFrame\src\Core\XML\tinyxml2.cpp">
+      <Filter>Core\XML</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

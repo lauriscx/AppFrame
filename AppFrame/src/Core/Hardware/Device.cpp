@@ -1,6 +1,6 @@
 #include "Device.h"
 #include <thread>
-
+/*
 #if defined (WINDOWS) | defined (__WIN32__) | defined (__WIN32) | defined (_MSC_VER)
 #include <windows.h>//This include must be first
 #include <shellapi.h>
@@ -32,18 +32,18 @@ const char * AppFrame::Device::GetDeviceModel() {
 const char * AppFrame::Device::GetDeviceOS() {
 	std::string OSVersion;
 
-	/*OSVERSIONINFOEX  versionInfo;
-	versionInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
-	OSVERSIONINFO*  pVersionInfo = (POSVERSIONINFO)&versionInfo;
-	if (::GetVersionEx(pVersionInfo))
-	{
-		OSVersion += versionInfo.dwMajorVersion;
-		OSVersion += ".";
-		OSVersion += versionInfo.dwMinorVersion;
-		OSVersion += " (";
-		OSVersion += versionInfo.dwBuildNumber;
-		OSVersion += ")/n";
-	}*/
+	//OSVERSIONINFOEX  versionInfo;
+	//versionInfo.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+	//OSVERSIONINFO*  pVersionInfo = (POSVERSIONINFO)&versionInfo;
+	//if (::GetVersionEx(pVersionInfo))
+	//{
+	//	OSVersion += versionInfo.dwMajorVersion;
+	//	OSVersion += ".";
+	//	OSVersion += versionInfo.dwMinorVersion;
+	//	OSVersion += " (";
+	//	OSVersion += versionInfo.dwBuildNumber;
+	//	OSVersion += ")/n";
+	//}
 
 	return OSVersion.c_str();
 }
@@ -348,4 +348,4 @@ void Engine::Device::AddNotification(const char * title, const char * desc, cons
 
 void Engine::Device::OnEventCallback(const char * functionAddress) {
 }
-#endif
+#endif*/

@@ -1,10 +1,13 @@
 #include "ResourceSound.h"
+
+#include "Core/FileSystem/VFS/VFS.h"
+#include "Core/FileSystem/File.h"
+
+#include "Application/Logger.h"
+
 #include <al.h>
-#include "FileSystem/VFS/VFS.h"
-#include "FileSystem/File.h"
 #include <stdio.h>
 #include <iostream>
-#include "Application/Logger.h"
 
 AppFrame::ResourceSound::ResourceSound() {
 	alGenBuffers(1, &m_ResourceHandle);

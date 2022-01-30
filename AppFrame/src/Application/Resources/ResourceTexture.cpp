@@ -1,6 +1,6 @@
 #include "ResourceTexture.h"  
-#include "FileSystem/File.h"
-#include "FileSystem/VFS/VFS.h"
+#include "Core/FileSystem/File.h"
+#include "Core/FileSystem/VFS/VFS.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>

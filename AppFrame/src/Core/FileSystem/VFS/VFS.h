@@ -6,7 +6,7 @@
 
 class File;
 namespace AppFrame {
-	class ENGINE_API VFS {
+	class  VFS {
 	public:
 		bool Mount(MountPoint* mount);
 		bool Unmount(const std::filesystem::path& _virtual);

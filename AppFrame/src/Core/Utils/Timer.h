@@ -3,7 +3,7 @@
 #include "Core/Core.h"
 
 namespace AppFrame {
-	class ENGINE_API Timer {
+	class  Timer {
 	public:
 		Timer() : m_Elapsed(0) {}
 		void Start() {

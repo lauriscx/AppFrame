@@ -3,7 +3,7 @@
 #include "Thread.h"
 
 namespace AppFrame {
-	class ENGINE_API TaskManager : public Thread {
+	class  TaskManager : public Thread {
 	public:
 		TaskManager();
 

@@ -7,7 +7,7 @@ namespace spdlog {
 }
 
 namespace AppFrame {
-	class ENGINE_API ModuleConsole : public Module {
+	class  ModuleConsole : public Module {
 	public:
 		enum level {
 			trace,

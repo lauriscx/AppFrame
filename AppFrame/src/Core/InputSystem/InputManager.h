@@ -7,7 +7,7 @@
 namespace AppFrame {
 	class InputHandler;
 
-	class ENGINE_API InputManager {
+	class  InputManager {
 	public:
 		void OnButtonClick(int button) {}
 		void OnButtonRelease(int button) {}

@@ -1,8 +1,10 @@
 //#include "DEnginePch.h"
-#include "Application/Modules/Window/ModuleWindow.h"
-#include "Application/Events/AppEvents.h"
 #include "Core/InputSystem/InputManager.h"
 #include "Core/EventSystem/EventManager.h"
+
+#include "Application/Modules/Window/ModuleWindow.h"
+#include "Application/Events/AppEvents.h"
+
 #include "glfw3.h"
 
 #include <iostream>

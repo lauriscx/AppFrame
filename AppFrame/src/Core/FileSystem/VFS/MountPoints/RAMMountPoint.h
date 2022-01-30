@@ -3,7 +3,7 @@
 #include "Core/FileSystem/VFS/MountPoints/MountPoint.h"
 
 namespace AppFrame {
-	class ENGINE_API RAMMountPoint : public MountPoint {
+	class  RAMMountPoint : public MountPoint {
 	public:
 		RAMMountPoint();
 

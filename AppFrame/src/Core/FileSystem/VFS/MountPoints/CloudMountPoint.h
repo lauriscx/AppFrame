@@ -4,7 +4,7 @@
 
 namespace AppFrame {
 	class File;
-	class ENGINE_API CloudMountPoint : public MountPoint {
+	class  CloudMountPoint : public MountPoint {
 	public:
 		CloudMountPoint();
 
