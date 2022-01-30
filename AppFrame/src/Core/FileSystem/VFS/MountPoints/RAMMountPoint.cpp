@@ -1,5 +1,5 @@
-#include "Core/FileSystem/VFS/MountPoints/RAMMountPoint.h"
-#include "Core/FileSystem/File.h"
+#include "RAMMountPoint.h"
+#include "FileSystem/File.h"
 
 AppFrame::RAMMountPoint::RAMMountPoint() {}
 

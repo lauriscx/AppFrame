@@ -4,7 +4,7 @@
 #include <filesystem>
 
 namespace AppFrame {
-	class  File {
+	class ENGINE_API File {
 	public:
 		File();
 

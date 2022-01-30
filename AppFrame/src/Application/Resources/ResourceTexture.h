@@ -3,7 +3,7 @@
 #include "Core/ResourceManager/Resource.h"
 
 namespace AppFrame {
-	class  ResourceTexture : public Resource {
+	class ENGINE_API ResourceTexture : public Resource {
 	public:
 		ResourceTexture();
 

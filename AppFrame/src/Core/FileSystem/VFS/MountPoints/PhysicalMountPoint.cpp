@@ -1,6 +1,6 @@
-#include "Core/FileSystem/VFS/MountPoints/PhysicalMountPoint.h"
+#include "PhysicalMountPoint.h"
 #include "Core/FileSystem/File.h"
-#include "Core/Asserts.h"
+#include "Asserts.h"
 
 AppFrame::PhysicalMountPoint::PhysicalMountPoint() {}
 

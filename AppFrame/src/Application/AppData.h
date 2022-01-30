@@ -4,7 +4,7 @@
 #include <string>
 
 namespace AppFrame {
-	class  AppData {
+	class ENGINE_API AppData {
 	public:
 		void SetWindowWidth(float width);
 		void SetWindowHeight(float height);

@@ -4,7 +4,7 @@
 #include <mutex>
 
 namespace AppFrame {
-	class  Thread {
+	class ENGINE_API Thread {
 	public:
 		Thread();
 

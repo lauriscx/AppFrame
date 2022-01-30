@@ -4,7 +4,7 @@
 #include "AppData.h"
 
 namespace AppFrame {
-	class  AppContext : public AppData {
+	class ENGINE_API AppContext : public AppData {
 	public:
 		AppContext(AppData * data) {
 			if (data) {

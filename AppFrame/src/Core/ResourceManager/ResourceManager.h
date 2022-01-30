@@ -8,7 +8,7 @@
 #include <iostream>
 
 namespace AppFrame {
-	class  ResourceManager {
+	class ENGINE_API ResourceManager {
 	public:
 		ResourceManager();
 

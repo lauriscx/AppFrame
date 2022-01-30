@@ -2,7 +2,7 @@
 #include "Core/Core.h"
 
 namespace AppFrame {
-	class  InputData {
+	class ENGINE_API InputData {
 	public:
 		int x;
 		int y;

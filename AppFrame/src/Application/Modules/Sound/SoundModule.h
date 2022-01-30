@@ -5,7 +5,7 @@
 
 class ALCdevice;
 namespace AppFrame {
-	class  SoundModule : public Module {
+	class ENGINE_API SoundModule : public Module {
 	public:
 		SoundModule();
 		virtual ~SoundModule();

@@ -1,8 +1,7 @@
-#include "Core/ResourceManager/ResourceManager.h"
-#include "Core/FileSystem/VFS/VFS.h"
-#include "Core/FileSystem/File.h"
-
+#include "ResourceManager.h"
 #include <filesystem>
+#include "FileSystem/VFS/VFS.h"
+#include "FileSystem/File.h"
 
 AppFrame::ResourceManager::ResourceManager() { }
 

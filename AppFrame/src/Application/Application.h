@@ -1,6 +1,7 @@
 #pragma once
-
 #include "Core/Core.h"
+#include "AppContext.h"
+#include "AppConfig.h"
 #include "Core/EventSystem/EventHandler.h"
 #include "Core/InputSystem/InputHandler.h"
 #include "Core/ModuleSystem/Module.h"
@@ -8,11 +9,8 @@
 #include "Core/Hardware/Device.h"
 #include "Core/Utils/Timer.h"
 
-#include "Application/AppContext.h"
-#include "Application/AppConfig.h"
-
 namespace AppFrame {
-	class  Application : public EventHandler, public InputHandler, public ModuleRegistry, public AppContext {
+	class ENGINE_API Application : public EventHandler, public InputHandler, public ModuleRegistry, public AppContext {
 	public:
 		enum Status {
 			Unknow = 1 << 0,

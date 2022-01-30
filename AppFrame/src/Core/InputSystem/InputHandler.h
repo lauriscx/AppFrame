@@ -2,7 +2,7 @@
 #include "Core/Core.h"
 
 namespace AppFrame {
-	class  InputHandler {
+	class ENGINE_API InputHandler {
 	public:
 		InputHandler();
 

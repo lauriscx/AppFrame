@@ -1,5 +1,5 @@
-#include "Core/FileSystem/VFS/MountPoints/CloudMountPoint.h"
-#include "Core/FileSystem/File.h"
+#include "CloudMountPoint.h"
+#include "FileSystem/File.h"
 
 AppFrame::CloudMountPoint::CloudMountPoint() {}
 

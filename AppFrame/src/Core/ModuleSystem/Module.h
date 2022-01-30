@@ -6,7 +6,7 @@
 #include <functional>
 
 namespace AppFrame {
-	class  Module {
+	class ENGINE_API Module {
 	public:
 		Module() {};
 		virtual void OnInit(AppContext* context) { m_Context = context; };

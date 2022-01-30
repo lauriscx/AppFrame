@@ -2,7 +2,7 @@
 #include "Core/Core.h"
 
 namespace AppFrame {
-	class  SoundSource {
+	class ENGINE_API SoundSource {
 	public:
 		SoundSource();
 

@@ -1,10 +1,8 @@
 #include "RecourceXML.h"
-
-#include "Core/FileSystem/VFS/VFS.h"
-#include "Core/FileSystem/File.h"
-#include "Core/XML/XML.h"
-
+#include "FileSystem/VFS/VFS.h"
+#include "FileSystem/File.h"
 #include <iostream>
+#include "Core/XML/XML.h"
 
 
 AppFrame::RecourceXML::RecourceXML() { }

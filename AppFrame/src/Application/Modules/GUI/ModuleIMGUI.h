@@ -6,7 +6,7 @@
 #include "imgui/imgui_internal.h"
 
 namespace AppFrame {
-	class  ModuleIMGUI : public Module {
+	class ENGINE_API ModuleIMGUI : public Module {
 	public:
 		ModuleIMGUI();
 

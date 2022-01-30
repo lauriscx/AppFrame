@@ -4,7 +4,7 @@
 #include "Application/AppContext.h"
 
 namespace AppFrame {
-	class  ModuleWindow : public Module {
+	class ENGINE_API ModuleWindow : public Module {
 	public:
 		ModuleWindow();
 

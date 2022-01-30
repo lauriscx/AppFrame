@@ -5,7 +5,7 @@
  * Basic event class
  */
 namespace AppFrame {
-	class  BasicEvent {
+	class ENGINE_API BasicEvent {
 	public:
 		BasicEvent() {}
 

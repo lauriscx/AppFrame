@@ -2,7 +2,7 @@
 #include "Core/Core.h"
 
 namespace AppFrame {
-	class  UUID {
+	class ENGINE_API UUID {
 	public:
 		UUID();
 		~UUID();

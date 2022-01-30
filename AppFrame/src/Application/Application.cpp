@@ -1,9 +1,7 @@
-#include "Core/EventSystem/EventManager.h"
-
-#include "Application/Application.h"
+#include "Application.h"
 #include "Application/Events/AppEvents.h"
-
 #include <functional>
+#include "EventSystem/EventManager.h"
 
 AppFrame::Application* AppFrame::Application::s_Instance = nullptr;
 

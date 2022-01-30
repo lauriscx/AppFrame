@@ -6,7 +6,7 @@
 #include <vector>
 
 namespace AppFrame {
-	class  ModuleRegistry {
+	class ENGINE_API ModuleRegistry {
 	public:
 		ModuleRegistry();
 

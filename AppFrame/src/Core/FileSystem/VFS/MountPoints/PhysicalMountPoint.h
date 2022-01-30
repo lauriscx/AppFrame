@@ -4,7 +4,7 @@
 
 namespace AppFrame {
 	class File;
-	class  PhysicalMountPoint : public MountPoint {
+	class ENGINE_API PhysicalMountPoint : public MountPoint {
 	public:
 		PhysicalMountPoint();
 

@@ -4,7 +4,7 @@
 #include "AppData.h"
 
 namespace AppFrame {
-	class  AppConfig : public AppData {
+	class ENGINE_API AppConfig : public AppData {
 	public:
 		AppConfig();
 		virtual ~AppConfig();

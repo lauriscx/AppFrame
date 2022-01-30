@@ -6,7 +6,7 @@
 namespace AppFrame {
 	class File;
 
-	class  MountPoint {
+	class ENGINE_API MountPoint {
 	public:
 		MountPoint();
 

@@ -1,5 +1,6 @@
+#include "VFS.h"
 #include "Core/FileSystem/VFS/VFS.h"
-#include "Core/FileSystem/File.h"
+#include "FileSystem/File.h"
 
 bool AppFrame::VFS::Mount(MountPoint* mount) {
 	if (!MountExist(mount->GetPath())) {

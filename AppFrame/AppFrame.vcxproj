@@ -19,13 +19,13 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -62,18 +62,17 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>DEnginePch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)_$(PlatformTarget).pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)AppFrame/AppFrame/src/;$(SolutionDir)AppFrame/AppFrame/src/Core/;$(SolutionDir)AppFrame/Libraries/AL/include/;$(SolutionDir)AppFrame/Libraries/Entt/include/;$(SolutionDir)AppFrame/Libraries/glfw/include/;$(SolutionDir)AppFrame/Libraries/gml/glm/;$(SolutionDir)AppFrame/Libraries/stb/include/;$(SolutionDir)AppFrame/Libraries/spdlog/include/;$(SolutionDir)AppFrame/Libraries/glew/include/GL/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../AppFrame/AppFrame/src/;$(SolutionDir)../AppFrame/AppFrame/src/Core/;$(SolutionDir)../AppFrame/Libraries/AL/include/;$(SolutionDir)../AppFrame/Libraries/Entt/include/;$(SolutionDir)../AppFrame/Libraries/glfw/include/;$(SolutionDir)../AppFrame/Libraries/gml/glm/;$(SolutionDir)../AppFrame/Libraries/stb/include/;$(SolutionDir)../AppFrame/Libraries/spdlog/include/;$(SolutionDir)../AppFrame/Libraries/glew/include/GL/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)AppFrame/Libraries/AL/lib/Win64/;$(SolutionDir)AppFrame/Libraries/glfw/lib/;$(SolutionDir)AppFrame/Libraries/glew/lib/x64/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)../AppFrame/Libraries/AL/lib/Win64/;$(SolutionDir)../AppFrame/Libraries/glfw/lib/;$(SolutionDir)../AppFrame/Libraries/glew/lib/x64/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;OpenAL32.lib;opengl32.lib;OpenAL32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>MOVE /Y "$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\$(ProjectName).dll" "$(SolutionDir)bin\$(Configuration)-$(Platform)\ArcticFox\$(ProjectName).dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -88,19 +87,18 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>DEnginePch.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName)_$(PlatformTarget).pch</PrecompiledHeaderOutputFile>
-      <AdditionalIncludeDirectories>$(SolutionDir)AppFrame/AppFrame/src/;$(SolutionDir)AppFrame/AppFrame/src/Core/;$(SolutionDir)AppFrame/Libraries/AL/include/;$(SolutionDir)AppFrame/Libraries/Entt/include/;$(SolutionDir)AppFrame/Libraries/glfw/include/;$(SolutionDir)AppFrame/Libraries/gml/glm/;$(SolutionDir)AppFrame/Libraries/stb/include/;$(SolutionDir)AppFrame/Libraries/spdlog/include/;$(SolutionDir)AppFrame/Libraries/glew/include/GL/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../AppFrame/AppFrame/src/;$(SolutionDir)../AppFrame/AppFrame/src/Core/;$(SolutionDir)../AppFrame/Libraries/AL/include/;$(SolutionDir)../AppFrame/Libraries/Entt/include/;$(SolutionDir)../AppFrame/Libraries/glfw/include/;$(SolutionDir)../AppFrame/Libraries/gml/glm/;$(SolutionDir)../AppFrame/Libraries/stb/include/;$(SolutionDir)../AppFrame/Libraries/spdlog/include/;$(SolutionDir)../AppFrame/Libraries/glew/include/GL/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)AppFrame/Libraries/AL/lib/Win64/;$(SolutionDir)AppFrame/Libraries/glfw/lib/;$(SolutionDir)AppFrame/Libraries/glew/lib/x64/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)../AppFrame/Libraries/AL/lib/Win64/;$(SolutionDir)../AppFrame/Libraries/glfw/lib/;$(SolutionDir)../AppFrame/Libraries/glew/lib/x64/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;OpenAL32.lib;opengl32.lib;OpenAL32.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>MOVE /Y "$(SolutionDir)bin\$(Configuration)-$(Platform)\$(ProjectName)\$(ProjectName).dll" "$(SolutionDir)bin\$(Configuration)-$(Platform)\ArcticFox\$(ProjectName).dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

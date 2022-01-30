@@ -1,12 +1,10 @@
-#include "Core/ResourceManager/ResourceManager.h"
-
-#include "Application/Modules/Sound/SoundModule.h"
-#include "Application/Modules/Sound/SoundSource.h"
-#include "Application/Modules/Sound/ResourceSound.h"
-
+#include "SoundModule.h"
 #include <alc.h>
 #include <al.h>
 //#include <iostream>
+#include "SoundSource.h"
+#include "ResourceSound.h"
+#include "ResourceManager/ResourceManager.h"
 
 #define CASE_RETURN(err) case (err): return "##err"
 const char* al_err_str(ALenum err) {
