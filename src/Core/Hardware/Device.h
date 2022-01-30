@@ -3,7 +3,7 @@
 #include "Core/Memory/DataTypes.h"
 
 namespace AppFrame {
-	class ENGINE_API Device {
+	class Device {
 	public:
 
 		virtual const char* GetDeviceModel();

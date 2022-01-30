@@ -9,7 +9,7 @@
  * Also used to subscribe and unsubscribe events.
  */
 namespace AppFrame {
-	class ENGINE_API EventHandler {
+	class EventHandler {
 	public:
 		EventHandler();
 		EventHandler(const char* name);

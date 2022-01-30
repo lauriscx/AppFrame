@@ -8,7 +8,7 @@ namespace AppFrame {
 	class EventHandler;
 	class BasicEvent;
 
-	class ENGINE_API EventManager {
+	class EventManager {
 	protected://Using this functions only EventHandler class.
 		void Surscribe(int eventType, EventHandler* eventHandler);
 		void UnSurscribe(int eventType, EventHandler* eventHandler);

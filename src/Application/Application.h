@@ -10,7 +10,7 @@
 #include "Core/Utils/Timer.h"
 
 namespace AppFrame {
-	class ENGINE_API Application : public EventHandler, public InputHandler, public ModuleRegistry, public AppContext {
+	class Application : public EventHandler, public InputHandler, public ModuleRegistry, public AppContext {
 	public:
 		enum Status {
 			Unknow = 1 << 0,

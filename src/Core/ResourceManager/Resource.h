@@ -3,7 +3,7 @@
 #include <filesystem>
 
 namespace AppFrame {
-	class ENGINE_API Resource {
+	class Resource {
 	public:
 		Resource();
 

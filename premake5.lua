@@ -1,5 +1,5 @@
 project "AppFrame"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
 	targetdir ("../Build/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("../Build/bin-int/" .. outputdir .. "/%{prj.name}")
@@ -44,7 +44,7 @@ project "AppFrame"
 		systemversion "latest"
 
 		defines {
-			"ENGINE_PLATFORM_WINDOWS",
+			--"ENGINE_PLATFORM_WINDOWS",
 			"BUILD_ENGINE_DLL",
 			"IMGUI_API=__declspec(dllexport)",
 			"_WINDLL"

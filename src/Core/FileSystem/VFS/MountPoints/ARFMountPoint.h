@@ -4,7 +4,7 @@
 
 namespace AppFrame {
 	class File;
-	class ENGINE_API ARFMountPoint : public MountPoint {
+	class ARFMountPoint : public MountPoint {
 	public:
 		ARFMountPoint();
 

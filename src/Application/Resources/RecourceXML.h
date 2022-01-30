@@ -7,7 +7,7 @@ namespace tinyxml2 {
 }
 
 namespace AppFrame {
-	class ENGINE_API RecourceXML : public Resource {
+	class RecourceXML : public Resource {
 	public:
 		RecourceXML();
 

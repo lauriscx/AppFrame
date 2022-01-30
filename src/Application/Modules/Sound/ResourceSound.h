@@ -3,7 +3,7 @@
 #include "Core/ResourceManager/Resource.h"
 
 namespace AppFrame {
-	class ENGINE_API ResourceSound : public Resource {
+	class ResourceSound : public Resource {
 	public:
 		struct  WAV_HEADER {
 			/* RIFF Chunk Descriptor */
