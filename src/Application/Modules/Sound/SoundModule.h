@@ -5,6 +5,7 @@
 
 class ALCdevice;
 namespace AppFrame {
+	class InputData;
 	class SoundModule : public Module {
 	public:
 		SoundModule();
@@ -17,7 +18,7 @@ namespace AppFrame {
 		virtual void OnStop() {}
 
 		std::vector<std::string> GetAvailableSoundDevices();
-		virtual void OnAppInput(int x, int y, int action, int key) override;
+		virtual void OnAppInput(const InputData& input) override;
 	private:
 		std::vector<std::string> m_Devices;
 		ALCdevice* device;

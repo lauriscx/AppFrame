@@ -3,10 +3,32 @@
 
 AppFrame::InputManager* AppFrame::InputManager::s_Instance = new AppFrame::InputManager();
 
-void AppFrame::InputManager::SendInput(int x, int y, int action, int key) {
+bool AppFrame::InputManager::IsKeyPressed(Key key) {
 	std::lock_guard<std::mutex> lock(m_Mutex);
+
+	return m_Keys[key];
+}
+
+bool AppFrame::InputManager::IsButtonPressed(Key Button) {
+	std::lock_guard<std::mutex> lock(m_Mutex);
+
+	return m_Keys[Button];
+}
+
+std::pair<float, float> AppFrame::InputManager::GetMousePosition(Key Button) {
+	std::lock_guard<std::mutex> lock(m_Mutex);
+
+	return m_MousePosition;
+}
+
+void AppFrame::InputManager::SendInput(const InputData& input) {
+	std::lock_guard<std::mutex> lock(m_Mutex);
+	m_Keys[input.key] = input.action;
+
+	m_MousePosition = std::pair<int, int>(input.x, input.y);
+
 	for (std::vector<InputHandler*>::iterator it = m_Handlers.begin(); it != m_Handlers.end(); it++) {
-		if ((*it)->OnInput(x, y, action, key)) {
+		if ((*it)->OnInput(input)) {
 			break;
 		}
 	}

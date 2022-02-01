@@ -45,8 +45,8 @@ void AppFrame::ModuleConsole::OnStart			() {
 void AppFrame::ModuleConsole::OnEarlyUpdate	(float deltaTime) {}
 void AppFrame::ModuleConsole::OnUpdate		(float deltaTime) {}
 void AppFrame::ModuleConsole::OnLateUpdate	(float deltaTime) {}
-void AppFrame::ModuleConsole::OnAppInput		(int x, int y, int action, int key) {}
-void AppFrame::ModuleConsole::OnAppEvent		(BasicEvent * event) {
+void AppFrame::ModuleConsole::OnAppInput	(const InputData& input) {}
+void AppFrame::ModuleConsole::OnAppEvent	(BasicEvent * event) {
 	if (Log* log = Log::Match(event)) {
 		if (log->GetLevel() == Log::level::debug) {
 			Debug(log->GetModule(), log->GetMsg());

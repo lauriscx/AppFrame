@@ -70,7 +70,7 @@ void AppFrame::ModuleIMGUI::OnLateUpdate(float deltaTime) {
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
-void AppFrame::ModuleIMGUI::OnAppInput(int x, int y, int action, int key)
+void AppFrame::ModuleIMGUI::OnAppInput(const InputData& input)
 {
 }
 

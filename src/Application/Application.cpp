@@ -44,11 +44,8 @@ bool AppFrame::Application::OnEvent	(BasicEvent & event) {
 	}
 	return false;
 }
-bool AppFrame::Application::OnInput	(int x, int y, int action, int key) {
-	for (auto module : m_Modules) {
-		module.second->OnAppInput(x, y, action, key);
-	}
-	return true;
+bool AppFrame::Application::OnInput(const InputData& input) {
+	return false;
 }
 
 AppFrame::AppConfig		* AppFrame::Application::GetConfig	() {

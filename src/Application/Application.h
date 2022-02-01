@@ -34,7 +34,7 @@ namespace AppFrame {
 		virtual void OnUpdate();
 		virtual void OnLateUpdate();
 		virtual bool OnEvent(BasicEvent& event) override;
-		virtual bool OnInput(int x, int y, int action, int key) override;
+		virtual bool OnInput(const InputData& input) override;
 
 		static Application* GetInstance() { return s_Instance; }
 		static void SetInstance(Application* instance) { s_Instance = instance; }

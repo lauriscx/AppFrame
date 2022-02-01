@@ -6,6 +6,7 @@
 #include "imgui/imgui_internal.h"
 
 namespace AppFrame {
+	class InputData;
 	class ModuleIMGUI : public Module {
 	public:
 		ModuleIMGUI();
@@ -14,7 +15,7 @@ namespace AppFrame {
 		virtual void OnEarlyUpdate(float deltaTime) override;
 		virtual void OnUpdate(float deltaTime) override;
 		virtual void OnLateUpdate(float deltaTime) override;
-		virtual void OnAppInput(int x, int y, int action, int key) override;
+		virtual void OnAppInput(const InputData& input) override;
 		virtual void OnAppEvent(BasicEvent* event) override;
 		virtual void OnStop() override;
 

@@ -136,14 +136,14 @@ std::vector<std::string> AppFrame::SoundModule::GetAvailableSoundDevices() {
 	return m_Devices;
 }
 
-void AppFrame::SoundModule::OnAppInput(int x, int y, int action, int key) {
-	if (key == 65) {
+void AppFrame::SoundModule::OnAppInput(const InputData& input) {
+	if (input.key == 65) {
 		sound->SetPitch(5);
 		al_check_error();
 
 		sound->Play();
 	}
-	if (key == 66) {
+	if (input.key == 66) {
 		sound->SetPitch(2);
 		al_check_error();
 

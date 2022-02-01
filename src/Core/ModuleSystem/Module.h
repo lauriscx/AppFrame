@@ -2,6 +2,7 @@
 #include "Core/core.h"
 #include "Application/AppContext.h"
 #include "Application/Events/AppEvents.h"
+#include "Core/InputSystem/InputData.h"
 
 #include <functional>
 
@@ -14,7 +15,7 @@ namespace AppFrame {
 		virtual void OnEarlyUpdate(float deltaTime) {}
 		virtual void OnUpdate(float deltaTime) {}
 		virtual void OnLateUpdate(float deltaTime) {}
-		virtual void OnAppInput(int x, int y, int action, int key) {}
+		virtual void OnAppInput(const InputData& input) {}
 		virtual void OnAppEvent(BasicEvent* event) {}
 		virtual void OnStop() {}
 
