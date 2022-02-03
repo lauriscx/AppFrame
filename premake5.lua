@@ -22,7 +22,9 @@ project "AppFrame"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.glm}", 
 		"%{IncludeDir.spdlog}",
-		"%{IncludeDir.stb}"
+		"%{IncludeDir.stb}",
+		"%{IncludeDir.yaml}"
+
 	}
 
 	libdirs {
@@ -35,7 +37,8 @@ project "AppFrame"
 		"glew32",
 		"OpenAL32",
 		"opengl32.lib",
-		"glfw3_mt"
+		"glfw3_mt",
+		"yaml-cpp"
 	}
 
 	filter "system:windows"

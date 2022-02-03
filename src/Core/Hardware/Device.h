@@ -1,10 +1,15 @@
 #pragma once
 #include "Core/Core.h"
 #include "Core/Memory/DataTypes.h"
+#include <string>
 
 namespace AppFrame {
 	class Device {
 	public:
+
+		/* Return empty string then canceled or failed */
+		static std::string OpenFile(const char* filter = "Text file (*.txt)\0*.txt\0");
+		static std::string SaveFile(const char* filter = "Text file (*.txt)\0*.txt\0");
 
 		virtual const char* GetDeviceModel();
 		virtual const char* GetDeviceOS();

@@ -41,6 +41,8 @@
 #include "Core/ResourceManager/Resource.h"
 #include "Core/ResourceManager/ResourceManager.h"
 
+#include "Core/Hardware/Device.h"
+
 /* Application stuff */
 #include "Core/Asserts.h"
 #include "Core/Memory/Memory.h"

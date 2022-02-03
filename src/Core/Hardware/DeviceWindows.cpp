@@ -11,6 +11,46 @@
 #include <sysinfoapi.h>
 #include <winreg.h>
 
+//Common dialogs
+#include <commdlg.h>
+/*#define GLFW_EXPOSE_NATIVE_WIN32
+#include <glfw3native.h>*/
+
+
+std::string AppFrame::Device::OpenFile(const char * filter) {
+	OPENFILENAMEA ofn;
+	CHAR szFile[260] = { 0 };
+	ZeroMemory(&ofn, sizeof(OPENFILENAMEA));
+	ofn.lStructSize = sizeof(OPENFILENAMEA);
+	ofn.hwndOwner = NULL;
+	ofn.lpstrFile = szFile;
+	ofn.nMaxFile = sizeof(szFile);
+	ofn.lpstrFilter = filter;
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
+	if (GetOpenFileNameA(&ofn) == TRUE) {
+		return ofn.lpstrFile;
+	}
+
+	return std::string();
+}
+
+std::string AppFrame::Device::SaveFile(const char * filter) {
+	OPENFILENAMEA ofn;
+	CHAR szFile[260] = { 0 };
+	ZeroMemory(&ofn, sizeof(OPENFILENAMEA));
+	ofn.lStructSize = sizeof(OPENFILENAMEA);
+	ofn.hwndOwner = NULL;
+	ofn.lpstrFile = szFile;
+	ofn.nMaxFile = sizeof(szFile);
+	ofn.lpstrFilter = filter;
+	ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST | OFN_NOCHANGEDIR;
+	if (GetSaveFileNameA(&ofn) == TRUE) {
+		return ofn.lpstrFile;
+	}
+
+	return std::string();
+}
+
 const char * AppFrame::Device::GetDeviceModel() {
 	std::string deviceModel;
 	/*HKEY hKey;
@@ -272,9 +312,9 @@ int AppFrame::Device::GetScreenWidth() {
 int AppFrame::Device::GetScreenHeight() {
 	RECT desktop;
 	// Get a handle to the desktop window
-	const HWND hDesktop = GetDesktopWindow();
+	//const HWND hDesktop = GetDesktopWindow();
 	// Get the size of screen to the variable desktop
-	GetWindowRect(hDesktop, &desktop);
+	//GetWindowRect(hDesktop, &desktop);
 
 	return desktop.bottom;
 }

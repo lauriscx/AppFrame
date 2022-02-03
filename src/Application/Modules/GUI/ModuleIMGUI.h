@@ -4,6 +4,8 @@
 //#define IMGUI_IMPL_OPENGL_LOADER_GLAD
 #include "imgui/imgui.h"
 #include "imgui/imgui_internal.h"
+#include "ImGuizmo.h"
+#include "glm/glm.hpp"
 
 namespace AppFrame {
 	class InputData;
@@ -21,4 +23,8 @@ namespace AppFrame {
 
 		virtual ~ModuleIMGUI();
 	};
+}
+
+namespace ImGui {
+	bool ModifiedDecomposeTransform(const glm::mat4& transform, glm::vec3& translation, glm::vec3& rotation, glm::vec3& scale);
 }
