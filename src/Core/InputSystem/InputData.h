@@ -10,7 +10,7 @@ namespace AppFrame {
 		int y;
 		int action;
 		Key key;
-		int button;
+		bool Mouse;
 	};
 
 	enum Key {

@@ -16,7 +16,7 @@ namespace AppFrame {
 
 		bool IsKeyPressed(Key key);
 		bool IsButtonPressed(Key Button);
-		std::pair<float, float> GetMousePosition(Key Button);
+		std::pair<float, float> GetMousePosition();
 
 		void SendInput(const InputData& input);
 

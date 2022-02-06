@@ -15,7 +15,7 @@ bool AppFrame::InputManager::IsButtonPressed(Key Button) {
 	return m_Keys[Button];
 }
 
-std::pair<float, float> AppFrame::InputManager::GetMousePosition(Key Button) {
+std::pair<float, float> AppFrame::InputManager::GetMousePosition() {
 	std::lock_guard<std::mutex> lock(m_Mutex);
 
 	return m_MousePosition;
@@ -23,9 +23,13 @@ std::pair<float, float> AppFrame::InputManager::GetMousePosition(Key Button) {
 
 void AppFrame::InputManager::SendInput(const InputData& input) {
 	std::lock_guard<std::mutex> lock(m_Mutex);
-	m_Keys[input.key] = input.action;
+	if (input.action >= 0 && input.key >= 0) {
+		m_Keys[input.key] = input.action;
+	}
 
-	m_MousePosition = std::pair<int, int>(input.x, input.y);
+	if (input.Mouse) {
+		m_MousePosition = std::pair<int, int>(input.x, input.y);
+	}
 
 	for (std::vector<InputHandler*>::iterator it = m_Handlers.begin(); it != m_Handlers.end(); it++) {
 		if ((*it)->OnInput(input)) {

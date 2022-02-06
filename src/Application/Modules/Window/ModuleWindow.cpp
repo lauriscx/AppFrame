@@ -62,7 +62,7 @@ void AppFrame::ModuleWindow::OnStart() {
 
 	glfwSetKeyCallback((GLFWwindow*)m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods) {
 		
-		InputManager::GetInstance()->SendInput({ -1, -1, action, (Key)key });
+		InputManager::GetInstance()->SendInput({ -1, -1, action, (Key)key, false });
 		/*Events* events = (Events*)glfwGetWindowUserPointer(window);
 
 		switch (action) {
@@ -89,7 +89,7 @@ void AppFrame::ModuleWindow::OnStart() {
 	});
 
 	glfwSetMouseButtonCallback((GLFWwindow*)m_Window, [](GLFWwindow* window, int button, int action, int mods) {
-		InputManager::GetInstance()->SendInput({ -1, -1, (action == GLFW_PRESS || action == GLFW_REPEAT), (Key)button });
+		InputManager::GetInstance()->SendInput({ -1, -1, (action == GLFW_PRESS || action == GLFW_REPEAT), (Key)button, false });
 		/*Events* events = (Events*)glfwGetWindowUserPointer(window);
 
 		switch (action) {
@@ -106,7 +106,7 @@ void AppFrame::ModuleWindow::OnStart() {
 	});
 
 	glfwSetScrollCallback((GLFWwindow*)m_Window, [](GLFWwindow* window, double x, double y) {
-		InputManager::GetInstance()->SendInput({ (int)x, (int)y, -1, (Key)0 });
+		InputManager::GetInstance()->SendInput({ -1, -1, -1, (Key)-1, false });
 		EventManager::GetInstance()->SendEventNow(new InputScroll(x, y));
 		/*Events* events = (Events*)glfwGetWindowUserPointer(window);
 
@@ -115,7 +115,7 @@ void AppFrame::ModuleWindow::OnStart() {
 	});
 
 	glfwSetCursorPosCallback((GLFWwindow*)m_Window, [](GLFWwindow* window, double x, double y) {
-		InputManager::GetInstance()->SendInput({ (int)x, (int)y, 0, (Key)0 });
+		InputManager::GetInstance()->SendInput({ (int)x, (int)y, -1, (Key)-1, true });
 		/*Events* events = (Events*)glfwGetWindowUserPointer(window);
 
 		MauseCursorEvent* event = new MauseCursorEvent(x, y);
