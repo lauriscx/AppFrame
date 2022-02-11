@@ -2,7 +2,6 @@
 #include "Application/Application.h"
 #include "Application/Modules/Window/ModuleWindow.h"
 #include "Application/Events/Log.h"
-#include "Application/Logger.h"
 
 #include "glew.h"
 
@@ -32,7 +31,7 @@
 AppFrame::ModuleIMGUI::ModuleIMGUI() {}
 
 void AppFrame::ModuleIMGUI::OnStart() {	
-	GLFWwindow * window = static_cast<GLFWwindow*>(static_cast<ModuleWindow*>(Application::GetInstance()->GetModule<ModuleWindow>())->GetWindow());
+	GLFWwindow * window = static_cast<GLFWwindow*>(static_cast<ModuleWindow*>(Application::Module<ModuleWindow>())->GetWindow());
 	if (!window) {
 		FATAL("IMGUI", "Window not created or window module not exist!");
 		return;

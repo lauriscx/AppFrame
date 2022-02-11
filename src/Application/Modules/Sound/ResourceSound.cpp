@@ -4,7 +4,7 @@
 #include "Core/FileSystem/File.h"
 #include <stdio.h>
 #include <iostream>
-#include "Application/Logger.h"
+#include "Application/Events/AppEvents.h"
 
 AppFrame::ResourceSound::ResourceSound() {
 	alGenBuffers(1, &m_ResourceHandle);
