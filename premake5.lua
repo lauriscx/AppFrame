@@ -1,6 +1,9 @@
 project "AppFrame"
 	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "off"
+	
 	targetdir ("../Build/bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("../Build/bin-int/" .. outputdir .. "/%{prj.name}")
 
@@ -42,15 +45,13 @@ project "AppFrame"
 	}
 
 	filter "system:windows"
-		cppdialect "c++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines {
 			--"ENGINE_PLATFORM_WINDOWS",
-			"BUILD_ENGINE_DLL",
-			"IMGUI_API=__declspec(dllexport)",
-			"_WINDLL"
+			--"BUILD_ENGINE_DLL",
+			--"IMGUI_API=__declspec(dllexport)",
+			--"_WINDLL"
 		}
 		
 		postbuildcommands {
