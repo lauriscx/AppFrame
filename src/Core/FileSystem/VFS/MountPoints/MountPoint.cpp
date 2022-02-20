@@ -48,8 +48,8 @@ bool AppFrame::MountPoint::WriteFile(const std::filesystem::path & path, char * 
 bool AppFrame::MountPoint::WriteFile(File * file) {
 	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
 }
-AppFrame::File* AppFrame::MountPoint::ReadFile(const std::filesystem::path & path) {
-	return nullptr;
+std::shared_ptr<AppFrame::File> AppFrame::MountPoint::ReadFile(const std::filesystem::path & path) {
+	return std::shared_ptr<AppFrame::File>();
 }
 
 bool AppFrame::MountPoint::CreateDirectory(const std::filesystem::path file) {
@@ -69,5 +69,5 @@ int AppFrame::MountPoint::RemoveDirectory(const std::filesystem::path directory)
 AppFrame::MountPoint::~MountPoint() { }
 
 std::filesystem::path AppFrame::MountPoint::GetRealPath(std::filesystem::path file) {
-	return std::filesystem::path(m_MountPoint.u32string() + file.u32string());
+	return std::filesystem::path(m_MountPoint / file);
 }

@@ -25,7 +25,7 @@ namespace AppFrame {
 
 		virtual bool WriteFile(const std::filesystem::path& path, char* data, size_t size);
 		virtual bool WriteFile(File* file);
-		virtual File* ReadFile(const std::filesystem::path& path);
+		virtual std::shared_ptr<AppFrame::File> ReadFile(const std::filesystem::path& path);
 
 		virtual bool CreateDirectory(const std::filesystem::path directory);
 		virtual bool CreateFile(const std::filesystem::path file, size_t size);

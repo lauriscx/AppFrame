@@ -27,8 +27,8 @@ bool AppFrame::RAMMountPoint::WriteFile(const std::filesystem::path & path, char
 bool AppFrame::RAMMountPoint::WriteFile(File * file) {
 	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
 }
-AppFrame::File* AppFrame::RAMMountPoint::ReadFile(const std::filesystem::path & path) {
-	return nullptr;
+std::shared_ptr<AppFrame::File> AppFrame::RAMMountPoint::ReadFile(const std::filesystem::path & path) {
+	return std::shared_ptr<AppFrame::File>();
 }
 
 bool AppFrame::RAMMountPoint::CreateDirectory(const std::filesystem::path directory) {

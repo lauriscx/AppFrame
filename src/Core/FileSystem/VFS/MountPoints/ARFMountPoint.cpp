@@ -116,7 +116,7 @@ bool AppFrame::ARFMountPoint::WriteFile(const std::filesystem::path & path, char
 bool AppFrame::ARFMountPoint::WriteFile(File * file) {
 	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
 }
-AppFrame::File* AppFrame::ARFMountPoint::ReadFile(const std::filesystem::path & path) {
+std::shared_ptr<AppFrame::File> AppFrame::ARFMountPoint::ReadFile(const std::filesystem::path & path) {
 	ASSERT(m_ARF_File_data != nullptr);
 	for (auto file : m_VirtualFiles) {
 		if (!file->Deleted && path.compare(file->Path) == 0) {/* Do not use HasFile in this case */
@@ -128,7 +128,7 @@ AppFrame::File* AppFrame::ARFMountPoint::ReadFile(const std::filesystem::path & 
 
 				ASSERT(data != nullptr);
 
-				File* CreatedFile = new File();
+				std::shared_ptr<AppFrame::File> CreatedFile = std::make_shared<AppFrame::File>();
 				CreatedFile->SetData(data);
 				CreatedFile->SetPath(file->Path);
 				CreatedFile->SetSize(file->Size);
@@ -140,7 +140,7 @@ AppFrame::File* AppFrame::ARFMountPoint::ReadFile(const std::filesystem::path & 
 			nullptr;
 		}
 	}
-	return nullptr;
+	return std::shared_ptr<AppFrame::File>();
 }
 
 bool AppFrame::ARFMountPoint::CreateDirectory(const std::filesystem::path directory) {

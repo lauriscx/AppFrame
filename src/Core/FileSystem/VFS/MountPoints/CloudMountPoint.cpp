@@ -27,8 +27,8 @@ bool AppFrame::CloudMountPoint::WriteFile(const std::filesystem::path & path, ch
 bool AppFrame::CloudMountPoint::WriteFile(File * file) {
 	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
 }
-AppFrame::File* AppFrame::CloudMountPoint::ReadFile(const std::filesystem::path & path) {
-	return nullptr;
+std::shared_ptr<AppFrame::File> AppFrame::CloudMountPoint::ReadFile(const std::filesystem::path & path) {
+	return std::shared_ptr<AppFrame::File>();
 }
 
 bool AppFrame::CloudMountPoint::CreateDirectory(const std::filesystem::path directory) {

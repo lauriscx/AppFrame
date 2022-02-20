@@ -1,16 +1,25 @@
 #include "AppConfig.h"
 #include "Core/XML/XML.h"
+#include "Core/FileSystem/File.h"
+#include "Core/FileSystem/VFS/VFS.h"
 
 AppFrame::AppConfig::AppConfig() {
-	ParseConfigXML("C:/Users/Kosmosas/Desktop/xml.xml");
+	ParseConfigXML("Configuration.xml");
 }
 
 AppFrame::AppConfig::~AppConfig() {}
 
 void AppFrame::AppConfig::ParseConfigXML(const char * path) {
-	tinyxml2::XMLDocument Configuration;
-	if (Configuration.LoadFile(path) == tinyxml2::XML_SUCCESS) {
-		tinyxml2::XMLElement* RootElement = Configuration.RootElement();
+	tinyxml2::XMLDocument* Configuration;
+
+	std::shared_ptr<AppFrame::File> _file = AppFrame::VFS::GetInstance()->ReadFile(path);
+	if (_file && _file->IsDataAvailable()) {
+		Configuration = XML::Parse(_file->GetData());
+		//delete _file;//It will erease all allocated memory inside(mean data which is char*).
+	//}
+
+	//if (Configuration->LoadFile(path) == tinyxml2::XML_SUCCESS) {
+		tinyxml2::XMLElement* RootElement = Configuration->RootElement();
 		if (RootElement) {
 			tinyxml2::XMLElement* WindowConfig = RootElement->FirstChildElement("Window");
 			if (WindowConfig) {

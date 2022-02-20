@@ -20,7 +20,7 @@ namespace AppFrame {
 
 		virtual bool WriteFile(const std::filesystem::path& path, char* data, size_t size) override;
 		virtual bool WriteFile(File* file) override;
-		virtual File* ReadFile(const std::filesystem::path& path) override;
+		virtual std::shared_ptr<File> ReadFile(const std::filesystem::path& path) override;
 
 		virtual bool CreateDirectory(const std::filesystem::path directory) override;
 		virtual bool CreateFile(const std::filesystem::path file, size_t size) override;

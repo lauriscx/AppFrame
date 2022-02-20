@@ -27,7 +27,7 @@ bool AppFrame::ResourceTexture::IsAvailable() {
 
 bool AppFrame::ResourceTexture::Load(std::filesystem::path file) {
 	/* Read file and parse png data */
-	File* _file = AppFrame::VFS::GetInstance()->ReadFile(file);
+	std::shared_ptr<AppFrame::File> _file = AppFrame::VFS::GetInstance()->ReadFile(file);
 	if (_file && _file->IsDataAvailable()) {
 		//stbi_set_flip_vertically_on_load();//for openGL
 		//stbi_set_flip_vertically_on_load(1);
@@ -38,7 +38,7 @@ bool AppFrame::ResourceTexture::Load(std::filesystem::path file) {
 			stbi_image_free(l_data);
 			return false;
 		}
-		delete _file;
+		//delete _file;
 		return true;
 	}
 	return false;

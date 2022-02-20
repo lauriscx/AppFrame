@@ -28,7 +28,7 @@ bool AppFrame::ResourceSound::IsAvailable() {
 
 bool AppFrame::ResourceSound::Load(std::filesystem::path file) {
 	/* Read file and parse wav data */
-	File* _file = AppFrame::VFS::GetInstance()->ReadFile(file);
+	std::shared_ptr<AppFrame::File> _file = AppFrame::VFS::GetInstance()->ReadFile(file);
 	if (_file && _file->IsDataAvailable()) {
 
 		memcpy(&m_Header, _file->GetData(), sizeof(WAV_HEADER));
@@ -38,7 +38,7 @@ bool AppFrame::ResourceSound::Load(std::filesystem::path file) {
 			if (strcmp(checkSring.c_str(), "data") != 0) {
 				ERROR("ResourceSound", "Not supported wav file format(it should be data) but is : %s\n" + checkSring.c_str());
 				//fprintf(stderr, "Not supported wav file format(it should be data) but is: %s\n", checkSring.c_str());
-				delete _file;//It will erease all allocated memory inside(mean data which is char*).
+				//delete _file;//It will erease all allocated memory inside(mean data which is char*).
 				return false;
 			}
 		} else {
@@ -52,7 +52,7 @@ bool AppFrame::ResourceSound::Load(std::filesystem::path file) {
 
 		alBufferData(m_ResourceHandle, AL_FORMAT_STEREO16, m_Data, m_Header.Subchunk2Size, m_Header.SamplesPerSec);
 
-		delete _file;//It will erease all allocated memory inside(mean data which is char*).
+		//delete _file;//It will erease all allocated memory inside(mean data which is char*).
 		
 		ALenum err = alGetError();
 		if (err != AL_NO_ERROR) {

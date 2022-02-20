@@ -44,7 +44,7 @@ bool AppFrame::PhysicalMountPoint::WriteFile(const std::filesystem::path & path,
 bool AppFrame::PhysicalMountPoint::WriteFile(File * file) {
 	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
 }
-AppFrame::File* AppFrame::PhysicalMountPoint::ReadFile(const std::filesystem::path & path) {
+std::shared_ptr<AppFrame::File> AppFrame::PhysicalMountPoint::ReadFile(const std::filesystem::path & path) {
 	std::ifstream out(GetRealPath(path), std::ifstream::ate | std::ifstream::binary);
 	if (out.is_open()) {
 		out.seekg(0, std::ios_base::end);
@@ -56,7 +56,7 @@ AppFrame::File* AppFrame::PhysicalMountPoint::ReadFile(const std::filesystem::pa
 
 		ASSERT(data != nullptr);
 
-		File* CreatedFile = new File();
+		std::shared_ptr<AppFrame::File> CreatedFile = std::make_shared<AppFrame::File>();
 		CreatedFile->SetData(data);
 		CreatedFile->SetPath(path);
 		CreatedFile->SetSize(size);
@@ -64,7 +64,7 @@ AppFrame::File* AppFrame::PhysicalMountPoint::ReadFile(const std::filesystem::pa
 		return CreatedFile;
 	}
 	out.close();
-	return nullptr;
+	return std::shared_ptr<AppFrame::File>();
 }
 
 bool AppFrame::PhysicalMountPoint::CreateDirectory(const std::filesystem::path directory) {

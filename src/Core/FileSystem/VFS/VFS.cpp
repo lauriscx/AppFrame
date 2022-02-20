@@ -76,11 +76,11 @@ bool AppFrame::VFS::WriteFile(File * file) {
 	return WriteFile(file->GetPath(), file->GetData(), file->GetSize());
 }
 
-AppFrame::File* AppFrame::VFS::ReadFile(const std::filesystem::path & path) {
+std::shared_ptr<AppFrame::File> AppFrame::VFS::ReadFile(const std::filesystem::path & path) {
 	for (auto mount : m_MountingPoints) {
 		return mount.second->ReadFile(path);
 	}
-	return nullptr;
+	return std::shared_ptr<File>();
 }
 
 bool AppFrame::VFS::CreateDirectory(const std::filesystem::path directory) {

@@ -16,10 +16,10 @@ bool AppFrame::RecourceXML::IsAvailable() {
 }
 
 bool AppFrame::RecourceXML::Load(std::filesystem::path file) {
-	File* _file = AppFrame::VFS::GetInstance()->ReadFile(file);
+	std::shared_ptr<AppFrame::File> _file = AppFrame::VFS::GetInstance()->ReadFile(file);
 	if (_file && _file->IsDataAvailable()) {
 		m_Resource = XML::Parse(_file->GetData());
-		delete _file;//It will erease all allocated memory inside(mean data which is char*).
+		//delete _file;//It will erease all allocated memory inside(mean data which is char*).
 		return true;
 	}
 	return false;

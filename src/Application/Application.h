@@ -8,6 +8,8 @@
 #include "Core/ModuleSystem/ModuleRegistry.h"
 #include "Core/Hardware/Device.h"
 #include "Core/Utils/Timer.h"
+#include <filesystem>
+#include "Core/FileSystem/VFS/VFS.h"
 
 namespace AppFrame {
 	class Application : public EventHandler, public InputHandler, public ModuleRegistry, public AppContext {
@@ -42,7 +44,7 @@ namespace AppFrame {
 		Device	  * m_Device;
 
 		Timer m_Timer;
-
+		 
 		static Application* s_Instance;
 	};
 }
