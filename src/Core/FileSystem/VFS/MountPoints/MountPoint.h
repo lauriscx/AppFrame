@@ -36,6 +36,8 @@ namespace AppFrame {
 		virtual std::filesystem::path GetPath();
 		virtual int Priority();
 
+		virtual std::vector<std::filesystem::directory_entry> Directories(std::filesystem::path dir = "");
+
 
 		virtual ~MountPoint();
 

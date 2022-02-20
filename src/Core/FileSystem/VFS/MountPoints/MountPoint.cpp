@@ -16,6 +16,10 @@ int AppFrame::MountPoint::Priority() {
 	return m_Priority;
 }
 
+std::vector<std::filesystem::directory_entry> AppFrame::MountPoint::Directories(std::filesystem::path dir) {
+	return std::vector<std::filesystem::directory_entry>();
+}
+
 std::filesystem::path AppFrame::MountPoint::GetPath() {
 	return m_MountPoint;
 }

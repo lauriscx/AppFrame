@@ -28,6 +28,8 @@ namespace AppFrame {
 		virtual bool RemoveFile(const std::filesystem::path file) override;
 		virtual int RemoveDirectory(const std::filesystem::path directory) override;
 
+		virtual std::vector<std::filesystem::directory_entry> Directories(std::filesystem::path dir = "") override;
+
 		virtual ~PhysicalMountPoint();
 	};
 }

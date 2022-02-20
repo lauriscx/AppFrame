@@ -98,4 +98,18 @@ int AppFrame::PhysicalMountPoint::RemoveDirectory(const std::filesystem::path di
 	return std::filesystem::remove_all(GetRealPath(directory));
 }
 
+std::vector<std::filesystem::directory_entry> AppFrame::PhysicalMountPoint::Directories(std::filesystem::path dir) {
+	std::filesystem::path directory = dir;
+	if (directory.empty()) {
+		directory = m_MountPoint;
+	}
+
+	std::vector<std::filesystem::directory_entry> directories;
+	for (auto& path : std::filesystem::directory_iterator(directory)) {
+		directories.push_back(path);
+	}
+
+	return directories;
+}
+
 AppFrame::PhysicalMountPoint::~PhysicalMountPoint() {}
