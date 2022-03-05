@@ -14,7 +14,7 @@ void AppFrame::ModuleWindow::OnStart() {
 
 	/* Initialize the library */
 	if (!glfwInit()) {
-		Fatal("ModuleWindow", __FILE__, __LINE__, "Failed to init GLFW");
+		//Fatal("ModuleWindow", __FILE__, __LINE__, "Failed to init GLFW");
 		return;
 	}
 
@@ -30,7 +30,7 @@ void AppFrame::ModuleWindow::OnStart() {
 
 	if (!m_Window) {
 		glfwTerminate();
-		Fatal("ModuleWindow", __FILE__, __LINE__, "Failed to create window");
+		//Fatal("ModuleWindow", __FILE__, __LINE__, "Failed to create window");
 		return;
 	}
 

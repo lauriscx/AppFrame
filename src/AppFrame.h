@@ -41,6 +41,9 @@
 #include "Core/ResourceManager/Resource.h"
 #include "Core/ResourceManager/ResourceManager.h"
 
+#include "Application/Resources/ResourceMesh.h"
+#include "Application/Resources/ResourceTexture.h"
+
 #include "Core/Hardware/Device.h"
 
 /* Application stuff */

@@ -18,13 +18,6 @@ namespace AppFrame {
 		virtual void OnAppInput(const InputData& input) {}
 		virtual void OnAppEvent(BasicEvent* event) {}
 		virtual void OnStop() {}
-
-		std::function<void(const char*, const char*, unsigned int, const char*)> Fatal;
-		std::function<void(const char*, const char*, unsigned int, const char*)> Error;
-		std::function<void(const char*, const char*, unsigned int, const char*)> Warning;
-		std::function<void(const char*, const char*, unsigned int, const char*)> Info;
-		std::function<void(const char*, const char*, unsigned int, const char*)> Trace;
-		std::function<void(const char*, const char*, unsigned int, const char*)> Debug;
 		
 		virtual ~Module() {};
 	protected:

@@ -26,14 +26,18 @@ project "AppFrame"
 		"%{IncludeDir.glm}", 
 		"%{IncludeDir.spdlog}",
 		"%{IncludeDir.stb}",
-		"%{IncludeDir.yaml}"
-
+		"%{IncludeDir.yaml}",
+		"%{IncludeDir.assimp}",
+		"%{IncludeDir.optick}",
+		"%{IncludeDir.Mono}"
 	}
 
 	libdirs {
 		"%{LibraryDir.AL}",
 		"%{LibraryDir.glew}",
-		"%{LibraryDir.GLFW}"
+		"%{LibraryDir.GLFW}",
+		"%{LibraryDir.assimp}",
+		"%{LibraryDir.MonoSDK}"
 	}	
 
 	links {
@@ -41,7 +45,10 @@ project "AppFrame"
 		"OpenAL32",
 		"opengl32.lib",
 		"glfw3_mt",
-		"yaml-cpp"
+		"yaml-cpp",
+		"assimp.lib",
+		"OptickCore",
+		"mono-2.0-sgen.lib"
 	}
 
 	filter "system:windows"

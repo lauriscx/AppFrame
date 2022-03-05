@@ -10,9 +10,12 @@
 #include "Core/Utils/Timer.h"
 #include <filesystem>
 #include "Core/FileSystem/VFS/VFS.h"
+#include "mono/metadata/assembly.h"
+
+//#define MT_SCHEDULER_PROFILER_TASK_SCOPE_CODE_INJECTION( TYPE, DEBUG_COLOR, SRC_FILE, SRC_LINE) OPTICK_CATEGORY( MT_TEXT( #TYPE ), OPTICK_MAKE_CATEGORY(0, DEBUG_COLOR) );
 
 namespace AppFrame {
-	class Application : public EventHandler, public InputHandler, public ModuleRegistry, public AppContext {
+	class  Application : public EventHandler, public InputHandler, public ModuleRegistry, public AppContext {
 	public:
 		Application(AppFrame::AppConfig* config);
 

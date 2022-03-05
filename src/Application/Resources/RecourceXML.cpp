@@ -3,6 +3,7 @@
 #include "Core/FileSystem/File.h"
 #include <iostream>
 #include "Core/XML/XML.h"
+#include "Core/ResourceManager/ResourceManager.h"
 
 
 AppFrame::RecourceXML::RecourceXML() { }
@@ -16,6 +17,8 @@ bool AppFrame::RecourceXML::IsAvailable() {
 }
 
 bool AppFrame::RecourceXML::Load(std::filesystem::path file) {
+	AppFrame::Resource::Load(file);
+
 	std::shared_ptr<AppFrame::File> _file = AppFrame::VFS::GetInstance()->ReadFile(file);
 	if (_file && _file->IsDataAvailable()) {
 		m_Resource = XML::Parse(_file->GetData());
@@ -25,10 +28,18 @@ bool AppFrame::RecourceXML::Load(std::filesystem::path file) {
 	return false;
 }
 
+void AppFrame::RecourceXML::OnRelease() {
+	if (m_Resource) {
+		delete m_Resource;
+	}
+}
+
 size_t AppFrame::RecourceXML::GetMemoryUsage() {
 	return sizeof(this) + sizeof(m_Resource);//Probably not correct.
 }
 
-AppFrame::RecourceXML::~RecourceXML() {
-	delete m_Resource;
+AppFrame::RecourceXML::~RecourceXML() { 
+	if (!m_File.empty()) {
+		AppFrame::ResourceManager::GetInstance()->ReleaseResource<RecourceXML>(this);
+	}
 }
