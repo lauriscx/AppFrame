@@ -57,13 +57,19 @@ namespace AppFrame {
 			#endif
 		}
 
-		/*Resource& operator=(const Resource& other) {
+		Resource& operator=(const Resource& other) {
+			(*this->m_RefCount)--;
+			(*other.m_RefCount)++;
+
 			this->m_RefCount = other.m_RefCount;
 			this->m_File = other.m_File;
-			(*m_RefCount)++;
-			std::cout << "Resource& operator=(const Resource& other) " << *m_RefCount << std::endl;
+			
+			#ifdef DEBUG_RES
+				std::cout << "Resource& operator=(const Resource& other) " << *m_RefCount << std::endl;
+			#endif
+
 			return *this;
-		}*/
+		}
 
 		virtual bool IsAvailable() = 0;
 		virtual bool Load(std::filesystem::path file) = 0;
