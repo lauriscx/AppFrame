@@ -5,7 +5,7 @@
 namespace AppFrame {
 	class ResourceTexture : public Resource {
 	public:
-		ResourceTexture();
+		ResourceTexture(std::filesystem::path file);
 
 		void* Get();
 		int GetWidth();
@@ -14,6 +14,9 @@ namespace AppFrame {
 
 		virtual bool IsAvailable() override;
 		virtual bool Load(std::filesystem::path file) override;
+
+		virtual void OnRelease() override;
+		virtual void OnLoad() override;
 
 		virtual size_t GetMemoryUsage() override;
 

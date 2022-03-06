@@ -6,7 +6,9 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-AppFrame::ResourceTexture::ResourceTexture() { }
+AppFrame::ResourceTexture::ResourceTexture(std::filesystem::path file) : Resource(file) {
+	//std::cout << "ResourceTexture(std::filesystem::path file)" << std::endl;
+}
 
 void * AppFrame::ResourceTexture::Get() {
 	return m_data;
@@ -27,7 +29,6 @@ bool AppFrame::ResourceTexture::IsAvailable() {
 }
 
 bool AppFrame::ResourceTexture::Load(std::filesystem::path file) {
-	AppFrame::Resource::Load(file);
 	/* Read file and parse png data */
 	std::shared_ptr<AppFrame::File> _file = AppFrame::VFS::GetInstance()->ReadFile(file);
 	if (_file && _file->IsDataAvailable()) {
@@ -46,15 +47,16 @@ bool AppFrame::ResourceTexture::Load(std::filesystem::path file) {
 	return false;
 }
 
+void AppFrame::ResourceTexture::OnRelease() {
+	if (m_data) {
+		stbi_image_free(m_data);
+	}
+}
+
+void AppFrame::ResourceTexture::OnLoad() { }
+
 size_t AppFrame::ResourceTexture::GetMemoryUsage() {
 	return sizeof(ResourceTexture) + (m_Channels * m_Width * m_Height);
 }
 
-AppFrame::ResourceTexture::~ResourceTexture() {
-	if (m_data) {
-		stbi_image_free(m_data);
-	}
-	if (!m_File.empty()) {
-		AppFrame::ResourceManager::GetInstance()->ReleaseResource<ResourceTexture>(this);
-	}
-}
+AppFrame::ResourceTexture::~ResourceTexture() {}

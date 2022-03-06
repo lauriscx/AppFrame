@@ -1,6 +1,9 @@
 #pragma once
 #include "Asserts.h"
 
+#include <FileSystem>
+#include <map>
+
 #define quote(x) #x
 
 #define NOMINMAX

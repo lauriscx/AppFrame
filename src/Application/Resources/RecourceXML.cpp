@@ -6,7 +6,9 @@
 #include "Core/ResourceManager/ResourceManager.h"
 
 
-AppFrame::RecourceXML::RecourceXML() { }
+AppFrame::RecourceXML::RecourceXML(std::filesystem::path file) : Resource(file) {
+	//std::cout << "RecourceXML(std::filesystem::path file)" << std::endl;
+}
 
 tinyxml2::XMLDocument * AppFrame::RecourceXML::Get() {
 	return m_Resource;
@@ -17,7 +19,6 @@ bool AppFrame::RecourceXML::IsAvailable() {
 }
 
 bool AppFrame::RecourceXML::Load(std::filesystem::path file) {
-	AppFrame::Resource::Load(file);
 
 	std::shared_ptr<AppFrame::File> _file = AppFrame::VFS::GetInstance()->ReadFile(file);
 	if (_file && _file->IsDataAvailable()) {
@@ -34,12 +35,10 @@ void AppFrame::RecourceXML::OnRelease() {
 	}
 }
 
+void AppFrame::RecourceXML::OnLoad() { }
+
 size_t AppFrame::RecourceXML::GetMemoryUsage() {
 	return sizeof(this) + sizeof(m_Resource);//Probably not correct.
 }
 
-AppFrame::RecourceXML::~RecourceXML() { 
-	if (!m_File.empty()) {
-		AppFrame::ResourceManager::GetInstance()->ReleaseResource<RecourceXML>(this);
-	}
-}
+AppFrame::RecourceXML::~RecourceXML() { }

@@ -24,6 +24,7 @@ namespace AppFrame {
 			uint32_t        Subchunk2Size;  // Sampled data length
 		};
 	public:
+		ResourceSound(std::filesystem::path file);
 		ResourceSound();
 
 		unsigned int Get();
@@ -36,11 +37,15 @@ namespace AppFrame {
 
 		virtual size_t GetMemoryUsage() override;
 
+		virtual void OnLoad() override;
+		virtual void OnRelease() override;
+
 		virtual ~ResourceSound();
 	private:
 		unsigned int m_ResourceHandle;
 
 		WAV_HEADER m_Header;
 		char* m_Data;
+
 	};
 }

@@ -9,8 +9,7 @@ namespace tinyxml2 {
 namespace AppFrame {
 	class RecourceXML : public Resource {
 	public:
-		RecourceXML(const Resource& resource) : Resource(static_cast<const Resource&>(resource)) {}
-		RecourceXML();
+		RecourceXML(std::filesystem::path file);
 
 		tinyxml2::XMLDocument* Get();
 
@@ -18,6 +17,7 @@ namespace AppFrame {
 		virtual bool Load(std::filesystem::path file) override;
 
 		virtual void OnRelease() override;
+		virtual void OnLoad() override;
 
 		virtual size_t GetMemoryUsage() override;
 

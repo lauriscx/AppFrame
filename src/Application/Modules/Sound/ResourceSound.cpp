@@ -6,9 +6,11 @@
 #include <iostream>
 #include "Application/Events/AppEvents.h"
 
-AppFrame::ResourceSound::ResourceSound() {
+AppFrame::ResourceSound::ResourceSound(std::filesystem::path file) {
 	alGenBuffers(1, &m_ResourceHandle);
 }
+
+AppFrame::ResourceSound::ResourceSound() { }
 
 unsigned int AppFrame::ResourceSound::Get() {
 	return m_ResourceHandle;
@@ -75,4 +77,11 @@ AppFrame::ResourceSound::~ResourceSound() {
 	if (m_Data != nullptr) {
 		delete[] m_Data;
 	}
+}
+
+void AppFrame::ResourceSound::OnLoad() {
+
+}
+
+void AppFrame::ResourceSound::OnRelease() {
 }

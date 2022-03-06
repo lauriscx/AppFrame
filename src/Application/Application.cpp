@@ -3,6 +3,7 @@
 #include <functional>
 #include "Core/EventSystem/EventManager.h"
 #include "optick.h"
+#include "Core/ResourceManager/ResourceManager.h"
 
 AppFrame::Application* AppFrame::Application::s_Instance = nullptr;
 
@@ -42,6 +43,7 @@ void AppFrame::Application::OnUpdate	() {
 void AppFrame::Application::OnLateUpdate() {
 	OPTICK_EVENT();
 	ModuleRegistry::OnLateUpdate(m_Timer.Elapsed());
+	ResourceManager::GetInstance()->CleanUnusedResource();
 	m_Timer.Stop();
 }
 

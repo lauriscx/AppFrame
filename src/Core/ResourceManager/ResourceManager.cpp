@@ -1,36 +1,34 @@
-#include "ResourceManager.h"
-#include <filesystem>
-#include "Core/FileSystem/VFS/VFS.h"
-#include "Core/FileSystem/File.h"
+#include "Core/ResourceManager/ResourceManager.h"
 
-AppFrame::ResourceManager::ResourceManager() { }
+const bool AppFrame::ResourceManager::IsAvailable(std::filesystem::path path) {
+	auto hand = std::filesystem::hash_value(path);
+	return m_Resource[hand]->IsAvailable();
+}
 
-void AppFrame::ResourceManager::ReleaseResource(std::filesystem::path path) {
-	size_t handle = std::filesystem::hash_value(path);
-	if (m_Resource[handle].second.IsAvailable()) {
-		m_Resource[handle].first--;
-		if (m_Resource[handle].first <= 1) {
-			m_Resource[handle].second.OnRelease();
-			m_Resource.erase(handle);//Removed from resource manager
-			std::cout << "Releasing " << path << " handle " << handle << std::endl;
+void AppFrame::ResourceManager::CleanUnusedResource() {
+	for (auto it = m_Resource.cbegin(); it != m_Resource.cend(); ) {
+		if (it->second->getRefCount() <= 1) {
+			it->second->OnRelease();
+			delete it->second;
+			m_Resource.erase(it++);
+		} else {
+			++it;
 		}
 	}
 }
 
-const bool AppFrame::ResourceManager::IsAvailable(std::filesystem::path path) {
-	size_t handle = std::filesystem::hash_value(path);
-	if (m_Resource[handle].second.IsAvailable()) {
-		return false;
+void AppFrame::ResourceManager::ReleaseResources() {
+	for (auto resource : m_Resource) {
+		resource.second->OnRelease();
+		delete resource.second;
 	}
-	return true;
+	m_Resource.clear();
 }
 
 AppFrame::ResourceManager::~ResourceManager() {
 	for (auto resource : m_Resource) {
-		resource.second.first = 0;
-		//if (resource.second.second.IsAvailable()) {
-			resource.second.second.OnRelease();
-		//}
+		resource.second->OnRelease();
+		delete resource.second;
 	}
-	//m_Resource.clear();
+	m_Resource.clear();
 }
