@@ -10,6 +10,7 @@ namespace AppFrame {
 
 		void SetData(char* data);
 		void SetSize(const uint32_t size);
+		void SetFullPath(const std::filesystem::path path);
 		void SetPath(const std::filesystem::path path);
 		void SetFolder(const std::filesystem::path folder);
 		void SetFile(const std::filesystem::path file);
@@ -17,6 +18,7 @@ namespace AppFrame {
 
 		bool IsDataAvailable();
 
+		std::filesystem::path	GetFullPath();
 		std::filesystem::path	GetPath();
 		char*					GetData();
 		uint32_t				GetSize();
@@ -24,6 +26,7 @@ namespace AppFrame {
 		~File();
 	private:
 		char* m_Data;
+		std::filesystem::path m_FullPath;
 		std::filesystem::path m_Path;
 		std::filesystem::path m_Folder;
 		std::filesystem::path m_File;

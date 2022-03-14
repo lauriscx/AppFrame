@@ -1,10 +1,24 @@
 #include "MountPoint.h"
 #include "Core/FileSystem/File.h"
 
+#include <vector>
+#include <algorithm>
+#include <numeric>
+#include <future>
+#include <string>
+#include <mutex>
+#include <chrono>
+#include <iostream>
+
 AppFrame::MountPoint::MountPoint() {}
 
 bool AppFrame::MountPoint::SetMountPoint(std::filesystem::path mountPoint) {
 	m_MountPoint = mountPoint;
+
+	m_watcherThread = std::thread(&MountPoint::StartWatcher, this);
+
+	//std::async(std::launch::async, &MountPoint::StartWatcher, this);
+	int a = 2;
 	return true;
 }
 bool AppFrame::MountPoint::SetMountPriority(int priority) {
@@ -66,8 +80,51 @@ int AppFrame::MountPoint::RemoveDirectory(const std::filesystem::path directory)
 	return false;
 }
 
-AppFrame::MountPoint::~MountPoint() { }
+AppFrame::MountPoint::~MountPoint() {
+	m_watcherThread.join();
+}
 
 std::filesystem::path AppFrame::MountPoint::GetRealPath(std::filesystem::path file) {
 	return std::filesystem::path(m_MountPoint / file);
+}
+
+void AppFrame::MountPoint::StartWatcher() {
+	bool KeepWatching = true;
+	std::chrono::duration<int, std::milli> delay = std::chrono::milliseconds(1000);
+	while (KeepWatching) {
+		std::this_thread::sleep_for(delay);
+
+		auto it = m_FilesWatch.begin();
+		while (it != m_FilesWatch.end()) {
+			if (!std::filesystem::exists(it->first)) {
+				//action(it->first, FileStatus::erased);
+				it = m_FilesWatch.erase(it);
+			} else {
+				it++;
+			}
+		}
+
+		// Check if a file was created or modified
+		for (auto &file : std::filesystem::recursive_directory_iterator(m_MountPoint)) {
+			auto current_file_last_write_time = std::filesystem::last_write_time(file);
+
+			// File creation
+			if (!Exist(file.path().string())) {
+				m_FilesWatch[file.path().string()] = current_file_last_write_time;
+				//action(file.path().string(), FileStatus::created);
+			// File modification
+			} else {
+				if (m_FilesWatch[file.path().string()] != current_file_last_write_time) {
+					m_FilesWatch[file.path().string()] = current_file_last_write_time;
+					std::cout << "File modified: " << file.path().string() << std::endl;
+					//action(file.path().string(), FileStatus::modified);
+				}
+			}
+		}
+	}
+}
+
+bool AppFrame::MountPoint::Exist(const std::string & key) {
+	auto el = m_FilesWatch.find(key);
+	return el != m_FilesWatch.end();
 }

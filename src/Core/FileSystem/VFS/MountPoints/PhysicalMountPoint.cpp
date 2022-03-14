@@ -59,6 +59,7 @@ std::shared_ptr<AppFrame::File> AppFrame::PhysicalMountPoint::ReadFile(const std
 		std::shared_ptr<AppFrame::File> CreatedFile = std::make_shared<AppFrame::File>();
 		CreatedFile->SetData(data);
 		CreatedFile->SetPath(path);
+		CreatedFile->SetFullPath(GetRealPath(path));
 		CreatedFile->SetSize(size);
 
 		return CreatedFile;

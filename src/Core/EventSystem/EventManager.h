@@ -16,9 +16,6 @@ namespace AppFrame {
 
 	public:
 		void SendEvent(BasicEvent* event);
-		void SendEventNow(BasicEvent* event);
-
-		void Update();
 
 		static EventManager* GetInstance();
 
@@ -27,7 +24,6 @@ namespace AppFrame {
 		EventManager(const EventManager& eventManager) {}
 		EventManager(const EventManager&& eventManager) {}
 		~EventManager() { m_EventHandlerEvents.clear(); }
-		//EventManager& operator=(const EventManager& eventmanager) {}
 
 		std::multimap<int, EventHandler*> m_EventHandlerEvents;
 		std::vector<BasicEvent*> m_Events;

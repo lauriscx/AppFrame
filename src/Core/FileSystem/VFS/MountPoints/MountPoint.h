@@ -1,7 +1,16 @@
 #pragma once
 #include "Core/Core.h"
-#include <filesystem>
 #include <vector>
+#include <unordered_map>
+#include <map>
+
+#include <filesystem>
+#include <chrono>
+#include <thread>
+#include <unordered_map>
+#include <string>
+#include <functional>
+#include <thread>
 
 namespace AppFrame {
 	class File;
@@ -46,6 +55,16 @@ namespace AppFrame {
 
 		std::filesystem::path m_MountPoint;
 		std::vector<std::filesystem::path> m_Files;
+
+		//Map off functions/callbacks of releated file and action. Created, modyfied, deleted, renamed.
+		std::map<std::filesystem::path, std::filesystem::file_time_type> m_FilesWatch;
+
+		std::thread m_watcherThread;
+
+		void StartWatcher();
+		bool Exist(const std::string &key);
+
 		int m_Priority;
+
 	};
 }

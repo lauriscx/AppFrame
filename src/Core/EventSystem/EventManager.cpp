@@ -1,4 +1,3 @@
-//#include "DEnginePch.h"
 #include "EventHandler.h"
 #include "EventManager.h"
 
@@ -48,20 +47,10 @@ void AppFrame::EventManager::UnSurscribe	(EventHandler * eventHandler) {
 }
 
 	/*
-	 * Store event for procces optimization
-	 * to loop trought surscribers only one time
-	 * insted of looping everytime we send event.
-	 */
-void AppFrame::EventManager::SendEvent	(BasicEvent * event) {
-	std::lock_guard<std::mutex> lock(m_Mutex);
-	m_Events.push_back(event);
-}
-
-	/*
 	 * Not optimal because we everytime send event
 	 * we have to loop throught m_EventHandlerEvents map.
 	 */
-void AppFrame::EventManager::SendEventNow (BasicEvent * event) {
+void AppFrame::EventManager::SendEvent(BasicEvent * event) {
 	std::lock_guard<std::mutex> lock(m_Mutex);
 	/* Store 2 pointers from map. First pointer stores address where stars objects with key value,
 	 * second stores addres where ends objects with key value.
@@ -82,32 +71,4 @@ void AppFrame::EventManager::SendEventNow (BasicEvent * event) {
 	}
 	//Release memory.
 	delete event;
-}
-
-void AppFrame::EventManager::Update() {
-	std::lock_guard<std::mutex> lock(m_Mutex);
-	/*Lock for multithread*/
-	for (int i = 0; i < m_Events.size(); i++) {
-		/* Store 2 pointers from map. First pointer stores address where stars objects with key value,
-			* second stores addres where ends objects with key value.
-			*/
-		std::pair<std::multimap<int, EventHandler*>::iterator, std::multimap<int, EventHandler*>::iterator> range;
-		/*
-			* Get by object range in map.
-			*/
-		int id = m_Events[i]->GetType();
-		range = m_EventHandlerEvents.equal_range(id);
-		/*
-			* Iterate thought map in specific range.
-			*/
-		for (std::multimap<int, EventHandler*>::iterator it = range.first; it != range.second; it++) {
-			//Send subscripted event to event handler.
-			if (it->second->OnEvent(*m_Events[i])) {
-				break;
-			}
-		}
-		//Delete event/free memory
-		delete m_Events[i];
-	}
-	m_Events.clear();
 }

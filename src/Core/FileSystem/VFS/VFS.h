@@ -27,7 +27,6 @@ namespace AppFrame {
 		bool RemoveFile(const std::filesystem::path file);
 		int RemoveDirectory(const std::filesystem::path directory);
 
-
 		static VFS* GetInstance() { static VFS s_Instance; return &s_Instance; }
 	private:
 		std::map<std::filesystem::path, MountPoint*> m_MountingPoints;

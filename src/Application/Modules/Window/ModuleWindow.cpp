@@ -44,19 +44,19 @@ void AppFrame::ModuleWindow::OnStart() {
 	// Set GLFW callbacks
 	glfwSetWindowSizeCallback((GLFWwindow*)m_Window, [](GLFWwindow* window, int width, int height) {
 		if (width == 0 && height == 0) {
-			EventManager::GetInstance()->SendEventNow(new WindowMinimized());
+			EventManager::GetInstance()->SendEvent(new WindowMinimized());
 			Minimized = true;
 		} else {
 			if (Minimized) {
-				EventManager::GetInstance()->SendEventNow(new WindowMaximized());
+				EventManager::GetInstance()->SendEvent(new WindowMaximized());
 				Minimized = false;
 			}
-			EventManager::GetInstance()->SendEventNow(new WindowResize(width, height));
+			EventManager::GetInstance()->SendEvent(new WindowResize(width, height));
 		}
 	});
 
 	glfwSetWindowCloseCallback((GLFWwindow*)m_Window, [](GLFWwindow* window) {
-		EventManager::GetInstance()->SendEventNow(new WindowCloses());
+		EventManager::GetInstance()->SendEvent(new WindowCloses());
 	});
 
 
@@ -107,7 +107,7 @@ void AppFrame::ModuleWindow::OnStart() {
 
 	glfwSetScrollCallback((GLFWwindow*)m_Window, [](GLFWwindow* window, double x, double y) {
 		InputManager::GetInstance()->SendInput({ -1, -1, -1, (Key)-1, false });
-		EventManager::GetInstance()->SendEventNow(new InputScroll(x, y));
+		EventManager::GetInstance()->SendEvent(new InputScroll(x, y));
 		/*Events* events = (Events*)glfwGetWindowUserPointer(window);
 
 		MauseScrollEvent* event = new MauseScrollEvent(x, y);
